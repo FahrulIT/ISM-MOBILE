@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISM MAINTENANCE", "ISM MAINTENANCE\ISM MAINTENANCE.csproj", "{883EFDDF-A4E5-4839-93D6-2840629AFBFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{92341061-3F99-4245-BFCB-2DE3805D99C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{883EFDDF-A4E5-4839-93D6-2840629AFBFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{883EFDDF-A4E5-4839-93D6-2840629AFBFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{883EFDDF-A4E5-4839-93D6-2840629AFBFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{883EFDDF-A4E5-4839-93D6-2840629AFBFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92341061-3F99-4245-BFCB-2DE3805D99C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92341061-3F99-4245-BFCB-2DE3805D99C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92341061-3F99-4245-BFCB-2DE3805D99C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92341061-3F99-4245-BFCB-2DE3805D99C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

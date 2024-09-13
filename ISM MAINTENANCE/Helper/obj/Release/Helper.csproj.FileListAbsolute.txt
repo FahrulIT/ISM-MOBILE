@@ -1,0 +1,5 @@
+D:\APPL\ISTEM MOBILE\ISM MAINTENANCE\Helper\bin\Release\Helper.dll
+D:\APPL\ISTEM MOBILE\ISM MAINTENANCE\Helper\bin\Release\Helper.pdb
+D:\APPL\ISTEM MOBILE\ISM MAINTENANCE\Helper\obj\Release\Helper.csprojResolveAssemblyReference.cache
+D:\APPL\ISTEM MOBILE\ISM MAINTENANCE\Helper\obj\Release\Helper.dll
+D:\APPL\ISTEM MOBILE\ISM MAINTENANCE\Helper\obj\Release\Helper.pdb

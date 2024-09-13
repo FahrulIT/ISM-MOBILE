@@ -1,0 +1,145 @@
+﻿@model IEnumerable<ISM_MAINTENANCE.Models.ViewModel.MaintenanceActivity>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int NomorBaris = 0;
+}
+
+<div class="card">
+    <div class="card-header bg-primary">
+        <div class="text-white fs-6 fw-bold">Maintenance Activity</div>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-4 col-xl-3">
+            <a href="@Url.Action("Create", "MaintenanceActivity" )" class="btn btn-rounded btn-outline-primary">
+                Add New
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table id="" class="display table-sm text-nowrap">
+                <thead class="header-item">
+                    <tr>
+                        <th style="text-align:center">
+                            No
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.maintenance_slip)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.machine_no)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.issue_date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mtc_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dept_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mc_name)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.mtc_status)
+                        </th>
+
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.dept_id)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.mtc_slip_no1)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.mtc_slip_no2)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.mc_id)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.mtc_id)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.loom_no)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.block)
+                        </th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- start row -->
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="text-align:center">
+                                @(NomorBaris += 1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.maintenance_slip)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.machine_no)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.issue_date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mtc_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.dept_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mc_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mtc_status)
+                            </td>
+
+                            <td style="display:none">
+                                @Html.DisplayFor(modelItem => item.dept_id)
+                            </td>
+                            <td style="display:none">
+                                @Html.DisplayFor(modelItem => item.mtc_slip_no1)
+                            </td>
+                            <td style="display:none">
+                                @Html.DisplayFor(modelItem => item.mtc_slip_no2)
+                            </td>
+                            <td style="display:none">
+                                @Html.DisplayFor(modelItem => item.mc_id)
+                            </td>
+                            <td style="display:none">
+                                @Html.DisplayFor(modelItem => item.mtc_id)
+                            </td>
+                            <td style="display:none">
+                                @Html.DisplayFor(modelItem => item.loom_no)
+                            </td>
+                            <td style="display:none">
+                                @Html.DisplayFor(modelItem => item.block)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.dept_id.ToString() + ";" + item.mc_id.ToString() + ";" + item.mtc_slip_no1.ToString() + ";" + item.mtc_slip_no2.ToString() }, new { @class = "badge rounded-pill bg-primary-subtle text-primary" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.dept_id.ToString() + ";" + item.mc_id.ToString() + ";" + item.mtc_slip_no1.ToString() + ";" + item.mtc_slip_no2.ToString() }, new { @class = "badge rounded-pill bg-danger-subtle text-danger" })
+                            </td>
+                        </tr>
+                    }
+
+                    <!-- end row -->
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

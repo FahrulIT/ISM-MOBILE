@@ -1,0 +1,1270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="istem_smsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="departement_master">
+    <Key>
+      <PropertyRef Name="Dept_ID" />
+      <PropertyRef Name="comp_code" />
+    </Key>
+    <Property Name="Dept_ID" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="Dept_Desc" Type="varchar" MaxLength="255" />
+    <Property Name="c_user_id" Type="varchar" MaxLength="30" />
+    <Property Name="proc_date" Type="date" />
+    <Property Name="proc_time" Type="varchar" MaxLength="8" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="comp_code" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="machine_master">
+    <Key>
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+    </Key>
+    <Property Name="loom_type" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="block" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="loom_model" Type="varchar" MaxLength="6" />
+    <Property Name="rpm" Type="numeric" Precision="7" Scale="2" />
+    <Property Name="operator" Type="varchar" MaxLength="6" />
+    <Property Name="proc_by" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="rec_no" Type="int" />
+    <Property Name="rec_sts" Type="varchar" MaxLength="1" />
+    <Property Name="proc_no" Type="tinyint" />
+    <Property Name="user_id" Type="varchar" MaxLength="30" />
+    <Property Name="proc_date" Type="date" />
+    <Property Name="proc_time" Type="varchar" MaxLength="8" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="seq_no" Type="int" />
+    <Property Name="grey_no" Type="varchar" MaxLength="6" />
+    <Property Name="jcm_f" Type="int" />
+  </EntityType>
+  <EntityType Name="ms_dept">
+    <Key>
+      <PropertyRef Name="dept_id" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="act_rec" Type="char" MaxLength="1" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ms_machine_trouble">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="trouble_id" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="trouble_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="act_rec" Type="char" MaxLength="1" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ms_machine_trouble_hist">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="trouble_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="act_rec" Type="char" MaxLength="1" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ms_machine_type">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="act_rec" Type="char" MaxLength="1" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ms_maintenance">
+    <Key>
+      <PropertyRef Name="mtc_id" />
+    </Key>
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="mtc_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="act_rec" Type="char" MaxLength="1" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ms_maintenance_action">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="mtc_id" />
+      <PropertyRef Name="trouble_id" />
+      <PropertyRef Name="mtc_action_id" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="mtc_action_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="act_rec" Type="char" MaxLength="1" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ms_user_access_button">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="char" MaxLength="10" />
+    <Property Name="roles" Type="char" MaxLength="10" />
+    <Property Name="menu" Type="char" MaxLength="50" />
+    <Property Name="submenu" Type="char" MaxLength="50" />
+    <Property Name="button" Type="char" MaxLength="50" />
+    <Property Name="section" Type="char" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="ms_user_access_menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="char" MaxLength="10" />
+    <Property Name="roles" Type="char" MaxLength="10" />
+    <Property Name="menu" Type="char" MaxLength="50" />
+    <Property Name="submenu" Type="char" MaxLength="50" />
+    <Property Name="section" Type="char" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="sysuser_app">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="NIK" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Fullname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Company" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="departement" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="section" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Role" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="rec_sts" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="c_user_id" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="proc_date" Type="date" />
+    <Property Name="proc_time" Type="varchar" MaxLength="8" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="Title" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tr_maintenance">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="note_date" />
+      <PropertyRef Name="shift" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="mtc_start" Type="datetime" Nullable="false" />
+    <Property Name="mtc_finish" Type="datetime" />
+    <Property Name="pic_mtc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="finish_sts" Type="char" MaxLength="1" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="rec_sts" Type="char" MaxLength="1" />
+    <Property Name="proc_no" Type="int" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tr_maintenance_action">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="note_date" />
+      <PropertyRef Name="shift" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+      <PropertyRef Name="mtc_id" />
+      <PropertyRef Name="trouble_id" />
+      <PropertyRef Name="mtc_action_id" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tr_maintenance_action_hist">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="proc_time" Type="datetime" />
+    <Property Name="proc_time_del" Type="datetime" />
+    <Property Name="proc_time_edit" Type="datetime" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="user_id_del" Type="varchar" MaxLength="10" />
+    <Property Name="user_id_edit" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tr_maintenance_hist">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="mtc_start" Type="datetime" Nullable="false" />
+    <Property Name="mtc_finish" Type="datetime" />
+    <Property Name="pic_mtc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="finish_sts" Type="char" MaxLength="1" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="rec_sts" Type="char" MaxLength="1" />
+    <Property Name="proc_no" Type="int" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+    <Property Name="proc_time_del" Type="datetime" />
+    <Property Name="proc_time_edit" Type="datetime" />
+    <Property Name="user_id_del" Type="varchar" MaxLength="10" />
+    <Property Name="user_id_edit" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tr_maintenance_sparepart">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="note_date" />
+      <PropertyRef Name="shift" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="item_code" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="price" Type="numeric" Precision="5" Scale="2" />
+    <Property Name="quantity" Type="numeric" Precision="3" Scale="0" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tr_maintenance_sparepart_hist">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="item_code" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="price" Type="numeric" Precision="5" Scale="2" />
+    <Property Name="quantity" Type="numeric" Precision="3" Scale="0" />
+    <Property Name="proc_time" Type="datetime" />
+    <Property Name="proc_time_del" Type="datetime" />
+    <Property Name="proc_time_edit" Type="datetime" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="user_id_del" Type="varchar" MaxLength="10" />
+    <Property Name="user_id_edit" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tr_prev_maintenance">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="mtc_schedule" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mtc_schedule" Type="date" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="mtc_start" Type="datetime" Nullable="false" />
+    <Property Name="mtc_finish" Type="datetime" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="pic_mtc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="rec_sts" Type="char" MaxLength="1" />
+    <Property Name="proc_no" Type="int" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tr_prev_maintenance_sparepart">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="mtc_schedule" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mtc_schedule" Type="date" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="item_code" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="price" Type="numeric" Precision="5" Scale="2" />
+    <Property Name="quantity" Type="numeric" Precision="3" Scale="0" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tr_shift_leader_note">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="note_date" />
+      <PropertyRef Name="shift" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="stop_from" Type="datetime" Nullable="false" />
+    <Property Name="stop_to" Type="datetime" />
+    <Property Name="pic" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="rec_sts" Type="char" MaxLength="1" />
+    <Property Name="proc_no" Type="int" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tr_shift_leader_note_detail">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="note_date" />
+      <PropertyRef Name="shift" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+      <PropertyRef Name="mtc_id" />
+      <PropertyRef Name="trouble_id" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tr_shift_leader_note_detail_hist">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="proc_time" Type="datetime" />
+    <Property Name="proc_time_del" Type="datetime" />
+    <Property Name="proc_time_edit" Type="datetime" />
+    <Property Name="user_id_del" Type="varchar" MaxLength="10" />
+    <Property Name="user_id_edit" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tr_shift_leader_note_hist">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="stop_from" Type="datetime" Nullable="false" />
+    <Property Name="stop_to" Type="datetime" />
+    <Property Name="pic" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="rec_sts" Type="char" MaxLength="1" />
+    <Property Name="proc_no" Type="int" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+    <Property Name="proc_time_del" Type="datetime" />
+    <Property Name="proc_time_edit" Type="datetime" />
+    <Property Name="user_id_del" Type="varchar" MaxLength="10" />
+    <Property Name="user_id_edit" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="wv_grey_insp_defect_master">
+    <Key>
+      <PropertyRef Name="defect_code" />
+    </Key>
+    <Property Name="defect_code" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="defect_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="defect_alias" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="defect_type" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="defect_category" Type="int" Nullable="false" />
+    <Property Name="rec_sts" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="proc_no" Type="tinyint" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="proc_date" Type="datetime" Nullable="false" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.dbo.vw_ms_maintenance_action_machine' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_ms_maintenance_action_machine">
+    <Key>
+      <PropertyRef Name="mtcActionName" />
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="trouble_id" />
+      <PropertyRef Name="mtc_action_id" />
+      <PropertyRef Name="mtc_id" />
+      <PropertyRef Name="mtc_action_name" />
+      <PropertyRef Name="transactionUse" />
+    </Key>
+    <Property Name="department" Type="varchar" MaxLength="20" />
+    <Property Name="machine" Type="varchar" MaxLength="20" />
+    <Property Name="troubelName" Type="varchar" MaxLength="30" />
+    <Property Name="mtcActionName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="mtc_action_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="transactionUse" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.dbo.vw_ms_maintenance_action_preventive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_ms_maintenance_action_preventive">
+    <Key>
+      <PropertyRef Name="troubelName" />
+      <PropertyRef Name="mtcActionName" />
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="trouble_id" />
+      <PropertyRef Name="mtc_action_id" />
+      <PropertyRef Name="mtc_id" />
+      <PropertyRef Name="mtc_action_name" />
+      <PropertyRef Name="transactionUse" />
+    </Key>
+    <Property Name="department" Type="varchar" MaxLength="20" />
+    <Property Name="machine" Type="varchar" MaxLength="20" />
+    <Property Name="troubelName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="mtcActionName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="mtc_action_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="transactionUse" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.dbo.vw_ms_maintenance_action_quality' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_ms_maintenance_action_quality">
+    <Key>
+      <PropertyRef Name="mtcActionName" />
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="trouble_id" />
+      <PropertyRef Name="mtc_action_id" />
+      <PropertyRef Name="mtc_id" />
+      <PropertyRef Name="mtc_action_name" />
+      <PropertyRef Name="transactionUse" />
+    </Key>
+    <Property Name="department" Type="varchar" MaxLength="20" />
+    <Property Name="machine" Type="varchar" MaxLength="20" />
+    <Property Name="troubelName" Type="varchar" MaxLength="30" />
+    <Property Name="mtcActionName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="mtc_action_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="transactionUse" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.dbo.vw_preventivemaintenance_history' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_preventivemaintenance_history">
+    <Key>
+      <PropertyRef Name="mtcNo" />
+      <PropertyRef Name="mtc_schedule" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+      <PropertyRef Name="mtc_start" />
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="mtc_id" />
+      <PropertyRef Name="mtc_action_id" />
+      <PropertyRef Name="pic_mtc" />
+    </Key>
+    <Property Name="mtcSchedule" Type="nvarchar" MaxLength="4000" />
+    <Property Name="mtcNo" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="startMtc" Type="nvarchar" MaxLength="4000" />
+    <Property Name="finishMtc" Type="nvarchar" MaxLength="4000" />
+    <Property Name="mtcDuration" Type="varchar" MaxLength="10" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" />
+    <Property Name="mtc_name" Type="varchar" MaxLength="20" />
+    <Property Name="mtc_action_name" Type="varchar" MaxLength="50" />
+    <Property Name="Fullname" Type="varchar" MaxLength="255" />
+    <Property Name="mtc_schedule" Type="date" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="mtc_start" Type="datetime" Nullable="false" />
+    <Property Name="mtc_finish" Type="datetime" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="pic_mtc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="proc_no" Type="int" />
+    <Property Name="mtcSpace" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.dbo.vw_preventivemaintenance_sparepart' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_preventivemaintenance_sparepart">
+    <Key>
+      <PropertyRef Name="ItemName" />
+      <PropertyRef Name="price" />
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="mtc_schedule" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="ItemName" Type="nvarchar" MaxLength="404" Nullable="false" />
+    <Property Name="price" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="quantity" Type="numeric" Precision="3" Scale="0" />
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mtc_schedule" Type="date" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="item_code" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_Details2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_Details2">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="mtc_slip_no1" />
+      <PropertyRef Name="mtc_slip_no2" />
+      <PropertyRef Name="mtc_ser_no" />
+      <PropertyRef Name="trouble_id" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mtc_slip_no1" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="mtc_slip_no2" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="mtc_ser_no" Type="int" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="rec_sts" Type="char" MaxLength="1" />
+    <Property Name="proc_no" Type="int" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" />
+    <Property Name="mtc_action_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_Machine_Master_AJL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_Machine_Master_AJL">
+    <Key>
+      <PropertyRef Name="MachineNo" />
+    </Key>
+    <Property Name="MachineNo" Type="varchar" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_Machine_Trouble' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_Machine_Trouble">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="20" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="Machine" Type="varchar" MaxLength="20" />
+    <Property Name="Code" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_Machine_Type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_Machine_Type">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="act_rec" Type="char" MaxLength="1" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_Maintenance_Action' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_Maintenance_Action">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="mtc_id" />
+      <PropertyRef Name="trouble_id" />
+      <PropertyRef Name="trouble_name" />
+      <PropertyRef Name="mtc_action_id" />
+      <PropertyRef Name="mtc_action_name" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="mtc_name" Type="varchar" MaxLength="20" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="trouble_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="mtc_action_name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_Maintenance_Activity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_Maintenance_Activity">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="mtc_slip_no1" />
+      <PropertyRef Name="mtc_slip_no2" />
+      <PropertyRef Name="issue_date" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+      <PropertyRef Name="mtc_status" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" />
+    <Property Name="mtc_slip_no1" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="mtc_slip_no2" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="issue_date" Type="date" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" />
+    <Property Name="mtc_name" Type="varchar" MaxLength="20" />
+    <Property Name="mtc_status" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="10" />
+    <Property Name="rec_sts" Type="char" MaxLength="1" />
+    <Property Name="proc_no" Type="int" />
+    <Property Name="client_ip" Type="varchar" MaxLength="15" />
+    <Property Name="proc_time" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_Maintenance_Type_for_Maintenance_Action' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_Maintenance_Type_for_Maintenance_Action">
+    <Key>
+      <PropertyRef Name="Trouble_Type" />
+      <PropertyRef Name="trouble_id" />
+      <PropertyRef Name="trouble_name" />
+    </Key>
+    <Property Name="Trouble_Type" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="trouble_name" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_MaintenanceActionforModal' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_MaintenanceActionforModal">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="trouble_id" />
+      <PropertyRef Name="note_date" />
+      <PropertyRef Name="shift" />
+      <PropertyRef Name="mtc_action_id" />
+      <PropertyRef Name="mtc_action_name" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" />
+    <Property Name="mtc_name" Type="varchar" MaxLength="20" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="trouble_name" Type="varchar" MaxLength="30" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="varchar" MaxLength="4" />
+    <Property Name="block" Type="varchar" MaxLength="1" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="mtc_action_name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_MaintenanceActionShiftLeaderNotes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_MaintenanceActionShiftLeaderNotes">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="mtc_id" />
+      <PropertyRef Name="trouble_id" />
+      <PropertyRef Name="trouble_name" />
+      <PropertyRef Name="mtc_action_id" />
+      <PropertyRef Name="mtc_action_name" />
+      <PropertyRef Name="note_date" />
+      <PropertyRef Name="shift" />
+      <PropertyRef Name="loom_no" />
+      <PropertyRef Name="block" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="mtc_name" Type="varchar" MaxLength="20" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="trouble_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="mtc_action_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="mtc_action_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_MaintenanceHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_MaintenanceHistory">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="note_date" />
+      <PropertyRef Name="shift" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+      <PropertyRef Name="mtc_start" />
+      <PropertyRef Name="finish_sts" />
+      <PropertyRef Name="pic_mtc" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="mtc_start" Type="datetime" Nullable="false" />
+    <Property Name="mtc_finish" Type="datetime" />
+    <Property Name="finish_sts" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="pic_mtc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Fullname" Type="varchar" MaxLength="255" />
+    <Property Name="mtc_name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_MaintenanceSparepart' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_MaintenanceSparepart">
+    <Key>
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="item_code" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="404" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_Mtc_Action_For_Mtc_Result' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_Mtc_Action_For_Mtc_Result">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="mtc_id" />
+      <PropertyRef Name="trouble_id" />
+      <PropertyRef Name="trouble_name" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="mtc_name" Type="varchar" MaxLength="20" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="trouble_name" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_SAP_OITM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_SAP_OITM">
+    <Key>
+      <PropertyRef Name="ItemCode" />
+    </Key>
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="404" />
+    <Property Name="nama_sparepart" Type="nvarchar" MaxLength="200" />
+    <Property Name="no_catalog" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_SAP_OITM_PRICE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_SAP_OITM_PRICE">
+    <Key>
+      <PropertyRef Name="ItemCode" />
+      <PropertyRef Name="PRICE" />
+    </Key>
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="404" />
+    <Property Name="PRICE" Type="numeric" Precision="38" Scale="19" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_Shift_Leader' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_Shift_Leader">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="note_date" />
+      <PropertyRef Name="shift" />
+      <PropertyRef Name="pic" />
+      <PropertyRef Name="stop_from" />
+      <PropertyRef Name="trouble_id" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="pic" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="stop_from" Type="datetime" Nullable="false" />
+    <Property Name="stop_to" Type="datetime" />
+    <Property Name="mtc_id" Type="varchar" MaxLength="5" />
+    <Property Name="mtc_name" Type="varchar" MaxLength="20" />
+    <Property Name="trouble_id" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="trouble_name" Type="varchar" MaxLength="30" />
+    <Property Name="namatrouble" Type="varchar" MaxLength="30" />
+    <Property Name="Fullname" Type="varchar" MaxLength="255" />
+    <Property Name="block" Type="varchar" MaxLength="1" />
+    <Property Name="loom_no" Type="varchar" MaxLength="4" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_Shift_Leader_Header' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_Shift_Leader_Header">
+    <Key>
+      <PropertyRef Name="dept_id" />
+      <PropertyRef Name="mc_id" />
+      <PropertyRef Name="note_date" />
+      <PropertyRef Name="shift" />
+      <PropertyRef Name="block" />
+      <PropertyRef Name="loom_no" />
+      <PropertyRef Name="machine_no" />
+      <PropertyRef Name="stop_from" />
+      <PropertyRef Name="pic" />
+    </Key>
+    <Property Name="dept_id" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="20" />
+    <Property Name="mc_id" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="mc_name" Type="varchar" MaxLength="20" />
+    <Property Name="note_date" Type="date" Nullable="false" />
+    <Property Name="shift" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="block" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loom_no" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="machine_no" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="stop_from" Type="datetime" Nullable="false" />
+    <Property Name="stop_to" Type="datetime" />
+    <Property Name="pic" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Fullname" Type="varchar" MaxLength="255" />
+    <Property Name="mtc_name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'istem_sms.wppc.v_user_ism_maintenance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_user_ism_maintenance">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Fullname" />
+      <PropertyRef Name="departement" />
+      <PropertyRef Name="section" />
+      <PropertyRef Name="roles" />
+    </Key>
+    <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Fullname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="departement" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="section" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="roles" Type="varchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <Function Name="autonum_preventivemaintenance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="type" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="view_preventivemaintenance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="type" Type="nvarchar" Mode="In" />
+    <Parameter Name="find" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="istem_smsModelStoreContainer">
+    <EntitySet Name="departement_master" EntityType="Self.departement_master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="machine_master" EntityType="Self.machine_master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ms_dept" EntityType="Self.ms_dept" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ms_machine_trouble" EntityType="Self.ms_machine_trouble" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ms_machine_trouble_hist" EntityType="Self.ms_machine_trouble_hist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ms_machine_type" EntityType="Self.ms_machine_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ms_maintenance" EntityType="Self.ms_maintenance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ms_maintenance_action" EntityType="Self.ms_maintenance_action" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ms_user_access_button" EntityType="Self.ms_user_access_button" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ms_user_access_menu" EntityType="Self.ms_user_access_menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysuser_app" EntityType="Self.sysuser_app" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_maintenance" EntityType="Self.tr_maintenance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_maintenance_action" EntityType="Self.tr_maintenance_action" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_maintenance_action_hist" EntityType="Self.tr_maintenance_action_hist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_maintenance_hist" EntityType="Self.tr_maintenance_hist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_maintenance_sparepart" EntityType="Self.tr_maintenance_sparepart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_maintenance_sparepart_hist" EntityType="Self.tr_maintenance_sparepart_hist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_prev_maintenance" EntityType="Self.tr_prev_maintenance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_prev_maintenance_sparepart" EntityType="Self.tr_prev_maintenance_sparepart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_shift_leader_note" EntityType="Self.tr_shift_leader_note" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_shift_leader_note_detail" EntityType="Self.tr_shift_leader_note_detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_shift_leader_note_detail_hist" EntityType="Self.tr_shift_leader_note_detail_hist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_shift_leader_note_hist" EntityType="Self.tr_shift_leader_note_hist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="wv_grey_insp_defect_master" EntityType="Self.wv_grey_insp_defect_master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_ms_maintenance_action_machine" EntityType="Self.vw_ms_maintenance_action_machine" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_ms_maintenance_action_machine].[department] AS [department], 
+    [vw_ms_maintenance_action_machine].[machine] AS [machine], 
+    [vw_ms_maintenance_action_machine].[troubelName] AS [troubelName], 
+    [vw_ms_maintenance_action_machine].[mtcActionName] AS [mtcActionName], 
+    [vw_ms_maintenance_action_machine].[dept_id] AS [dept_id], 
+    [vw_ms_maintenance_action_machine].[mc_id] AS [mc_id], 
+    [vw_ms_maintenance_action_machine].[trouble_id] AS [trouble_id], 
+    [vw_ms_maintenance_action_machine].[mtc_action_id] AS [mtc_action_id], 
+    [vw_ms_maintenance_action_machine].[mtc_id] AS [mtc_id], 
+    [vw_ms_maintenance_action_machine].[mtc_action_name] AS [mtc_action_name], 
+    [vw_ms_maintenance_action_machine].[transactionUse] AS [transactionUse]
+    FROM [dbo].[vw_ms_maintenance_action_machine] AS [vw_ms_maintenance_action_machine]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_ms_maintenance_action_preventive" EntityType="Self.vw_ms_maintenance_action_preventive" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_ms_maintenance_action_preventive].[department] AS [department], 
+    [vw_ms_maintenance_action_preventive].[machine] AS [machine], 
+    [vw_ms_maintenance_action_preventive].[troubelName] AS [troubelName], 
+    [vw_ms_maintenance_action_preventive].[mtcActionName] AS [mtcActionName], 
+    [vw_ms_maintenance_action_preventive].[dept_id] AS [dept_id], 
+    [vw_ms_maintenance_action_preventive].[mc_id] AS [mc_id], 
+    [vw_ms_maintenance_action_preventive].[trouble_id] AS [trouble_id], 
+    [vw_ms_maintenance_action_preventive].[mtc_action_id] AS [mtc_action_id], 
+    [vw_ms_maintenance_action_preventive].[mtc_id] AS [mtc_id], 
+    [vw_ms_maintenance_action_preventive].[mtc_action_name] AS [mtc_action_name], 
+    [vw_ms_maintenance_action_preventive].[transactionUse] AS [transactionUse]
+    FROM [dbo].[vw_ms_maintenance_action_preventive] AS [vw_ms_maintenance_action_preventive]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_ms_maintenance_action_quality" EntityType="Self.vw_ms_maintenance_action_quality" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_ms_maintenance_action_quality].[department] AS [department], 
+    [vw_ms_maintenance_action_quality].[machine] AS [machine], 
+    [vw_ms_maintenance_action_quality].[troubelName] AS [troubelName], 
+    [vw_ms_maintenance_action_quality].[mtcActionName] AS [mtcActionName], 
+    [vw_ms_maintenance_action_quality].[dept_id] AS [dept_id], 
+    [vw_ms_maintenance_action_quality].[mc_id] AS [mc_id], 
+    [vw_ms_maintenance_action_quality].[trouble_id] AS [trouble_id], 
+    [vw_ms_maintenance_action_quality].[mtc_action_id] AS [mtc_action_id], 
+    [vw_ms_maintenance_action_quality].[mtc_id] AS [mtc_id], 
+    [vw_ms_maintenance_action_quality].[mtc_action_name] AS [mtc_action_name], 
+    [vw_ms_maintenance_action_quality].[transactionUse] AS [transactionUse]
+    FROM [dbo].[vw_ms_maintenance_action_quality] AS [vw_ms_maintenance_action_quality]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_preventivemaintenance_history" EntityType="Self.vw_preventivemaintenance_history" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_preventivemaintenance_history].[mtcSchedule] AS [mtcSchedule], 
+    [vw_preventivemaintenance_history].[mtcNo] AS [mtcNo], 
+    [vw_preventivemaintenance_history].[startMtc] AS [startMtc], 
+    [vw_preventivemaintenance_history].[finishMtc] AS [finishMtc], 
+    [vw_preventivemaintenance_history].[mtcDuration] AS [mtcDuration], 
+    [vw_preventivemaintenance_history].[dept_name] AS [dept_name], 
+    [vw_preventivemaintenance_history].[mc_name] AS [mc_name], 
+    [vw_preventivemaintenance_history].[mtc_name] AS [mtc_name], 
+    [vw_preventivemaintenance_history].[mtc_action_name] AS [mtc_action_name], 
+    [vw_preventivemaintenance_history].[Fullname] AS [Fullname], 
+    [vw_preventivemaintenance_history].[mtc_schedule] AS [mtc_schedule], 
+    [vw_preventivemaintenance_history].[block] AS [block], 
+    [vw_preventivemaintenance_history].[loom_no] AS [loom_no], 
+    [vw_preventivemaintenance_history].[mtc_start] AS [mtc_start], 
+    [vw_preventivemaintenance_history].[mtc_finish] AS [mtc_finish], 
+    [vw_preventivemaintenance_history].[dept_id] AS [dept_id], 
+    [vw_preventivemaintenance_history].[mc_id] AS [mc_id], 
+    [vw_preventivemaintenance_history].[mtc_id] AS [mtc_id], 
+    [vw_preventivemaintenance_history].[mtc_action_id] AS [mtc_action_id], 
+    [vw_preventivemaintenance_history].[pic_mtc] AS [pic_mtc], 
+    [vw_preventivemaintenance_history].[proc_no] AS [proc_no], 
+    [vw_preventivemaintenance_history].[mtcSpace] AS [mtcSpace]
+    FROM [dbo].[vw_preventivemaintenance_history] AS [vw_preventivemaintenance_history]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_preventivemaintenance_sparepart" EntityType="Self.vw_preventivemaintenance_sparepart" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_preventivemaintenance_sparepart].[ItemName] AS [ItemName], 
+    [vw_preventivemaintenance_sparepart].[price] AS [price], 
+    [vw_preventivemaintenance_sparepart].[quantity] AS [quantity], 
+    [vw_preventivemaintenance_sparepart].[dept_id] AS [dept_id], 
+    [vw_preventivemaintenance_sparepart].[mc_id] AS [mc_id], 
+    [vw_preventivemaintenance_sparepart].[mtc_schedule] AS [mtc_schedule], 
+    [vw_preventivemaintenance_sparepart].[block] AS [block], 
+    [vw_preventivemaintenance_sparepart].[loom_no] AS [loom_no], 
+    [vw_preventivemaintenance_sparepart].[item_code] AS [item_code], 
+    [vw_preventivemaintenance_sparepart].[dept_name] AS [dept_name], 
+    [vw_preventivemaintenance_sparepart].[mc_name] AS [mc_name]
+    FROM [dbo].[vw_preventivemaintenance_sparepart] AS [vw_preventivemaintenance_sparepart]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_Details2" EntityType="Self.v_Details2" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_Details2].[dept_id] AS [dept_id], 
+    [v_Details2].[mc_id] AS [mc_id], 
+    [v_Details2].[mtc_slip_no1] AS [mtc_slip_no1], 
+    [v_Details2].[mtc_slip_no2] AS [mtc_slip_no2], 
+    [v_Details2].[mtc_ser_no] AS [mtc_ser_no], 
+    [v_Details2].[trouble_id] AS [trouble_id], 
+    [v_Details2].[user_id] AS [user_id], 
+    [v_Details2].[rec_sts] AS [rec_sts], 
+    [v_Details2].[proc_no] AS [proc_no], 
+    [v_Details2].[client_ip] AS [client_ip], 
+    [v_Details2].[proc_time] AS [proc_time], 
+    [v_Details2].[mtc_id] AS [mtc_id], 
+    [v_Details2].[mtc_action_id] AS [mtc_action_id], 
+    [v_Details2].[mtc_action_name] AS [mtc_action_name]
+    FROM [wppc].[v_Details2] AS [v_Details2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_Machine_Master_AJL" EntityType="Self.v_Machine_Master_AJL" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_Machine_Master_AJL].[MachineNo] AS [MachineNo]
+    FROM [wppc].[v_Machine_Master_AJL] AS [v_Machine_Master_AJL]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_Machine_Trouble" EntityType="Self.v_Machine_Trouble" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_Machine_Trouble].[dept_id] AS [dept_id], 
+    [v_Machine_Trouble].[Department] AS [Department], 
+    [v_Machine_Trouble].[mc_id] AS [mc_id], 
+    [v_Machine_Trouble].[Machine] AS [Machine], 
+    [v_Machine_Trouble].[Code] AS [Code], 
+    [v_Machine_Trouble].[Description] AS [Description]
+    FROM [wppc].[v_Machine_Trouble] AS [v_Machine_Trouble]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_Machine_Type" EntityType="Self.v_Machine_Type" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_Machine_Type].[dept_id] AS [dept_id], 
+    [v_Machine_Type].[dept_name] AS [dept_name], 
+    [v_Machine_Type].[mc_id] AS [mc_id], 
+    [v_Machine_Type].[mc_name] AS [mc_name], 
+    [v_Machine_Type].[user_id] AS [user_id], 
+    [v_Machine_Type].[act_rec] AS [act_rec], 
+    [v_Machine_Type].[client_ip] AS [client_ip], 
+    [v_Machine_Type].[proc_time] AS [proc_time]
+    FROM [wppc].[v_Machine_Type] AS [v_Machine_Type]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_Maintenance_Action" EntityType="Self.v_Maintenance_Action" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_Maintenance_Action].[dept_id] AS [dept_id], 
+    [v_Maintenance_Action].[dept_name] AS [dept_name], 
+    [v_Maintenance_Action].[mc_id] AS [mc_id], 
+    [v_Maintenance_Action].[mc_name] AS [mc_name], 
+    [v_Maintenance_Action].[mtc_id] AS [mtc_id], 
+    [v_Maintenance_Action].[mtc_name] AS [mtc_name], 
+    [v_Maintenance_Action].[trouble_id] AS [trouble_id], 
+    [v_Maintenance_Action].[trouble_name] AS [trouble_name], 
+    [v_Maintenance_Action].[mtc_action_id] AS [mtc_action_id], 
+    [v_Maintenance_Action].[mtc_action_name] AS [mtc_action_name]
+    FROM [wppc].[v_Maintenance_Action] AS [v_Maintenance_Action]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_Maintenance_Activity" EntityType="Self.v_Maintenance_Activity" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_Maintenance_Activity].[dept_id] AS [dept_id], 
+    [v_Maintenance_Activity].[dept_name] AS [dept_name], 
+    [v_Maintenance_Activity].[mc_id] AS [mc_id], 
+    [v_Maintenance_Activity].[mc_name] AS [mc_name], 
+    [v_Maintenance_Activity].[mtc_slip_no1] AS [mtc_slip_no1], 
+    [v_Maintenance_Activity].[mtc_slip_no2] AS [mtc_slip_no2], 
+    [v_Maintenance_Activity].[issue_date] AS [issue_date], 
+    [v_Maintenance_Activity].[block] AS [block], 
+    [v_Maintenance_Activity].[loom_no] AS [loom_no], 
+    [v_Maintenance_Activity].[mtc_id] AS [mtc_id], 
+    [v_Maintenance_Activity].[mtc_name] AS [mtc_name], 
+    [v_Maintenance_Activity].[mtc_status] AS [mtc_status], 
+    [v_Maintenance_Activity].[user_id] AS [user_id], 
+    [v_Maintenance_Activity].[rec_sts] AS [rec_sts], 
+    [v_Maintenance_Activity].[proc_no] AS [proc_no], 
+    [v_Maintenance_Activity].[client_ip] AS [client_ip], 
+    [v_Maintenance_Activity].[proc_time] AS [proc_time]
+    FROM [wppc].[v_Maintenance_Activity] AS [v_Maintenance_Activity]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_Maintenance_Type_for_Maintenance_Action" EntityType="Self.v_Maintenance_Type_for_Maintenance_Action" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_Maintenance_Type_for_Maintenance_Action].[Trouble_Type] AS [Trouble_Type], 
+    [v_Maintenance_Type_for_Maintenance_Action].[trouble_id] AS [trouble_id], 
+    [v_Maintenance_Type_for_Maintenance_Action].[trouble_name] AS [trouble_name]
+    FROM [wppc].[v_Maintenance_Type_for_Maintenance_Action] AS [v_Maintenance_Type_for_Maintenance_Action]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_MaintenanceActionforModal" EntityType="Self.v_MaintenanceActionforModal" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_MaintenanceActionforModal].[dept_id] AS [dept_id], 
+    [v_MaintenanceActionforModal].[dept_name] AS [dept_name], 
+    [v_MaintenanceActionforModal].[mc_id] AS [mc_id], 
+    [v_MaintenanceActionforModal].[mc_name] AS [mc_name], 
+    [v_MaintenanceActionforModal].[mtc_id] AS [mtc_id], 
+    [v_MaintenanceActionforModal].[mtc_name] AS [mtc_name], 
+    [v_MaintenanceActionforModal].[trouble_id] AS [trouble_id], 
+    [v_MaintenanceActionforModal].[trouble_name] AS [trouble_name], 
+    [v_MaintenanceActionforModal].[note_date] AS [note_date], 
+    [v_MaintenanceActionforModal].[shift] AS [shift], 
+    [v_MaintenanceActionforModal].[loom_no] AS [loom_no], 
+    [v_MaintenanceActionforModal].[block] AS [block], 
+    [v_MaintenanceActionforModal].[mtc_action_id] AS [mtc_action_id], 
+    [v_MaintenanceActionforModal].[mtc_action_name] AS [mtc_action_name]
+    FROM [wppc].[v_MaintenanceActionforModal] AS [v_MaintenanceActionforModal]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_MaintenanceActionShiftLeaderNotes" EntityType="Self.v_MaintenanceActionShiftLeaderNotes" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_MaintenanceActionShiftLeaderNotes].[dept_id] AS [dept_id], 
+    [v_MaintenanceActionShiftLeaderNotes].[dept_name] AS [dept_name], 
+    [v_MaintenanceActionShiftLeaderNotes].[mc_id] AS [mc_id], 
+    [v_MaintenanceActionShiftLeaderNotes].[mc_name] AS [mc_name], 
+    [v_MaintenanceActionShiftLeaderNotes].[mtc_id] AS [mtc_id], 
+    [v_MaintenanceActionShiftLeaderNotes].[mtc_name] AS [mtc_name], 
+    [v_MaintenanceActionShiftLeaderNotes].[trouble_id] AS [trouble_id], 
+    [v_MaintenanceActionShiftLeaderNotes].[trouble_name] AS [trouble_name], 
+    [v_MaintenanceActionShiftLeaderNotes].[mtc_action_id] AS [mtc_action_id], 
+    [v_MaintenanceActionShiftLeaderNotes].[mtc_action_name] AS [mtc_action_name], 
+    [v_MaintenanceActionShiftLeaderNotes].[note_date] AS [note_date], 
+    [v_MaintenanceActionShiftLeaderNotes].[shift] AS [shift], 
+    [v_MaintenanceActionShiftLeaderNotes].[loom_no] AS [loom_no], 
+    [v_MaintenanceActionShiftLeaderNotes].[block] AS [block]
+    FROM [wppc].[v_MaintenanceActionShiftLeaderNotes] AS [v_MaintenanceActionShiftLeaderNotes]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_MaintenanceHistory" EntityType="Self.v_MaintenanceHistory" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_MaintenanceHistory].[dept_id] AS [dept_id], 
+    [v_MaintenanceHistory].[dept_name] AS [dept_name], 
+    [v_MaintenanceHistory].[mc_id] AS [mc_id], 
+    [v_MaintenanceHistory].[mc_name] AS [mc_name], 
+    [v_MaintenanceHistory].[note_date] AS [note_date], 
+    [v_MaintenanceHistory].[shift] AS [shift], 
+    [v_MaintenanceHistory].[block] AS [block], 
+    [v_MaintenanceHistory].[loom_no] AS [loom_no], 
+    [v_MaintenanceHistory].[mtc_start] AS [mtc_start], 
+    [v_MaintenanceHistory].[mtc_finish] AS [mtc_finish], 
+    [v_MaintenanceHistory].[finish_sts] AS [finish_sts], 
+    [v_MaintenanceHistory].[pic_mtc] AS [pic_mtc], 
+    [v_MaintenanceHistory].[Fullname] AS [Fullname], 
+    [v_MaintenanceHistory].[mtc_name] AS [mtc_name]
+    FROM [wppc].[v_MaintenanceHistory] AS [v_MaintenanceHistory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_MaintenanceSparepart" EntityType="Self.v_MaintenanceSparepart" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_MaintenanceSparepart].[item_code] AS [item_code], 
+    [v_MaintenanceSparepart].[ItemName] AS [ItemName]
+    FROM [wppc].[v_MaintenanceSparepart] AS [v_MaintenanceSparepart]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_Mtc_Action_For_Mtc_Result" EntityType="Self.v_Mtc_Action_For_Mtc_Result" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_Mtc_Action_For_Mtc_Result].[dept_id] AS [dept_id], 
+    [v_Mtc_Action_For_Mtc_Result].[dept_name] AS [dept_name], 
+    [v_Mtc_Action_For_Mtc_Result].[mc_id] AS [mc_id], 
+    [v_Mtc_Action_For_Mtc_Result].[mc_name] AS [mc_name], 
+    [v_Mtc_Action_For_Mtc_Result].[mtc_id] AS [mtc_id], 
+    [v_Mtc_Action_For_Mtc_Result].[mtc_name] AS [mtc_name], 
+    [v_Mtc_Action_For_Mtc_Result].[trouble_id] AS [trouble_id], 
+    [v_Mtc_Action_For_Mtc_Result].[trouble_name] AS [trouble_name]
+    FROM [wppc].[v_Mtc_Action_For_Mtc_Result] AS [v_Mtc_Action_For_Mtc_Result]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_SAP_OITM" EntityType="Self.v_SAP_OITM" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_SAP_OITM].[ItemCode] AS [ItemCode], 
+    [v_SAP_OITM].[ItemName] AS [ItemName], 
+    [v_SAP_OITM].[nama_sparepart] AS [nama_sparepart], 
+    [v_SAP_OITM].[no_catalog] AS [no_catalog]
+    FROM [wppc].[v_SAP_OITM] AS [v_SAP_OITM]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_SAP_OITM_PRICE" EntityType="Self.v_SAP_OITM_PRICE" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_SAP_OITM_PRICE].[ItemCode] AS [ItemCode], 
+    [v_SAP_OITM_PRICE].[ItemName] AS [ItemName], 
+    [v_SAP_OITM_PRICE].[PRICE] AS [PRICE]
+    FROM [wppc].[v_SAP_OITM_PRICE] AS [v_SAP_OITM_PRICE]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_Shift_Leader" EntityType="Self.v_Shift_Leader" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_Shift_Leader].[dept_id] AS [dept_id], 
+    [v_Shift_Leader].[dept_name] AS [dept_name], 
+    [v_Shift_Leader].[mc_id] AS [mc_id], 
+    [v_Shift_Leader].[mc_name] AS [mc_name], 
+    [v_Shift_Leader].[note_date] AS [note_date], 
+    [v_Shift_Leader].[shift] AS [shift], 
+    [v_Shift_Leader].[pic] AS [pic], 
+    [v_Shift_Leader].[stop_from] AS [stop_from], 
+    [v_Shift_Leader].[stop_to] AS [stop_to], 
+    [v_Shift_Leader].[mtc_id] AS [mtc_id], 
+    [v_Shift_Leader].[mtc_name] AS [mtc_name], 
+    [v_Shift_Leader].[trouble_id] AS [trouble_id], 
+    [v_Shift_Leader].[trouble_name] AS [trouble_name], 
+    [v_Shift_Leader].[namatrouble] AS [namatrouble], 
+    [v_Shift_Leader].[Fullname] AS [Fullname], 
+    [v_Shift_Leader].[block] AS [block], 
+    [v_Shift_Leader].[loom_no] AS [loom_no]
+    FROM [wppc].[v_Shift_Leader] AS [v_Shift_Leader]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_Shift_Leader_Header" EntityType="Self.v_Shift_Leader_Header" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_Shift_Leader_Header].[dept_id] AS [dept_id], 
+    [v_Shift_Leader_Header].[dept_name] AS [dept_name], 
+    [v_Shift_Leader_Header].[mc_id] AS [mc_id], 
+    [v_Shift_Leader_Header].[mc_name] AS [mc_name], 
+    [v_Shift_Leader_Header].[note_date] AS [note_date], 
+    [v_Shift_Leader_Header].[shift] AS [shift], 
+    [v_Shift_Leader_Header].[block] AS [block], 
+    [v_Shift_Leader_Header].[loom_no] AS [loom_no], 
+    [v_Shift_Leader_Header].[machine_no] AS [machine_no], 
+    [v_Shift_Leader_Header].[stop_from] AS [stop_from], 
+    [v_Shift_Leader_Header].[stop_to] AS [stop_to], 
+    [v_Shift_Leader_Header].[pic] AS [pic], 
+    [v_Shift_Leader_Header].[Fullname] AS [Fullname], 
+    [v_Shift_Leader_Header].[mtc_name] AS [mtc_name]
+    FROM [wppc].[v_Shift_Leader_Header] AS [v_Shift_Leader_Header]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_user_ism_maintenance" EntityType="Self.v_user_ism_maintenance" store:Type="Views" store:Schema="wppc">
+      <DefiningQuery>SELECT 
+    [v_user_ism_maintenance].[ID] AS [ID], 
+    [v_user_ism_maintenance].[Fullname] AS [Fullname], 
+    [v_user_ism_maintenance].[departement] AS [departement], 
+    [v_user_ism_maintenance].[section] AS [section], 
+    [v_user_ism_maintenance].[roles] AS [roles]
+    FROM [wppc].[v_user_ism_maintenance] AS [v_user_ism_maintenance]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

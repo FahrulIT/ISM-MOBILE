@@ -1,0 +1,260 @@
+﻿@model ISM_MAINTENANCE.Models.DB.vw_preventivemaintenance_history
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<link href="~/Content/PreventiveMaintenance/chosen-1.8.7/chosen.css" rel="stylesheet" />*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card">
+        <div class="card-header bg-primary">
+            <div class="text-white fs-6 fw-bold"><i class="ti ti-home"></i>  Header</div>
+        </div>
+
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="mb-2 row">
+                <label class="control-label col-md-2">Department</label>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.dept_name, new { htmlAttributes = new { @class = "form-control", @Value = "WEAVING", @ReadOnly = true, @Style = "background-color:lightgray;" } })
+                    @Html.ValidationMessageFor(model => model.dept_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                <label class="control-label col-md-2">Machine Type</label>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.mc_name, new { htmlAttributes = new { @class = "form-control", @Value = "AJL", @ReadOnly = true, @Style = "background-color:lightgray;" } })
+                    @Html.ValidationMessageFor(model => model.mc_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                <label class="control-label col-md-2">MTC Schedule</label>
+                <div class="col-md-2">
+                    @*@Html.EditorFor(model => model.mtc_schedule, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString("yyyy-MM"), @Readonly = true, @Autocomplete = "off" } })*@
+                    @*@Html.EditorFor(model => model.mtc_schedule, new { htmlAttributes = new { @class = "form-control", @Readonly = true, @Autocomplete = "off", @Value = DateTime.Now.ToString("MM-yyyy") } })*@
+                    <input class="form-control" id="scheduleDate" name="scheduleDate" autocomplete="off" value="@DateTime.Now.ToString("MM-yyyy")" readonly/>
+
+                    @*@Html.EditorFor(model => model.mtc_schedule, new { htmlAttributes = new { @class = "form-control datepicker", @PlaceHolder = "MTC Schedule", @Value = DateTime.Now.ToString("yyyy-MM"), @Readonly = true } })*@
+                    @*<input type="text" id="mtc_schedule" name="mtc_schedule" class="form-control datepicker" value="@DateTime.Now.ToString("yyyy-MM")" data-date-format="yyyy-MM" />*@
+
+                    @Html.ValidationMessageFor(model => model.mtc_schedule, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                <label class="control-label col-md-2">Machine No.</label>
+                <div class="col-md-3">
+                    @*@Html.DropDownListFor(model => model.mtcNo, new SelectList(ViewBag.machineNo, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control chosen-select" })*@
+                    @Html.DropDownListFor(model => model.mtcNo, new SelectList(ViewBag.machineNo, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.mtcNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                <label class="control-label col-md-2">PIC Maintenance</label>
+                <div class="col-md-3">
+                    @*@Html.DropDownListFor(model => model.Fullname, new SelectList(ViewBag.userName, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control chosen-select" })*@
+                    @*@Html.DropDownListFor(model => model.Fullname, new SelectList(ViewBag.userName, "Value", "Text"), "", new { @class = "form-control", @Disabled = true })*@
+
+                    @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.userName, @ReadOnly = true, @Style = "background-color:lightgray;" } })
+                    @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                <label class="control-label col-md-2">Start Maintenance</label>
+                <div class="col-md-3">
+                    @*@Html.EditorFor(model => model.mtc_start, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @Value = DateTime.Now.ToString("yyyy-MM-ddTHH:mm") } })*@
+
+                    <input class="form-control" id="mtcStart" name="mtcStart" autocomplete="off" value="@DateTime.Now.ToString("dd-MM-yyyy HH:mm")"/>
+                    @*@Html.EditorFor(model => model.mtc_start, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString("dd-MM-yyyy HH:mm") } })*@
+                    @*@Html.ValidationMessageFor(model => model.mtc_start, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                <label class="control-label col-md-2">Finish Maintenance</label>
+                <div class="col-md-3">
+                    @*@Html.EditorFor(model => model.mtc_finish, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @Value = DateTime.Now.ToString("yyyy-MM-ddTHH:mm") } })*@
+
+                    <input class="form-control" id="mtcFinish" name="mtcFinish" autocomplete="off" value="@DateTime.Now.ToString("dd-MM-yyyy HH:mm")" />
+                    @*@Html.EditorFor(model => model.mtc_finish, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString("dd-MM-yyyy HH:mm") } })*@
+                    @*@Html.ValidationMessageFor(model => model.mtc_finish, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                <label class="control-label col-md-2">Maintenance Action</label>
+                <div class="col-md-7">
+                    @*@Html.DropDownListFor(model => model.mtc_action_name, new SelectList(ViewBag.mtcAction, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control chosen-select" })*@
+                    @Html.DropDownListFor(model => model.mtc_action_name, new SelectList(ViewBag.mtcAction, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.mtc_action_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer"></div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-primary">
+            <div class="float-start bg-primary">
+                <div class="text-white fs-6 fw-bold"><i class="ti ti-tool"></i> Spare Parts</div>
+            </div>
+            <div class="float-end">
+                <button type="button" class="btn btn-outline-light-primary" id="OpenModal_SparePart" data-bs-toggle="modal" data-bs-target="#SparepartModal">
+                    <i class="ti ti-square-plus"></i>   Add Detail
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="SparepareDetailTable" class="display table search-table table-sm  align-middle text-nowrap" style="color:black;" >
+                    <thead class="header-item">
+                        <tr>
+                            <th>
+                                No
+                            </th>
+                            <th>
+                                Spare Part
+                            </th>
+                            <th>
+                                Unit Price (USD)
+                            </th>
+                            <th>
+                                Quantity
+                            </th>
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="mb-1 row">
+        <div class="col-md-5">
+            <button type="submit" class="btn btn-primary" onclick="return checkMonth()"><i class="ti ti-checklist"></i>Save</button>
+            <a class="btn btn-primary" href="@Url.Action("Index","MaintenancePreventiveHistory")"><i class="ti ti-arrow-back"></i>  Back</a>
+        </div>
+    </div>
+}
+
+<!-- Sparepart Modal -->
+<div class="modal fade" id="SparepartModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="details3ModalForm">
+                <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                    <h4 class="modal-title text-black fw-bold" id="exampleModalLabel">Add Detail</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-12 row">
+                        <label class="control-label col-md-2">Spare Part</label>
+                        <div class="col-md-8">
+                            @*@Html.DropDownList("spareParts", new SelectList(ViewBag.spareParts, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control chosen-select" })*@
+                            @Html.DropDownList("spareParts", new SelectList(ViewBag.spareParts, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control" })
+                            <input type="hidden" name="itemCode" id="itemCode" class="form-control" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="mb-12 row">
+                        <label class="control-label col-md-2">Unit Price (USD)</label>
+                        <div class="col-md-3">
+                            @Html.Editor("unitPrice", new { htmlAttributes = new { @class = "form-control", @style = "text-align:right;", autocomplete = false } })
+                            @Html.ValidationMessage("unitPrice", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="mb-12 row">
+                        <label class="control-label col-md-2">Quantity</label>
+                        <div class="col-md-3">
+                            @Html.Editor("quantity", new { htmlAttributes = new { @class = "form-control", @style = "text-align:right;", autocomplete = false } })
+                            @Html.ValidationMessage("quantity", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="GetSparepart"><span class="fa fa-save"></span> Save</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="Back"><span class="fa fa-eject"></span> Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Sparepart Modal -->
+
+@*<script src="~/Content/PreventiveMaintenance/chosen-1.8.7/docsupport/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/PreventiveMaintenance/chosen-1.8.7/chosen.jquery.js"></script>
+    <script src="~/Content/PreventiveMaintenance/chosen-1.8.7/docsupport/prism.js"></script>
+    <script src="~/Content/PreventiveMaintenance/chosen-1.8.7/docsupport/init.js"></script>*@
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/libs/jquery/dist/jquery.js"></script>
+
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/js/select2.min.js"></script>
+
+@*<link href="~/Content/PreventiveMaintenance/datepicker/css/datepicker.css" rel="stylesheet" />
+    <script src="~/Content/PreventiveMaintenance/datepicker/js/bootstrap-datepicker.js"></script>*@
+
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.datetimepicker.full.js"></script>
+
+<script src="~/Content/PreventiveMaintenance/site.js"></script>
+
+<script type="text/javascript">
+
+    //var currentDate = new Date(); //Getting current date
+    ////below code for format datetime-local
+    //var dateForDateLocal = currentDate.getFullYear() +
+    //                    "-" + (((currentDate.getMonth()) + 1) < 10 ? '0' : '') + ((currentDate.getMonth()) + 1) +
+    //                    "-" + (currentDate.getDate() < 10 ? '0' : '') + currentDate.getDate();
+    //var dateForDateTimeLocal = currentDate.getFullYear() +
+    //                    "-" + (((currentDate.getMonth()) + 1) < 10 ? '0' : '') + ((currentDate.getMonth()) + 1) +
+    //                    "-" + (currentDate.getDate() < 10 ? '0' : '') + currentDate.getDate() +
+    //                    "T" + (currentDate.getHours() < 10 ? '0' : '') + currentDate.getHours() +
+    //                    ":" + (currentDate.getMinutes() < 10 ? '0' : '') + currentDate.getMinutes() +
+    //                    ":" + (currentDate.getSeconds() < 10 ? '0' : '') + currentDate.getSeconds();
+
+    //$("#mtc_schedule").val(dateForDateLocal); //Format date for datetime-local
+    //$("#mtc_start").val(dateForDateTimeLocal); //Format date for datetime-local
+    //$("#mtc_finish").val(dateForDateTimeLocal); //Format date for datetime-local
+
+    document.getElementById('mtcNo').selectedIndex = 0;
+    $('#mtcNo').change();
+    //document.getElementById('Fullname').selectedIndex = 1;
+    //$('#Fullname').change();
+    document.getElementById('mtc_action_name').selectedIndex = 0;
+    $('#mtc_action_name').change();
+
+    $('#scheduleDate').datetimepicker({
+        format: 'm-Y',
+        timepicker: false,
+        datepicker: true
+    });
+
+    $('#mtcStart').datetimepicker({
+        format: 'd-m-Y H:i',
+        timepicker: true,
+        datepicker: true
+    });
+
+    $('#mtcFinish').datetimepicker({
+        format: 'd-m-Y H:i',
+        timepicker: true,
+        datepicker: true
+    });
+
+</script>

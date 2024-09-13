@@ -1,0 +1,45 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.MaintenanceType
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.Menu = "Maintenance Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    @using (Html.BeginForm("Delete", "MaintenanceType", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-header text-bg-primary">
+            <h4 class="mb-0 text-white fs-6">@ViewBag.Menu - @ViewBag.Title</h4>
+        </div>
+
+        <div class="card-body mb-1">
+            <h3 class="mb-4">Are you sure you want to delete this?</h3>
+
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mtc_id, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.mtc_id, new { disabled = "disabled", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.mtc_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mtc_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.mtc_name, new { disabled = "disabled", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.mtc_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Yes</button>
+            @Html.ActionLink("No", "Index", "MaintenanceType", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+    }
+</div>
+

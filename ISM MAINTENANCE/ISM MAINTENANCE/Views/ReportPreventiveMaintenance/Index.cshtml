@@ -1,0 +1,91 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.Report.FormParameterPrev
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+}
+
+
+
+<div class="card">
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">Report Maintenance Preventive</h4>
+    </div>
+    @using (Html.BeginForm("Preview", "ReportPreventiveMaintenance", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-body ">
+            <div class="mb-1 row">
+                @Html.Label("Department", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("dept_par", null, null, htmlAttributes: new { @class = "form-select form-select-sm text-black gray-color-byfahrul" })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.Label("Machine Type", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mc_id_par", null, null, htmlAttributes: new { @class = "form-select form-select-sm text-black gray-color-byfahrul" })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.Label("Tanggal", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.start_date_par, new { @class = "form-control form-control-sm text-black", inputmode = "none", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.start_date_par, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.stop_date_par, new { @class = "form-control form-control-sm text-black", inputmode = "none", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.stop_date_par, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.Label("M/C No", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("machine_par", null, "ALL", htmlAttributes: new { @class = "form-select form-select-sm text-black" })
+                </div>
+            </div>
+
+            <div class="mb-0 row">
+                @Html.Label("PIC MTC", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("PIC_Mtc", null, "ALL", htmlAttributes: new { @class = "form-select form-select-sm text-black" })
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer text-center">
+            <button type="submit" class="btn btn-primary">Preview</button>
+            <a href="@Url.Action("Welcome", "Home" )" class="btn btn-dark align-content-center">Home</a>
+        </div>
+    }
+
+</div>
+
+<script src="~/Content/libs/jquery/dist/jquery.js"></script>
+
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/libs/Select2/select2.min.js"></script>
+
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.datetimepicker.full.js"></script>
+
+<script type="text/javascript">
+    $("#machine_par").select2({ width: '100%' });
+
+    $('#start_date_par').datetimepicker({
+        format: 'd-m-Y',
+        timepicker: false,
+        datepicker: true,
+
+    });
+
+    $('#stop_date_par').datetimepicker({
+        format: 'd-m-Y',
+        timepicker: false,
+        datepicker: true,
+
+    });
+</script>

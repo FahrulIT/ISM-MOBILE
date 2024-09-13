@@ -1,0 +1,60 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.MachineTrouble
+
+@{
+    ViewBag.Title = "Create";
+    ViewBag.Menu = "Machine Trouble";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    @using (Html.BeginForm("Create", "MachineTrouble", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+       
+        <div class="card-header text-bg-primary">
+            <h4 class="mb-0 text-white fs-6">@ViewBag.Menu - @ViewBag.Title</h4>
+        </div>
+
+        <div class="card-body">
+            @*@Html.AntiForgeryToken()*@
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.dept_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("dept_id", null, null, htmlAttributes: new { @class = "form-select text-black gray-color-byfahrul" })  
+                            
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mc_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mc_id", null, null, htmlAttributes: new { @class = "form-select text-black gray-color-byfahrul" })    
+                               
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.trouble_id, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.trouble_id, new { htmlAttributes = new { @class = "form-control text-black gray-color-byfahrul", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.trouble_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.trouble_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.trouble_name, new { htmlAttributes = new { @class = "form-control text-uppercase text-black" } })
+                    @Html.ValidationMessageFor(model => model.trouble_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            @Html.ActionLink("Back", "Index", "MachineTrouble", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+    }
+</div>

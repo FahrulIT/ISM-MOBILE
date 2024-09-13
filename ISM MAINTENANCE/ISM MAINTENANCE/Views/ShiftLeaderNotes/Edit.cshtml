@@ -1,0 +1,425 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.ShiftLeaderNotes
+
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.Menu = "Shift Leader Notes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int NomorBaris = 0;
+    string tanggal = Model == null ? "" : Model.note_date.ToString("dd-MM-yyyy");
+    //string stop_from = Model.stop_from.ToString("dd-MM-yyyy"); ;
+    if (Model != null)
+    {
+        ViewBag.Mtc_id = Model.ShiftLeaderNotesDetails[0].mtc_id;
+        ViewBag.Mtc_name = Model.ShiftLeaderNotesDetails[0].mtc_name;
+    }
+    else
+    {
+        ViewBag.Mtc_id = "";
+        ViewBag.Mtc_name = "";
+    }
+
+}
+
+<div class="card">
+    @using (Html.BeginForm("Edit_add_remove_detail", "ShiftLeaderNotes", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-header text-bg-primary">
+            <h4 class="mb-0 text-white">@ViewBag.Menu - @ViewBag.Title</h4>
+        </div>
+
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.mc_id)
+            @Html.HiddenFor(model => model.dept_id)
+            @Html.HiddenFor(model => model.note_date)
+
+            @Html.HiddenFor(model => model.block)
+            @Html.HiddenFor(model => model.loom_no)
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.dept_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dept_name, new { htmlAttributes = new { @class = "form-control text-black gray-color-byfahrul", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.mc_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mc_name, new { htmlAttributes = new { @class = "form-control text-black gray-color-byfahrul", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.note_date, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @*@Html.Editor(tanggal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+                    <input class="form-control text-black text-box single-line gray-color-byfahrul" id="" name="" readonly="readonly" type="text" value=@tanggal>
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.shift, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.shift, new { htmlAttributes = new { @class = "form-control text-black gray-color-byfahrul", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.machine_no, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.machine_no, new { htmlAttributes = new { @class = "form-control text-black gray-color-byfahrul", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            @*<div class="mb-1 row">
+                    @Html.LabelFor(model => model.stop_to, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.stop_to, "{0:yyyy-MM-dd HH:mm:ss}", new  { @class = "form-control", type= "datetime-local" })
+                    </div>
+                </div>*@
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.PicName, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.PicName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+                    @Html.DropDownList("pic", null, null, htmlAttributes: new { @class = "form-select  text-black gray-color-byfahrul" })
+                    @Html.ValidationMessageFor(model => model.pic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-4 row">
+                @Html.LabelFor(model => model.stop_from, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @*@Html.TextBoxFor(model=> model.stop_from, "{0:yyyy-MM-dd HH:mm:ss}",  new { @class = "form-control", type = "datetime-local" })*@
+                    @Html.TextBoxFor(model => model.stop_from_str, new { @class = "form-control text-black", inputmode = "none", autocomplete = "off" })
+                    @*@Html.TextBox("mtc_end", "{0:yyyy-MM-dd HH:mm:ss}", new { @class = "form-control", type = "datetime-local" })*@
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <button type="button" class="btn btn-outline-primary" id="OpenModal">
+                    + Add Trouble
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table id="AddNewShiftLeader" class="table search-table table-sm align-middle text-nowrap">
+                    <thead class="header-item">
+                        <tr>
+                            <th style="text-align:center">
+                                No
+                            </th>
+                            <th>
+                                Trouble Name
+                            </th>
+                            <th>
+                                Mtc Type
+                            </th>
+                            <th style="display:none">
+                                Mtc ID
+                            </th>
+                            <th style="display:none">
+                                trouble ID
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @if (Model == null)
+                        {
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+                        else
+                        {
+                            for (int i = 0; i < Model.ShiftLeaderNotesDetails.Count; i++)
+                            {
+                                <tr>
+                                    <td class="text-black" style="text-align:center">
+                                        <input type="hidden" name="Index" value="B-@(i)" />
+                                        @(NomorBaris += 1)
+                                    </td>
+
+                                    <td>
+                                        @(Model.ShiftLeaderNotesDetails[i].trouble_name)
+                                        @Html.EditorFor(modelItem => modelItem.ShiftLeaderNotesDetails[i].trouble_name, new { htmlAttributes = new { @class = "form-control form-control-sm text-black", @id = "ShiftLeaderNotesDetails[" + i + "]." + "trouble_name", @readonly = "readonly", @type = "hidden" } })
+                                    </td>
+                                    <td>
+                                        @(Model.ShiftLeaderNotesDetails[i].mtc_name)
+                                        @Html.EditorFor(modelItem => modelItem.ShiftLeaderNotesDetails[i].mtc_name, new { htmlAttributes = new { @class = "form-control form-control-sm text-black", @id = "ShiftLeaderNotesDetail[" + i + "]." + "mtc_name", @readonly = "readonly", @type = "hidden" } })
+                                    </td>
+                                    <td style="display:none">
+                                        @Html.EditorFor(modelItem => modelItem.ShiftLeaderNotesDetails[i].mtc_id, new { htmlAttributes = new { @class = "form-control form-control-sm text-black", @id = "ShiftLeaderNotesDetail[" + i + "]." + "mtc_id", @readonly = "readonly", @type = "hidden" } })
+                                    </td>
+                                    <td style="display:none">
+                                        @Html.EditorFor(modelItem => modelItem.ShiftLeaderNotesDetails[i].trouble_id, new { htmlAttributes = new { @class = "form-control form-control-sm text-black", @id = "ShiftLeaderNotesDetail[" + i + "]." + "trouble_id", @readonly = "readonly", @type = "hidden" } })
+                                    </td>
+
+                                    <td>
+                                        <button class="remove text-white">delete</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        <!-- start row -->
+                        <!-- end row -->
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-footer">
+            @if (ViewBag.Hide == "True")
+            {
+                @Html.ActionLink("Back", "Index", "ShiftLeaderNotes", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+            }
+            else
+            {
+                <button type="submit" class="btn btn-primary">Save</button>
+                @Html.ActionLink("Back", "Index", "ShiftLeaderNotes", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+            }
+
+        </div>
+    }
+</div>
+
+
+<div class="modal fade" id="AddItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="detailform">
+                <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                    <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Add Trouble</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    @*<div class="mb-3 row">
+                            @Html.Label("Date", "Date", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                            <div class="col-md-8">
+                                @Html.TextBox("Date", "", "{0:dd-MM-yyyy}", new { @class = "form-control", type = "date", disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            @Html.Label("Shift", "Shift", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                            <div class="col-md-8">
+                                @Html.TextBox("Shift_detail", "", new { @class = "form-control", disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            @Html.Label("MachineNo", "Machine No", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                            <div class="col-md-8">
+                                @Html.DropDownList("MachineNo", null, "Select Machine Number", htmlAttributes: new { @class = "form-select" })
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            @Html.Label("From", "From", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                            <div class="col-md-8">
+                                @Html.TextBox("From", "...", "{0:dd-MM-yyyy HH:mm:ss}", new { @class = "form-control", type = "datetime-local" })
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            @Html.Label("To", "To", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                            <div class="col-md-8">
+                                @Html.TextBox("To", "...", "{0:yyyy-MM-dd HH:mm:ss}", new { @class = "form-control", type = "datetime-local" })
+                            </div>
+                        </div>
+
+                        <div class="mb-0 row">
+                            @Html.Label("MachineTrouble", "Mach. Trouble", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                            <div class="col-md-8">
+                                @Html.DropDownList("MachineTrouble", Enumerable.Empty<SelectListItem>(), "Select Machine Trouble", htmlAttributes: new { @class = "form-select" })
+                            </div>
+                        </div>*@
+
+                    <div class="mb-3 row">
+                        @Html.Label("Mtc Type", "Mtc Type", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("MaintenanceType", null, "Select Maintenance Type", htmlAttributes: new { @class = "form-select text-black" })
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.Label("Trouble Name", "Trouble Name", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("TroubleItem", Enumerable.Empty<SelectListItem>(), "SELECT ITEM", htmlAttributes: new { @class = "form-select text-black" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Get</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="Back"><span class="fa fa-eject"></span> Back</button>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/libs/Select2/select2.min.js"></script>
+
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.datetimepicker.full.js"></script>
+
+
+<script type="text/javascript">
+
+    $("#TroubleItem").select2({
+        allowClear: true,
+        placeholder: {
+            id: "0",
+            text: "SELECT ITEM" //Should be text not placeholder
+        },
+        width: '100%', dropdownParent: $("#AddItem") });
+
+    //console.log(Tanggal);
+    //console.log(tgl1);
+    $('#stop_from_str').datetimepicker({
+        format:'H:i',
+        timepicker:true,
+        datepicker:false,
+    });
+
+    $(document).ready(function () {
+        $("#OpenModal").click(function () {
+            $("#AddItem").modal("show");
+
+            let MtC_ID= '@ViewBag.Mtc_id';
+
+            $('#MaintenanceType').val(MtC_ID);
+            if ($('#MaintenanceType').attr('disabled') !== undefined) {
+                //console.log("ada bro");
+            } else {
+                $('#MaintenanceType').attr('disabled', 'disabled');
+            }
+
+            let MTC_NAME = '@ViewBag.Mtc_name';
+
+            var cubes = @Html.Raw(Json.Encode(ViewBag.TroubleItem));
+            var newarray = cubes.filter(x => x.Trouble_Type == MTC_NAME);
+            newarray.sort;
+            document.getElementById("TroubleItem").options.length = 0;
+
+            var topicSel = document.getElementById("TroubleItem");
+            topicSel.options[0] = new Option(0,0);
+            for(var i = 0; i < newarray.length; i++) {
+                topicSel.options[topicSel.options.length] = new Option(newarray[i].trouble_name,newarray[i].trouble_id);
+            }
+        });
+
+
+        let counter = $('#AddNewShiftLeader tr').length;
+        let troubleid ="";
+        //console.log(counter);
+
+        $('#detailform').on('submit', function (e) {
+            e.preventDefault();
+
+            let list = '<tr><td class="text-black" style="text-align:center">' + (counter) + '</td>';
+
+            var _mtctypeText = $('#MaintenanceType').find(":selected").text();
+            var _mtctypeValue = $('#MaintenanceType').val().trim();
+
+            var _troubleText = $('#TroubleItem').find(":selected").text();
+            var _troubleValue = $('#TroubleItem').val().trim();
+
+            console.log(_troubleValue);
+
+            var duplicate = "";
+
+            $('#AddNewShiftLeader tbody tr').each(function () {
+                var cell3Value = $(this).find("td").eq(4).find("input").val();//$(this).find("input").val();
+                var cell1Value = $(this).find("td").eq(1).find("input").val();//$(this).find("input").val();
+
+                console.log(cell3Value);
+                console.log(cell1Value);
+                if (cell3Value == _troubleValue || cell1Value == _troubleValue ) {
+                    duplicate = "true";
+                }
+
+            });
+
+
+            if (duplicate == "true") {
+                alert("duplicate data");
+                //console.log("tes");
+            }
+            else{
+                list += '<td class="text-black">' + _troubleText + '<input type="hidden" name="ShiftLeaderNotesDetails' + '[' + String(counter-1) + '].trouble_id" value="' + _troubleValue + '"/>' + '</td>';
+                list += '<td class="text-black">' + _mtctypeText + '<input type="hidden" name="ShiftLeaderNotesDetails' + '[' + String(counter-1) + '].mtc_id" value="'+ _mtctypeValue + '"/>' + '</td>';
+                list += '<td><button class="btn btn-danger" onclick="return this.parentNode.parentNode.remove();">delete</button></tr>';
+
+                $('#AddNewShiftLeader tbody').append(list);
+
+                counter++;
+
+                $(this)[0].reset();
+                //console.log(list);
+
+                let MtC_ID= '@ViewBag.Mtc_id';
+
+                $('#MaintenanceType').val(MtC_ID);
+
+                if ($('#MaintenanceType').attr('disabled') !== undefined) {
+                    //console.log("ada bro");
+                } else {
+                    $('#MaintenanceType').attr('disabled', 'disabled');
+                }
+            }
+
+        });
+
+        function numberRows($t) {
+            $t.find("tr").each(function (i, el) {
+                $(el).find("td").eq(0).html((i+1));
+                $(el).find("td").eq(1).find("input").prop("name", "ShiftLeaderNotesDetails[" + i + "].trouble_name");
+                $(el).find("td").eq(2).find("input").prop("name", "ShiftLeaderNotesDetails[" + i + "].mtc_name");
+                $(el).find("td").eq(3).find("input").prop("name", "ShiftLeaderNotesDetails[" + i + "].mtc_id");
+                $(el).find("td").eq(4).find("input").prop("name", "ShiftLeaderNotesDetails[" + i + "].trouble_id");
+                console.log("tess");
+            });
+        }
+
+        $(document).on('click', '.remove', function (e) {
+            e.preventDefault();
+            if ($('#AddNewShiftLeader>tbody>tr').length > 0) {
+                //$(this).parent().parent().remove();
+                $(this).closest('tr').remove();
+                numberRows($('#AddNewShiftLeader tbody'));
+                counter=counter-1;
+                return false;
+            }
+            else {
+                //$(this).parent().parent().show();
+                alert('Form must have at least one row')
+                numberRows($('#AddNewShiftLeader tbody'));
+            }
+        });
+
+    });
+
+
+</script>

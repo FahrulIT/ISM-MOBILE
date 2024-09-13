@@ -1,0 +1,400 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.TRM_detail_1
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int NomorBaris = 0;
+}
+
+<div class="card">
+
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">Add New</h4>
+    </div>
+
+    @using (Html.BeginForm("Create", "MaintenanceResult", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-body">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.mtc_slip_no1)
+            @Html.HiddenFor(model => model.mtc_slip_no2)
+
+            <div class="mb-2 row">
+                @Html.Label("Department", "Department", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("dept_id", null, "Select Department", htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.dept_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.Label("Machine Type", "Machine Type", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mc_id", null, "Select Machine Type", htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.mc_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.Label("Maintenance Slip No", "Maintenance Slip No", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    <div class="input-group">
+                        @Html.TextBox("mtc_slip", null, new { @class = "form-control me-2" })
+                        <div>
+                            <button type="button" class="btn btn-outline-dark me-6" data-bs-toggle="modal" data-bs-target="#GetSlip">Get</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.Label("Maintenance Ke ", "Maintenance Ke", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mtc_ser_no, new { htmlAttributes = new { @class = "form-control text-end" } })
+                    @Html.ValidationMessageFor(model => model.mtc_ser_no, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="mb-2 row">
+                @Html.Label("Machine No", "Machine No", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBox("Machine_no", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.Label("Maintenance Type", "Maintenance Type", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBox("mtc_type", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.mtc_pic_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mtc_pic", null, "Select PIC", htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.mtc_pic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.mtc_start, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBox("mtc_start", "{0:yyyy-MM-dd HH:mm:ss}", new { @class = "form-control", type = "datetime-local" })
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mtc_end, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBox("mtc_end", "{0:yyyy-MM-dd HH:mm:ss}", new { @class = "form-control", type = "datetime-local" })
+                </div>
+            </div>
+
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mtc_status_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-3">
+                    @Html.RadioButtonFor(model => model.mtc_status, "U", new { @class = "col-form-label me-2" })
+                    @Html.Label("Not Finished", "Not Finished", htmlAttributes: new { @class = "col-form-label" })
+                </div>
+                <div class="col-md-6">
+                    @Html.RadioButtonFor(model => model.mtc_status, "F", new { @class = "col-form-label me-2" })
+                    @Html.Label("Finished", "Finished", htmlAttributes: new { @class = "col-form-label" })
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <button type="button" class="btn btn-outline-dark" id="AddMtcAction">
+                    + Add Item
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table id="Mr_MaintenanceAction" class="table search-table table-sm align-middle text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th style="display:none"></th>
+                            <th scope="col">Trouble</th>
+                            <th scope="col">Maintenance Action</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @*<tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>*@
+
+                        @*@if (Model.Detail2 != null)
+                        {
+                            for (int i = 0; i < Model.Detail2.Count; i++)
+                            {
+                                <tr>
+                                    <td style="text-align:center">
+                                        <input type="hidden" name="Index" value="B-" + "@i" />
+                                        @(NomorBaris += 1)
+                                    </td>
+                                    <td style="display:none">
+                                        @Html.EditorFor(Item => Item.Detail2[i].trouble_id, new { htmlAttributes = new { @class = "form-control form-control-sm", @id = "Detail2[" + i + "]." + "trouble_id" } })
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(Item => Item.Detail2[i].trouble_name, new { htmlAttributes = new { @class = "form-control form-control-sm", @id = "Detail2[" + i + "]." + "trouble_name" } })
+                                    </td>
+                                    <td>
+                                        Details
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" onclick="return this.parentNode.parentNode.remove();">delete</button>
+                                    </td>
+                                </tr>
+                            }
+                        }*@
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Next</button>
+            @Html.ActionLink("Back", "Index", "MaintenanceResult", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+    }
+
+</div>
+
+<div class="modal fade" id="GetSlip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Get Maintenance Slip</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="CloseModalGetSlip"></button>
+            </div>
+
+
+            <div class="card-body m-2">
+                <div class="table-responsive">
+                    <table id="MaintenanceSlip" class="display table search-table table-sm align-middle text-nowrap">
+                        <thead>
+                            <!-- start row -->
+                            <tr>
+                                <th scope="col" ">Maintenance Slip</th>
+                                <th scope="col">Machine No</th>
+                                <th scope="col">Maintenance Type</th>
+                                <th scope="col">Action</th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                            </tr>
+                            <!-- end row -->
+                        </thead>
+                        <tbody>
+                            <!-- start row -->
+                            @if (ViewBag.List_slip == null)
+                            {
+                                <tr>
+                                    <th scope="row">-</th>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td style="display:none">-</td>
+                                    <td style="display:none">-</td>
+                                    <td style="display:none">-</td>
+                                    <td style="display:none">-</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var data in ViewBag.List_slip)
+                                {
+                                    <tr>
+                                        <td>@data.MaintenanceSlip.ToString()</td>
+                                        <td>@data.machine_no.ToString()</td>
+                                        <td>@data.mtc_name.ToString()</td>
+                                        <td style="display:none">@data.block.ToString()</td>
+                                        <td style="display:none">@data.loom_no.ToString()</td>
+                                        <td style="display:none">@data.mtc_slip_no1.ToString()</td>
+                                        <td style="display:none">@data.mtc_slip_no2.ToString()</td>
+                                        <td><button type="button" class="btn GetSlip btn-outline-primary">Select</button></td>
+                                    </tr>
+                                }
+                            }
+                            <!-- end row -->
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="MaintenanceAction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+
+            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Add Maintenance Action</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="CloseModalMaintenanceAction"></button>
+            </div>
+
+            <form id="FrmModalMtcAction">
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        @Html.Label("Maintenance Type", "Maintenance Type", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.TextBox("mtc_name", "", new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.Label("Trouble", "Trouble", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("trouble_id", null, "Select Machine Number", htmlAttributes: new { @class = "form-select" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-start" id="MaintenanceActionFooter">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"><span class="fa fa-save"></span> Save</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="Back"><span class="fa fa-eject"></span> Back</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="MaintenanceActionDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+
+            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Add Maintenance Action Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="CloseModalMaintenanceAction"></button>
+            </div>
+
+            <form id="FrmModalMtcActionDetail">
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        @Html.Label("Trouble", "Trouble", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("trouble_id", null, "Select Machine Number", htmlAttributes: new { @class = "form-select" })
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.Label("Maintenance Type", "Maintenance Type", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.TextBox("mtc_name", "", new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-start" id="MaintenanceActionFooter">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"><span class="fa fa-save"></span> Save</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="Back"><span class="fa fa-eject"></span> Back</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/libs/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".GetSlip").click(function () {
+            var $tr = $(this).closest("tr");
+            var data = $tr.children("td").map(function () {
+                return $(this).text();
+            }).get();
+            //console.log(data);
+            $("#mtc_slip").val(data[0]);
+            $("#Machine_no").val(data[1]);
+            $("#mtc_type").val(data[2]);
+            $("#CloseModalGetSlip").click();
+            $("#mtc_slip_no1").val(data[5]);
+            $("#mtc_slip_no2").val(data[6]);
+
+        });
+    });
+
+    $("#AddMtcAction").click(function () {
+        if ($('#dept_id').val() == "") {
+            alert('Empty Column Dept, Choose Item Dept First');
+        }
+        else if ($('#mc_id').val() == "") {
+            alert('Empty Column Machine Type, Choose Item Machine Type First');
+        }
+        else if ($('#mtc_type').val() == "") {
+            alert('Empty Column Maintenance Type, Get slip first');
+        }
+        else {
+            var selObj_deptid = document.getElementById("dept_id");
+            var selValue_dept_id = selObj_deptid.options[selObj_deptid.selectedIndex].text;
+
+            var selObj_mcid = document.getElementById("mc_id");
+            var selValue_mc_id = selObj_mcid.options[selObj_mcid.selectedIndex].text;
+
+            var mtc_type = $("#mtc_type").val();
+            var MtcAction_Data = @Html.Raw(Json.Encode(ViewBag.ListMaintenanceAction));
+            var newarray = MtcAction_Data.filter(x => x.dept_name == selValue_dept_id && x.mc_name == selValue_mc_id && x.mtc_name == mtc_type);
+            newarray.sort;
+            console.log(newarray);
+
+            document.getElementById("trouble_id").options.length = 0;
+            var topicSel = document.getElementById("trouble_id");
+
+            for(var i = 0; i < newarray.length; i++) {
+                topicSel.options[topicSel.options.length] = new Option(newarray[i].trouble_name,newarray[i].trouble_id);
+            }
+
+            $("#mtc_name").val($("#mtc_type").val());
+
+            $("#MaintenanceAction").modal("show");
+            $( "#MaintenanceActionFooter").append('<button type="button" class="btn btn-default btn-ok" >Button tambahan</button>' );
+
+        }
+    });
+
+
+    let counter = $('#Mr_MaintenanceAction tr').length;
+
+    $("#FrmModalMtcAction").on('submit', function (e) {
+        e.preventDefault();
+
+        let list = '<tr><td>'+ (counter)+ '</td>';
+
+        var _code = $('#trouble_id').val().trim();
+        var _desc = $('#trouble_id').find(":selected").text();
+
+        list += '<td style="display:none">' + _code + '<input type="hidden" name="Detail2' + '[' + String(counter-1) + '].trouble_id" value = "' + _code + '"/>' + '</td>' ;
+        list += '<td>' + _desc + '<input type="hidden" name="Detail2' + '[' + String(counter-1) + '].trouble_name value=" ' + _desc + ' "/>' + '</td>' ;
+        list += '<td> Details </td>' ;
+        list += '<td><button class="btn btn-danger" onclick="return this.parentNode.parentNode.remove();">delete</button></tr>';
+
+        $('#Mr_MaintenanceAction tbody').append(list);
+
+        counter++;
+
+    });
+
+</script>

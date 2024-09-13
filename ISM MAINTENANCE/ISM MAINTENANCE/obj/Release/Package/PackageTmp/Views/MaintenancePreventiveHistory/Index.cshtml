@@ -1,0 +1,158 @@
+﻿@model IEnumerable<ISM_MAINTENANCE.Models.DB.vw_preventivemaintenance_history>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int line = 0;
+}
+
+@using (Html.BeginForm())
+{
+    <div class="card">
+        <div class="card-header bg-primary">
+            <div class="text-white fs-6 fw-bold"><i class="ti ti-filter"></i> Filter Data</div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label">MTC Schedule</label>
+                </div>
+                <div class="col-md-2">
+                    <input class="form-control" id="mtcSchedule" name="mtcSchedule" autocomplete="off" value="@ViewBag.sch" readonly />
+                </div>
+                <div class="col-md-1">
+                    <label class="control-label">M/C No.</label>
+                </div>
+                <div class="col-md-2">
+                    <input class="form-control" id="mtcNo" name="mtcNo" autocomplete="off" value="@ViewBag.mtc" />
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="form-control btn btn-primary">
+                        <i class="ti ti-search"></i> Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="card">
+    <div class="card-header bg-primary">
+        <div class="text-white fs-6 fw-bold"><i class="ti ti-history"></i>  Preventive - Maintenance - Index</div>
+    </div>
+    <div class="card-body">
+        <div class="col-md-4 col-xl-3 mb-2">
+            <a class="btn btn-outline-primary" href="@Url.Action("Create", "MaintenancePreventiveHistory")">
+                <i class="ti ti-text-plus"></i> Add New
+            </a>
+            <a href="@Url.Action("Welcome", "Home" )" class="btn btn-rounded btn-outline-dark align-content-center" style="margin-left:8px"><i class="ti ti-home"></i> Home</a>
+        </div>
+        <div class="table-responsive">
+            <table id="indexTable" class="display table search-table table-sm  align-middle text-nowrap" style="color:black;">
+            @*<table id="indexTable" class="table search-table table-sm  align-middle text-nowrap" style="color:black;">*@
+                <thead class="header-item">
+                    <tr>
+                        <th>
+                            No.
+                        </th>
+                        <th>
+                            MTC Schedule
+                        </th>
+                        <th>
+                            M/C No.
+                        </th>
+                        <th>
+                            Start MTC
+                        </th>
+                        <th>
+                            Finish MTC
+                        </th>
+                        <th>
+                            MTC Duration
+                        </th>
+                        <th>
+                            PIC MTC
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="text-align:center;">
+                                @(line = line + 1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mtcSchedule)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mtcNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.startMtc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.finishMtc)
+                            </td>
+                            <td style="text-align:center;">
+                                @Html.DisplayFor(modelItem => item.mtcDuration)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Fullname)
+                            </td>
+                            <td>
+                                <a title="Show" class="badge rounded-pill bg-primary-subtle text-primary" href="@Url.Action("Details","MaintenancePreventiveHistory", new { dept = item.dept_id, mc = item.mc_id, mtc = item.mtc_schedule, block = item.block, loom = item.loom_no })">Show</a> |
+                                <a title="Edit" class="badge rounded-pill bg-primary-subtle text-primary" href="@Url.Action("Edit","MaintenancePreventiveHistory", new { dept = item.dept_id, mc = item.mc_id, mtc = item.mtc_schedule, block = item.block, loom = item.loom_no })">Edit</a> |
+                                <a title="Delete" class="badge rounded-pill bg-danger-subtle text-danger" href="@Url.Action("Delete","MaintenancePreventiveHistory", new { dept = item.dept_id, mc = item.mc_id, mtc = item.mtc_schedule, block = item.block, loom = item.loom_no })">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card-footer">
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/libs/jquery/dist/jquery.js"></script>
+
+<!-- Datatables.Net -->
+<script src="~/Content/js/Datatables.Net/jquery-3.7.1.js"></script>
+<script src="~/Content/js/Datatables.Net/bootstrap.bundle.min.js"></script>
+<script src="~/Content/js/Datatables.Net/dataTables.js"></script>
+<script src="~/Content/js/Datatables.Net/dataTables.bootstrap5.js"></script>
+<!-- Datatables.Net -->
+
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.datetimepicker.full.js"></script>
+
+<script type="text/javascript">
+
+    //$('#indexTable').DataTable({
+    //    pageLength: 50,
+    //    info: false,
+    //    lengthChange: false,
+    //    layout:
+    //    {
+    //        bottomEnd: {
+    //            paging: {
+    //                type: 'simple_numbers'
+    //            }
+    //        }
+
+    //    }
+    //});
+
+    $('#mtcSchedule').datetimepicker({
+        format: 'm-Y',
+        timepicker: false,
+        datepicker: true
+    });
+
+</script>

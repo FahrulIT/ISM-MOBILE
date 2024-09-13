@@ -1,0 +1,143 @@
+﻿@model IEnumerable<ISM_MAINTENANCE.Models.ViewModel.ShiftLeaderNotesView>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Menu = "Shift Leader Notes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int NomorBaris = 0;
+    string tanggal = "";
+}
+
+<div class="card">
+    <div class="card-header bg-primary">
+        <div class="text-white fs-6 fw-bold">@ViewBag.Menu - @ViewBag.Title</div>
+    </div>
+
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="=col d-flex justify-content-center gap-1">
+                @Html.ActionLink("All", "index", new { _block = "All", id = "" }, new { @class = "btn btn-rounded btn-dark" })
+                @Html.ActionLink("Block A", "index", new { _block = "A", id = "" }, new { @class = "btn btn-rounded btn-primary" })
+                @Html.ActionLink("Block B", "index", new { _block = "B", id = "" }, new { @class = "btn btn-rounded btn-secondary" })
+                @Html.ActionLink("Block C", "index", new { _block = "C", id = "" }, new { @class = "btn btn-rounded btn-success" })
+                @Html.ActionLink("Block D", "index", new { _block = "D", id = "" }, new { @class = "btn btn-rounded btn-info" })
+            </div>
+        </div>         
+
+        <div class="justify-content-start d-flex gap-2">
+            <a href="@Url.Action("Create", "ShiftLeaderNotes" )" class="btn btn-rounded btn-outline-primary">
+                Add New
+            </a>
+            <a href="@Url.Action("Welcome", "Home" )" class="btn btn-rounded btn-outline-dark align-content-center">Home</a>
+        </div>
+
+        <div class="table-responsive">
+            <table id="" class="display table search-table table-sm align-middle text-nowrap text-black">
+                <thead class="header-item">
+                    <tr>
+                        <th style="text-align:center">
+                            No
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dept_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mc_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mtc_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.note_date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.shift)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.machine_no)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.pic)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.stop_from)
+                        <th>
+                            @Html.DisplayNameFor(model => model.PicName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LamaStop)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.LamaStopNumerik)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <!-- start row -->
+                    @foreach (var item in Model.OrderByDescending(x=> x.LamaStopNumerik))
+                    {
+                        <tr>
+                            <td class="text-black" style="text-align:center">
+                                @(NomorBaris += 1)
+                            </td>
+                            <td class="text-black">
+                                @Html.DisplayFor(modelItem => item.dept_name)
+                            </td>
+
+                            <td class="text-black">
+                                @Html.DisplayFor(modelItem => item.mc_name)
+                            </td>
+
+                            <td class="text-black">
+                                @Html.DisplayFor(modelItem => item.mtc_name)
+                            </td>
+
+                            <td class="text-black">
+                                @Html.DisplayFor(modelItem => item.note_date)
+                            </td>
+
+                            <td class="text-black">
+                                @Html.DisplayFor(modelItem => item.shift)
+                            </td>
+
+                            <td class="text-black">
+                                @Html.DisplayFor(modelItem => item.machine_no)
+                            </td>
+
+                            <td style="display:none">
+                                @Html.DisplayFor(modelItem => item.pic)
+                            </td>
+                            <td class="text-black" style="display:none">                              
+                                @Convert.ToString(String.Format("{0:HH:mm}", item.stop_from))
+                            </td>
+
+                            <td class="text-black">
+                                @Html.DisplayFor(modelItem => item.PicName)
+                            </td>
+
+                            <td class="text-black">
+                                @Html.DisplayFor(modelItem => item.LamaStop)
+                            </td>
+                            <td class="text-black"  style="display:none">
+                                @Html.DisplayFor(modelItem => item.LamaStopNumerik)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Show", "Show", new { id = item.dept_id.ToString() + ";" + item.mc_id.ToString() + ";" + (tanggal = item.note_date.ToString("yyyy-MM-dd").Replace("-", "_")) + ";" + item.shift.ToString() + ";" + item.block.ToString() + ";" + item.loom_no.ToString() }, new { @class = "badge rounded-pill bg-info-subtle text-info" })
+                                @Html.ActionLink("Edit", "Edit", new { id = item.dept_id.ToString() + ";" + item.mc_id.ToString() + ";" + (tanggal = item.note_date.ToString("yyyy-MM-dd").Replace("-", "_")) + ";" + item.shift.ToString() + ";" + item.block.ToString() + ";" + item.loom_no.ToString() }, new { @class = "badge rounded-pill bg-primary-subtle text-primary" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.dept_id.ToString() + ";" + item.mc_id.ToString() + ";" + (tanggal = item.note_date.ToString("yyyy-MM-dd").Replace("-", "_")) + ";" + item.shift.ToString() + ";" + item.block.ToString() + ";" + item.loom_no.ToString() }, new { @class = "badge rounded-pill bg-danger-subtle text-danger" })
+                            </td>
+                        </tr>
+                    }
+
+                    <!-- end row -->
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>

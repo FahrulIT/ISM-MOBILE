@@ -1,0 +1,70 @@
+﻿@model ISM_MOBILE.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">@ViewBag.Title</h6>
+        </div>
+        <div class="card-body">
+            <p class="mb-4">
+                Create a new account
+            </p>
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <hr />
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col" style="padding-left:1.7rem">
+                                    @*<input type="submit" class="btn btn-default" value="Register" />*@
+                                    <button type="submit" class="CustomButtonLoginByfahrul btn btn-primary btn-block" style="font-size:1rem;">Register</button>
+                                </div>
+                                <div class="col"></div>
+                            </div>                           
+                        </div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                    </div>
+                   
+                </div>
+            }
+
+        </div>
+    </div>
+
+  
+
+
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

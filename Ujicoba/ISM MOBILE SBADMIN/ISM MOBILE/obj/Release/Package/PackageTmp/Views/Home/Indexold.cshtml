@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    var donutchart_obj = '@ViewBag.strDonutChart';
+    var donutJson = JSON.parse(donutchart_obj);
+
+    var donutchartgrey_obj = '@ViewBag.strDonutChart_Grey';
+    var donutJson_Grey = JSON.parse(donutchartgrey_obj);
+</script>
+
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Type');
+        data.addColumn('number', 'Value');
+        data.addRows(donutJson);
+
+        var DonutChart_options =
+        {
+            //title: 'Yarn Stock',
+            backgroundColor: '#e5e5e5',
+            chartArea: { width: '100%', height: '85%' },
+            legend: "none",
+            pieHole: 0.5,
+            colors: ['#dc3912', '#3366cc']
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, DonutChart_options);
+        
+        var DonutChartGrey_Data = new google.visualization.DataTable();
+        DonutChartGrey_Data.addColumn('string', 'Grade');
+        DonutChartGrey_Data.addColumn('number', 'Value');
+        DonutChartGrey_Data.addRows(donutJson_Grey);
+
+        var GreyDonut_options =
+       {
+           //title: 'Yarn Stock',    
+           backgroundColor: '#e5e5e5',
+           chartArea: { width: '100%', height: '85%' },
+           legend: 'none',
+           pieHole: 0.5,
+           //colors: ['#dc3912', '#3366cc']
+       };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchartGreyStock'));
+        chart.draw(DonutChartGrey_Data, GreyDonut_options);
+    }
+ </script>
+
+<div class="jumbotron">
+      @*@Html.Raw(File.ReadAllText(Server.MapPath("~/Image/site_logo_istem.svg")))*@
+    <h1>ISTEM MOBILE SYSTEM</h1>
+    <p class="lead">Dashboard Yarn, Grey, Finishgoods Stock</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" style="background-color : #e5e5e5">
+            <h2>Yarn</h2>
+            @*<p>
+                    Production Yarn : 123.567, Purchase yarn : 903.345, Total : 123244421
+                        Lorem Ipsum. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                </p>*@
+            <div id="donutchart"></div>
+            <p>@Html.ActionLink("More Details", "Index", "YarnStock", "", new { @class = "btn btn-primary" })</p>
+            <br>
+        </div>
+
+        <div class="col-md-4" style="background-color : #e5e5e5; ">
+            <h2>Grey</h2>
+            @* <p>Grade A : 123.455 MTR, Grade A2 : 132.456 MTR, Grade A3 : 999.999 MTR, Grade B : 788.444 MTR, Grade C : 333.333 MTR, Total : 4.444.444 MTR</p>*@
+            <div id="donutchartGreyStock"></div>
+            <p>@Html.ActionLink("More Details", "Index", "GreyStock", "", new { @class = "btn btn-primary" })</p>
+            <br>
+        </div>
+
+        <div class="col-md-4" style="background-color : #e5e5e5;">
+            <h2>Finishgoods</h2>
+            <p>Finishgoods Pass : 504.444, Finishgoods Non Pass : 444.444, Total : 4.666.666 </p>
+            <p>@Html.ActionLink("More Details", "Index", "FinishgoodsStock", "", new { @class = "btn btn-primary" })</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="card">
+    <div class="card-header border-0">
+        <div class="d-flex justify-content-between">
+            <h3 class="card-title">Online Store Visitors</h3>
+ 
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="d-flex">
+            <p class="d-flex flex-column">
+                <span class="text-bold text-lg">820</span>
+                <span>Visitors Over Time</span>
+            </p>
+            <p class="ml-auto d-flex flex-column text-right">
+                <span class="text-success">
+                    <i class="fas fa-arrow-up"></i> 12.5%
+                </span>
+                <span class="text-muted">Since last week</span>
+            </p>
+        </div>
+        <!-- /.d-flex -->
+
+        <div class="position-relative mb-4">
+            <canvas id="visitors-chart" height="200"></canvas>
+        </div>
+
+        <div class="d-flex flex-row justify-content-end">
+            <span class="mr-2">
+                <i class="fas fa-square text-primary"></i> This Week
+            </span>
+
+            <span>
+                <i class="fas fa-square text-gray"></i> Last Week
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>

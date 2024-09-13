@@ -1,0 +1,72 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.UserLoginView
+
+@{
+    Layout = null;
+    ViewBag.Title = "LogIn";
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WV - Maintenance System</title>
+    <link rel="shortcut icon" type="image/png" href="~/Content/images/logos/WV MAINTENANCE rev.svg" />
+    <link rel="stylesheet" href="~/Content/css/styles.min.css" />
+</head>
+
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center w-100">
+                <div class="row justify-content-center w-100">
+                    <div class="col-md-8 col-lg-6 col-xxl-3">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <a href="@Url.Action("Index", "Home")" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                    <img src="~/Content/images/logos/WV MAINTENANCE.svg" width="250" alt="">
+                                </a>
+                                @*<div class="d-flex align-items-start justify-content-center">
+                                        <p class="fs-4 mb-0 fw-bolder text-primary">ISTEM Mobile System</p>
+                                    </div>*@
+
+                                <section id="loginForm">
+                                    @using (Html.BeginForm("LogIn", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
+                                    {
+
+                                        @*@Html.AntiForgeryToken()*@
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                        <div class="mb-3">
+                                            @Html.LabelFor(model => model.UserID, new { @class = "form-label" })
+                                            @Html.TextBoxFor(model => model.UserID, new { @class = "form-control", @placeholder = "Enter your username for login..." })
+                                            @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="mb-4">
+                                            @Html.LabelFor(model => model.Password, new { @class = "form-label" })
+                                            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        @*<div class="d-flex align-items-center justify-content-between mb-4">
+                                                <div class="form-check">
+                                                    @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input primary" })
+                                                    @Html.LabelFor(m => m.RememberMe, new { @class = "form-check-label text-dark" })
+                                                </div>
+                                            </div>*@
+                                        <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-0 rounded-2"> Sign In</button>
+                                    }
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

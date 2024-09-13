@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default Web Site/ISM_MOBILE_BETA" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\APPL\\ISTEM\ MOBILE\\ISM\ MOBILE\ SBADMIN\\ISM\ MOBILE\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\APPL\\ISTEM\ MOBILE\\ISM\ MOBILE\ SBADMIN\\ISM\ MOBILE\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="AppConnectionDB-Web.config Connection String" description="" value="Data Source=192.168.21.10\ISTEM_CIM;Initial Catalog=istem_sms;Integrated Security=False;User Id=sa;Password=@istem123;MultipleActiveResultSets=True" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\APPL\\ISTEM\ MOBILE\\ISM\ MOBILE\ SBADMIN\\ISM\ MOBILE\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AppConnectionDB']/@connectionString" />
+  </parameter>
+</parameters>

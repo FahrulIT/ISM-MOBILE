@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Finishgoods Stock";
+}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    var donutchartTRSpunPoly = '@ViewBag.strDonutChart_TR_SpunPoly';
+    var donutJson_TRSpunPoly = JSON.parse(donutchartTRSpunPoly);
+
+    var donutchartDom_Exp = '@ViewBag.strDonutChart_Dom_Exp';
+    var donutJson_Dom_Exp = JSON.parse(donutchartDom_Exp);
+
+    var donutchartPass_NonPass = '@ViewBag.strDonutChart_Pass_NonPass';
+    var donutJson_Pass_NonPass = JSON.parse(donutchartPass_NonPass);
+
+</script>
+
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        var Donut_TRSpunPoly = new google.visualization.DataTable();
+        Donut_TRSpunPoly.addColumn('string', 'Grade');
+        Donut_TRSpunPoly.addColumn('number', 'Value');
+        Donut_TRSpunPoly.addRows(donutJson_TRSpunPoly);
+        Donut_TRSpunPoly.getFilteredRows([{ column: 1, minValue: 0.00001 }]);
+
+        var Donut_TRSpunPoly_options =
+       {
+           chartArea: { width: '100%', height: '100%' },
+           legend: {
+               textStyle: { fontSize: 14 },
+               position: 'right',
+               maxLines: 20
+
+           },
+           pieHole: 0.5,
+           //colors: ['#dc3912', '#3366cc']
+       };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donut_trspunpoly'));
+        chart.draw(Donut_TRSpunPoly, Donut_TRSpunPoly_options);
+
+        //dom_exp
+        var Donut_Dom_Exp = new google.visualization.DataTable();
+        Donut_Dom_Exp.addColumn('string', 'Grade');
+        Donut_Dom_Exp.addColumn('number', 'Value');
+        Donut_Dom_Exp.addRows(donutJson_Dom_Exp);
+        Donut_Dom_Exp.getFilteredRows([{ column: 1, minValue: 0.00001 }]);
+
+        var Donut_Dom_Exp_options =
+       {
+           chartArea: { width: '100%', height: '100%' },
+           legend: {
+               textStyle: { fontSize: 14 },
+               position: 'right',
+               maxLines: 20
+
+           },
+           pieHole: 0.5,
+           //colors: ['#dc3912', '#3366cc']
+       };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donut_dom_exp'));
+        chart.draw(Donut_Dom_Exp, Donut_Dom_Exp_options);
+
+        //Pass_NonPass
+        var Donut_Pass_NonPass = new google.visualization.DataTable();
+        Donut_Pass_NonPass.addColumn('string', 'Grade');
+        Donut_Pass_NonPass.addColumn('number', 'Value');
+        Donut_Pass_NonPass.addRows(donutJson_Pass_NonPass);
+        Donut_Pass_NonPass.getFilteredRows([{ column: 1, minValue: 0.00001 }]);
+
+        var Donut_Pass_NonPass_options =
+       {
+           chartArea: { width: '100%', height: '100%' },
+           legend: {
+               textStyle: { fontSize: 14 },
+               position: 'right',
+               maxLines: 20
+
+           },
+           pieHole: 0.5,
+           //colors: ['#dc3912', '#3366cc']
+       };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donut_pass_nonpass'));
+        chart.draw(Donut_Pass_NonPass, Donut_Pass_NonPass_options);
+
+    }
+
+</script>
+
+<div class="container">
+    <div class="row">
+        <left><h2 style="padding-left: 5px">Finnishgoods Stock</h2></left>
+        <br>
+        <div class="col-md-4">
+            <div id="donut_trspunpoly"></div>
+            <br>
+        </div>
+      
+        <div class="col-md-4">
+            <div id="donut_dom_exp"></div>
+            <br>
+        </div>
+        
+        <div class="col-md-4">
+            <div id="donut_pass_nonpass"></div>
+            <br>
+        </div>
+      
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <p>Finishgoods Pass : 504.444, Finishgoods Non Pass : 444.444, Total : 4.666.666 </p>
+            <p>@Html.ActionLink("More Details", "Index", "Finishgoods", "", new { @class = "btn btn-primary" })</p>
+        </div>
+    </div>
+</div>
+

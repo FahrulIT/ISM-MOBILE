@@ -1,0 +1,36 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.MaintenanceType
+
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.Menu = "Maintenance Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    @using (Html.BeginForm())
+    {
+        <div class="card-header text-bg-primary">
+            <h4 class="mb-0 text-white">@ViewBag.Menu - @ViewBag.Title</h4>
+        </div>
+
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.mtc_id)
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mtc_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mtc_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.mtc_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            @Html.ActionLink("Back", "Index", "MaintenanceType", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+
+    }
+</div>

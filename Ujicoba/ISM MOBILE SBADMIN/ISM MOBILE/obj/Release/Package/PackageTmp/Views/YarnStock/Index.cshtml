@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "Yarn Stock";
+}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    var donutchart_obj = '@ViewBag.strDonutChart';
+    var donutJson = JSON.parse(donutchart_obj);
+
+    var barhorzchart_obj = '@ViewBag.strBarHorzChart'
+    var barhorzJson = JSON.parse(barhorzchart_obj);
+</script>
+
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    window.onresize = doALoadOfStuff;
+
+    function doALoadOfStuff() {
+        drawChart();
+    }
+
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Type');
+        data.addColumn('number', 'Value');
+        data.addRows(donutJson);
+        data.getFilteredRows([{ column: 1, minValue: 1 }]);
+
+        var DonutChart_options =
+        {
+            //title: 'Yarn Stock',
+            chartArea: {width: '100%', height: '100%' },
+            legend: {
+                //textStyle: { fontSize: 8 },
+                position: 'right',
+                //maxLines :3
+
+            },
+            pieHole: 0.5,
+            colors: ['#A1C2F1', '#FF8989', '#ff9f40', '#ffcd56', '#4bc0c0', '#9966ff', '#c9cbcf'],
+            
+        };
+
+        var count = data.getNumberOfRows();
+        var values = Array(count).fill().map(function (v, i) {
+            return data.getValue(i, 1);
+        });
+
+        values.forEach(function (v, i) {
+            var key = data.getValue(i, 0);
+            var val = data.getValue(i, 1);
+            data.setFormattedValue(i, 0, key + ' : ' + val.toLocaleString('en-US') + ' LBS');
+        });
+
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, DonutChart_options);
+
+
+        //Bar Horizontal Chart with Data Annotation
+
+        var data2 = new google.visualization.DataTable();
+        data2.addColumn('string', 'Item');
+        data2.addColumn('number', 'Value');
+        data2.addColumn({ type: 'string', role: 'style' });
+        data2.addRows(barhorzJson);
+        data2.sort([{ column: 1, desc:true }]);
+
+        var BarHorChart_options =
+        {
+       
+            colors: ['#A1C2F1', '#FF8989', '#ff9f40', '#ffcd56', '#4bc0c0', '#9966ff', '#c9cbcf'],
+            legend: { position: "none" },
+            chartArea: { left: '20%', right: '5%', top: '15%',  width: '65%', height: '60%' },
+            annotations: {
+                alwaysOutside: true,
+                textStyle: {
+                       auraColor: 'none',
+                    color: '#555'
+                },
+
+            },
+            bar: {
+                groupWidth: "75%"
+            },
+            hAxis: {
+                //title: 'lbs',
+                minValue: 0
+            },
+            vAxis: {
+                //title: 'Yarn'
+            },
+            fontSize: 10
+        }
+
+         var view = new google.visualization.DataView(data2);
+        view.setColumns([0, 1,
+           {
+               calc: "stringify",
+               sourceColumn: 1,
+               type: "string",
+               role: "annotation"
+           }, 2
+        ]);
+
+  
+        var chart = new google.visualization.BarChart(document.getElementById('barchart'));
+        chart.draw(view, BarHorChart_options);
+    }
+    </script>
+
+<div class="container-fluid">
+    <h1 class="h5 mb-1 text-gray-800">Yarn Stock</h1>
+    <p class="mb-4">
+        Total Yarn : @ViewBag.StrTotalYarn lbs
+    </p>
+    
+    @*<div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <a href="#collapseDonut" class="d-block card-header py-3" data-toggle="collapse"
+                   role="button" aria-expanded="true" aria-controls="collapseDonut">
+                    <h6 class="m-0 font-weight-bold text-primary">Production & Purchase</h6>
+                </a>
+                <div class="collapse show" id="collapseDonut">
+                    <div class="card-body">
+                        <div id="donutchart" class="chart-area"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8">
+            <div class="card shadow mb-4">
+                <a href="#collapseBar" class="d-block card-header py-3" data-toggle="collapse"
+                   role="button" aria-expanded="true" aria-controls="collapseBar">
+                    <h6 class="m-0 font-weight-bold text-primary">Yarn Production & Purchase</h6>
+                </a>
+                <div class="collapse show" id="collapseBar">
+                    <div class="card-body">
+                        <div id="barchart" style="height:20rem"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="card shadow mb-4">
+                <a href="#collapseBar" class="d-block card-header py-3" data-toggle="collapse"
+                   role="button" aria-expanded="true" aria-controls="collapseBar">
+                    <h6 class="m-0 font-weight-bold text-primary">Yarn Stock</h6>
+                </a>
+                <div class="collapse show" id="collapseBar">
+                    <div class="card-body">
+                        <div id="donutchart" class="chart-area"></div>
+                        <div id="barchart" style="height:20rem"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

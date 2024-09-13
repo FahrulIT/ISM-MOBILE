@@ -1,0 +1,128 @@
+﻿@model IEnumerable<ISM_MAINTENANCE.Models.ViewModel.MaintenanceHistory>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int nomorbaris = 0;
+    string tanggal = "";
+}
+
+<div class="card">
+    <div class="card-header bg-primary">
+        <div class="text-white fs-6 fw-bold">M/C Quality Trouble - Maintenance History - Index</div>
+    </div>
+
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="=col d-flex justify-content-center gap-1">
+                @Html.ActionLink("All", "index", new { _block = "All", id = "" }, new { @class = "btn btn-rounded btn-dark" })
+                @Html.ActionLink("Block A", "index", new { _block = "A", id = "" }, new { @class = "btn btn-rounded btn-primary" })
+                @Html.ActionLink("Block B", "index", new { _block = "B", id = "" }, new { @class = "btn btn-rounded btn-secondary" })
+                @Html.ActionLink("Block C", "index", new { _block = "C", id = "" }, new { @class = "btn btn-rounded btn-success" })
+                @Html.ActionLink("Block D", "index", new { _block = "D", id = "" }, new { @class = "btn btn-rounded btn-info" })
+            </div>
+        </div>
+
+        <div class="justify-content-start d-flex gap-2">
+            <a href="@Url.Action("Create", "MaintenanceHistory" )" class="btn btn-rounded btn-outline-primary">
+                Add New
+            </a>
+            <a href="@Url.Action("Welcome", "Home" )" class="btn btn-rounded btn-outline-dark align-content-center">Home</a>
+        </div>
+
+
+        <div class="table-responsive">
+            <table id="" class="display table search-table table-sm  align-middle text-nowrap text-black">
+                <thead class="header-item">
+                    <tr>
+                        <th style="text-align:center">
+                            No
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.mtc_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.machine_no)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mtc_start)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.mtc_finish)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.CalculateTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.pic_mtc_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.finish_sts)
+                        </th>
+                        <th>
+                            Action
+                        </th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <!-- start row -->
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="text-align:center">
+                                @(nomorbaris += 1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mtc_name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.machine_no)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mtc_start)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mtc_finish)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CalculateTime)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.pic_mtc_name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.finish_sts)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Show", "Show", new { id = item.dept_id.ToString() + ";" + item.mc_id.ToString() + ";" + (tanggal = item.note_date.ToString("yyyy-MM-dd").Replace("-", "_")) + ";" + item.shift.ToString() + ";" + item.block.ToString() + ";" + item.loom_no.ToString() }, new { @class = "badge rounded-pill bg-info-subtle text-info" })
+                                @Html.ActionLink("Edit", "Edit", new { id = item.dept_id.ToString() + ";" + item.mc_id.ToString() + ";" + (tanggal = item.note_date.ToString("yyyy-MM-dd").Replace("-", "_")) + ";" + item.shift.ToString() + ";" + item.block.ToString() + ";" + item.loom_no.ToString() }, new { @class = "badge rounded-pill bg-primary-subtle text-primary" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.dept_id.ToString() + ";" + item.mc_id.ToString() + ";" + (tanggal = item.note_date.ToString("yyyy-MM-dd").Replace("-", "_")) + ";" + item.shift.ToString() + ";" + item.block.ToString() + ";" + item.loom_no.ToString() }, new { @class = "badge rounded-pill bg-danger-subtle text-danger" })
+                            </td>
+                        </tr>
+                    }
+
+                    <!-- end row -->
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="card-footer">
+
+    </div>
+</div>
+

@@ -1,0 +1,241 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header text-bg-primary">
+        <h4 class="text-white">Hello, <b>@ViewBag.Name</b>!!</h4>
+    </div>
+
+    <div class="card-body">
+        <h2 class="fw-semibold mb-2 fs-5"> Welcome to WEAVING MAINTENANCE SYSTEM !!</h2>
+        @Html.ActionLink("Sign Out", "SignOut", "Account", null, new { @class = "btn bg-primary-subtle text-primary ms-6" })
+    </div>
+</div>
+
+@if (ViewBag.Roles == "ADMIN" || ViewBag.Roles == "STAFF")
+{
+    if (ViewBag.Section != "MT")
+    {
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <h4 class="text-black">Pimpinan Shift</h4>
+            </div>
+
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-info-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <span class="badge bg-info text-bg-info mb-2">Master</span>
+                                <div class="text-center">
+                                    <p class="fw-semibold text-info text-center">1. Machine Trouble</p>
+                                    @Html.ActionLink("Go to page", "Index", "MachineTrouble", null, new { @class = "btn btn-info text-white w-auto text-center" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-danger-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <span class="badge bg-danger text-bg-danger mb-2">Transaction</span>
+                                <div class="text-center">
+                                    <p class="fw-semibold text-danger">3. Shift Leader Notes</p>
+                                    @Html.ActionLink("Go to page", "Index", "ShiftLeaderNotes", null, new { @class = "btn btn-danger text-white w-auto text-center" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="card-header" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3); border-top:2px solid; border-top-color: rgba(165, 173, 179, 0.3);">
+                <h4 class="text-black">Reporting</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-info-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <div class="">
+                                    <a class="sidebar-link" href="@Url.Action("Index", "ReportMachineQualityTrouble")" aria-expanded="false">
+                                        <h5 class="fw-semibold text-info mb-0">Reporting - M/C Quality Trouble</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-warning-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <div class="">
+                                    <a class="sidebar-link" href="@Url.Action("Index", "ReportPreventiveMaintenance")" aria-expanded="false">
+                                        <h5 class="fw-semibold text-warning mb-0">Reporting - Preventive Maintenance</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-success-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <div class="">
+                                    <a class="sidebar-link" href="@Url.Action("Index", "AJLMachineMap")" aria-expanded="false">
+                                        <h5 class="fw-semibold text-success mb-0">Reporting - AJL Machine Map</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-danger-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <div class="">
+                                    <a class="sidebar-link" href="@Url.Action("Index", "Monitoring")" aria-expanded="false">
+                                        <h5 class="fw-semibold text-danger mb-0">Reporting - Monitoring Graphic</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+    if (ViewBag.Section == "MT" || (ViewBag.Roles == "ADMIN"))
+    {
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <h4 class="text-black">Maintenance</h4>
+            </div>
+
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-xl-3">
+                        <div class="card border-0 zoom-in bg-warning-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <span class="badge bg-warning text-bg-warning mb-2">Master</span>                               
+                                <div class="text-center">    
+                                    <p class="fw-semibold text-warning text-center">1. Mtc Action - M/C Trouble</p>                              
+                                    @Html.ActionLink("Go to page", "Index", "MaintenanceActionMachine", null, new { @class = "btn btn-warning text-white w-auto text-center" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xl-3">
+                        <div class="card border-0 zoom-in bg-success-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <span class="badge bg-success text-bg-success mb-2">Master</span>                                                           
+                                <div class="text-center">
+                                    <p class="fw-semibold text-success">2. Mtc Action - Qlty. Trouble</p>                                                              
+                                    @Html.ActionLink("Go to page", "Index", "MaintenanceActionQuality", null, new { @class = "btn btn-success text-white w-auto text-center" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xl-3">
+                        <div class="card border-0 zoom-in bg-info-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <span class="badge bg-info text-bg-info mb-2">Master</span>                              
+                                <div class="text-center">
+                                    <p class="fw-semibold text-info">3. Mtc Action - Preventive</p>
+                                    @Html.ActionLink("Go to page", "Index", "MaintenanceActionPreventive", null, new { @class = "btn btn-info text-white w-auto text-center" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-danger-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <span class="badge bg-danger text-bg-danger mb-2">Transaction</span>                              
+                                <div class="text-center">     
+                                    <p class="fw-semibold text-danger">4. Maintenance History</p>                             
+                                    @Html.ActionLink("Go to page", "Index", "MaintenanceHistory", null, new { @class = "btn btn-danger text-white w-auto text-center" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-primary-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <span class="badge bg-primary text-bg-primary mb-2">Transaction</span>                               
+                                <div class="text-center"> 
+                                    <p class="fw-semibold text-primary">5. Preventive Maintenance</p>                                  
+                                    @Html.ActionLink("Go to page", "Index", "MaintenancePreventiveHistory", null, new { @class = "btn btn-primary text-white w-auto text-center" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-header" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3); border-top:2px solid; border-top-color: rgba(165, 173, 179, 0.3);">
+                <h4 class="text-black">Reporting</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-info-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <div class="">
+                                    <a class="sidebar-link" href="@Url.Action("Index", "ReportMachineQualityTrouble")" aria-expanded="false">
+                                        <h5 class="fw-semibold text-info mb-0">Reporting - M/C Quality Trouble</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-warning-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <div class="">
+                                    <a class="sidebar-link" href="@Url.Action("Index", "ReportPreventiveMaintenance")" aria-expanded="false">
+                                        <h5 class="fw-semibold text-warning mb-0">Reporting - Preventive Maintenance</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-success-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <div class="">
+                                    <a class="sidebar-link" href="@Url.Action("Index", "AJLMachineMap")" aria-expanded="false">
+                                        <h5 class="fw-semibold text-success mb-0">Reporting - AJL Machine Map</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="card border-0 zoom-in bg-danger-subtle shadow-none w-100 h-75">
+                            <div class="card-body">
+                                <div class="">
+                                    <a class="sidebar-link" href="@Url.Action("Index", "Monitoring")" aria-expanded="false">
+                                        <h5 class="fw-semibold text-danger mb-0">Reporting - Monitoring Graphic</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+}
+
+

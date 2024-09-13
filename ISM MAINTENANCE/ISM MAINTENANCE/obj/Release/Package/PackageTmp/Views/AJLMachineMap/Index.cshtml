@@ -1,0 +1,534 @@
+﻿@{
+    Layout = null;   
+    ViewBag.Title = "AJL LAYOUT";
+
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISTEM MOBILE SYSTEM</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ISTEM</title>
+    <link rel="stylesheet" href="~/Content/css/styles.min.css" />
+    <link rel="shortcut icon" type="image/png" href="~/Content/images/logos/WV MAINTENANCE rev.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/images/logos/WV MAINTENANCE rev.svg">
+</head>
+
+<body>
+
+
+    <div class="container-fluid p-4" style="font-co">
+
+        @*<div class="card border-start border-bottom border-end border-top border-primary">
+                <div class="card-body">
+                    <div class="col-sm-4 m-auto">
+                        <div class="table-responsive-sm border border-muted rounded">
+                        <table id="Header" class="table table-sm mb-0 align-middle text-black fw-bolder fs-6">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center" style="background-color:red">Machine Trouble</td>
+                                    <td class="text-center">@ViewBag.MachineTrouble</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-center" style="background-color:yellow">Quality Trouble</td>
+                                    <td class="text-center">@ViewBag.QualityTrouble</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    </div>
+
+
+                </div>
+            </div>*@
+
+        <div class="card border-start border-bottom border-end border-top border-primary">
+            <div class="card-body">        
+                <!-- Nav tabs -->
+                <ul class="nav nav-pills" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#BLOCK-A" role="tab" aria-selected="true">
+                            <span>BLOCK A</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#BLOCK-B" role="tab" aria-selected="false" tabindex="-1">
+                            <span>BLOCK B</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#BLOCK-C" role="tab" aria-selected="false" tabindex="-1">
+                            <span>BLOCK C</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#BLOCK-D" role="tab" aria-selected="false" tabindex="-1">
+                            <span>BLOCK D</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#BLOCK-ALL" role="tab" aria-selected="false" tabindex="-1">
+                            <span>ALL</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <a href="@Url.Action("Welcome", "Home" )" class="nav-link" aria-selected="false" tabindex="-1">
+                            <span>HOME</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content border mt-2">
+                    @Html.Partial("_Block_A")
+                    @Html.Partial("_Block_B")
+                    @Html.Partial("_Block_C")
+                    @Html.Partial("_Block_D")
+                    @Html.Partial("_Block_All")
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="A163" tabindex="-1" aria-labelledby="vertical-center-modal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content modal-filled">
+                    <div class="modal-body p-4">
+                        <div class="text-center">
+                            <i class="ti ti-alert-octagon fs-7"></i>
+                            <h4 class="mt-2">Incorrect Information</h4>
+                            <p class="mt-3">
+                                <h1>A163</h1>
+                            </p>
+                            <p>Chop No : - </p>
+                            <p>Tanggal Stop : - </p>
+                            <p>Jam Stop : - </p>
+                            <p>Trouble Machine : - </p>
+                            <p>Trouble Quality/Total Pcs : - </p>
+                            <p>Petugas : - </p>
+
+                            <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+
+        <!-- Modal A161 -->
+        <div class="modal fade" id="A161" tabindex="-1" aria-labelledby="vertical-center-modal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content modal-filled bg-danger-subtle">
+                    <div class="modal-body p-4">
+                        <div class="text-center text-danger">
+                            <i class="ti ti-alert-octagon fs-7"></i>
+                            <h4 class="mt-2">Information</h4>
+                            <p class="mt-3">
+                                <h1>A161</h1>
+                            </p>
+                            <p>Chop No : - </p>
+                            <p>Tanggal Stop : - </p>
+                            <p>Jam Stop : - </p>
+                            <p>Trouble Machine : - </p>
+                            <p>Trouble Quality/Total Pcs : C grade in last cloth roll on 1st and 2nd piece </p>
+                            <p>Petugas : - </p>
+
+                            <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+        <!-- Modal -->
+        <!-- Modal A160 -->
+        <div class="modal fade" id="A160" tabindex="-1" aria-labelledby="vertical-center-modal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content modal-filled bg-primary-subtle">
+                    <div class="modal-body p-4">
+                        <div class="text-center text-primary">
+                            <i class="ti ti-alert-octagon fs-7"></i>
+                            <h4 class="mt-2">Information</h4>
+                            <p class="mt-3">
+                                <h1>A160</h1>
+                            </p>
+                            <p>Chop No : - </p>
+                            <p>Tanggal Stop : - </p>
+                            <p>Jam Stop : - </p>
+                            <p>Trouble Machine : Maintenance action in progress</p>
+                            <p>Trouble Quality/Total Pcs : - </p>
+                            <p>Petugas : - </p>
+
+                            <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+        <!-- Modal -->
+        <!-- Modal A153 -->
+        <div class="modal fade" id="A153" tabindex="-1" aria-labelledby="vertical-center-modal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content modal-filled bg-danger-subtle">
+                    <div class="modal-body p-4">
+                        <div class="text-center text-danger">
+                            <i class="ti ti-alert-octagon fs-7"></i>
+                            <h4 class="mt-2">Information</h4>
+                            <p class="mt-3">
+                                <h1>A153</h1>
+                            </p>
+
+                            <p>Chop No : - </p>
+                            <p>Tanggal Stop : - </p>
+                            <p>Jam Stop : - </p>
+                            <p>Trouble Machine : Notes of machine trouble </p>
+                            <p>Trouble Quality/Total Pcs : - </p>
+                            <p>Petugas : - </p>
+
+                            <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+        <!-- Modal -->
+        <!-- Modal A152 -->
+        <div class="modal fade" id="A152" tabindex="-1" aria-labelledby="vertical-center-modal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content modal-filled bg-secondary-subtle">
+                    <div class="modal-body p-4">
+                        <div class="text-center text-secondary">
+                            <i class="ti ti-alert-octagon fs-7"></i>
+                            <h4 class="mt-2">Information</h4>
+                            <p class="mt-3">
+                                <h1>A152</h1>
+                            </p>
+
+                            <p>Chop No : -</p>
+                            <p>Tanggal Stop : -</p>
+                            <p>Jam Stop : - </p>
+                            <p>Trouble Machine : Machine was selected for maintenance, but not yet taken action</p>
+                            <p>Trouble Quality/Total Pcs : - </p>
+                            <p>Petugas : - </p>
+                            <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+        <!-- Modal -->
+        <!-- Modal A141 -->
+        <div class="modal fade" id="A141" tabindex="-1" aria-labelledby="vertical-center-modal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content modal-filled bg-warning-subtle">
+                    <div class="modal-body p-4">
+                        <div class="text-center text-warning">
+                            <i class="ti ti-alert-octagon fs-7"></i>
+                            <h4 class="mt-2">Information</h4>
+                            <p class="mt-3">
+                                <h1>A141</h1>
+                            </p>
+                            <p>Chop No : - </p>
+                            <p>Tanggal Stop : - </p>
+                            <p>Jam Stop : - </p>
+                            <p>Trouble Machine : - </p>
+                            <p>Trouble Quality/Total Pcs : Notes of quality trouble</p>
+                            <p>Petugas : - </p>
+
+                            <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+        <!-- Modal -->
+    </div>
+
+
+
+    <script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/Content/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/Content/js/sidebarmenu.js"></script>
+    <script src="~/Content/js/app.min.js"></script>
+    <script src="~/Content/libs/simplebar/dist/simplebar.js"></script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          
+            var maxrowB = '@ViewBag.MaxRowB';
+            var maxcolB = '@ViewBag.MaxColB';
+            var RowdataB = @Html.Raw(Json.Encode(ViewBag.BlockB));
+
+            var maxrowA = '@ViewBag.MaxRowA';
+            var maxcolA = '@ViewBag.MaxColA';
+            var RowdataA = @Html.Raw(Json.Encode(ViewBag.BlockA));
+
+            var maxrowC = '@ViewBag.MaxRowC';
+            var maxcolC = '@ViewBag.MaxColC';
+            var RowdataC = @Html.Raw(Json.Encode(ViewBag.BlockC));
+
+            var maxrowD = '@ViewBag.MaxRowD';
+            var maxcolD = '@ViewBag.MaxColD';
+            var RowdataD = @Html.Raw(Json.Encode(ViewBag.BlockD));
+
+            var maxrowAll = '@ViewBag.MaxRowAll';
+            var maxcolAll = '@ViewBag.MaxColAll';
+            var RowdataAll = @Html.Raw(Json.Encode(ViewBag.BlockAll));
+            //var TextWhite = "White";
+
+            let listB ="";
+            for(var i = 0; i <= maxrowB; i++) {
+
+                listB = '<tr>';
+                for(var j = 0; j <= maxcolB; j++) {
+
+                    var filter_dataB = RowdataB.filter(x=> x.RowPos == i && x.ColPos == j);
+                    //console.log(filter_dataB[0].MC);
+                    var machine_noB = filter_dataB[0].MC;
+                    var colorB = filter_dataB[0].Color.trim();
+                    var text_color = colorB == 'Red' ? 'text-white' : 'text-black';
+                   
+                    listB += '<td>';
+                    listB += '<div class="card" style="width: 12rem; margin-bottom: 1px; background-color:' + colorB + '">';
+                    listB += '<ul class="list-group-no-border-byfahrul list-group-flush">';
+
+                    if (colorB.toString() != 'None')
+                    {
+                        listB += '<li class="list-group-item" ' + 'style="background-color:' + colorB + '"><span style="' + 'color:' + colorB + '">-</span></li>' ;
+                        listB +='<li class="list-group-item text-center">' + '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal" ' + 'class="' + text_color + ' fw-bold"' + '>' + machine_noB + '</a></li>' ;
+                        listB += '<li class="list-group-item text-center"' + 'style="background-color:' + colorB + '">';
+                        listB += '<span style="' + 'color:' + colorB + '">-</span></li>';
+                    }
+                    else
+                    {
+                        listB += '<li class="list-group-item text-white">-</li>' ;
+                        listB +='<li class="list-group-item text-center">' + '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal"' + 'class="text-black fw-bold"' + '>' +  machine_noB + '</a></li>' +
+                                        '<li class="list-group-item text-center"' + 'style="background-color:' + colorB + '">';
+
+                        listB += '<span style="' + 'color:White">-</span></li>';
+                    }
+
+                    listB += '</ul> </div> </td>'
+
+                }
+                listB += '</tr>';
+                $('#BlockB tbody').append(listB);
+            }
+
+            let listA ="";
+            for(var iA = 0; iA <= maxrowA; iA++) {
+
+                listA = '<tr>';
+                for(var jA = 0; jA <= maxcolA; jA++) {
+
+                    var filter_dataA = RowdataA.filter(x=> x.RowPos == iA && x.ColPos == jA);
+                    var machine_noA = filter_dataA[0].MC;
+                    var colorA = filter_dataA[0].Color.trim();
+                    var text_color = colorA == 'Red' ? 'text-white' : 'text-black';                 
+
+                    listA += '<td>';
+                    listA += '<div class="card" style="width: 12rem; margin-bottom: 1px; background-color:' + colorA + '">';
+                    listA += '<ul class="list-group-no-border-byfahrul list-group-flush">';
+
+                    if (colorA.toString() != 'None')
+                    {
+                        listA += '<li class="list-group-item"' + 'style="background-color:' + colorA + '">' + '<span style="' + 'color:' + colorA + '">-</span></li>' ;
+                        listA += '<li class="list-group-item text-center">' + '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal" ' + 'class="' + text_color +  ' fw-bold"' + '>' + machine_noA + '</a></li>' +
+                                 '<li class="list-group-item text-center"' + 'style="background-color:' + colorA + '">';
+                        listA += '<span style="' + 'color:' + colorA + '">-</span></li>';
+
+                    }
+                    else
+                    {
+                        listA += '<li class="list-group-item text-white">-</li>' ;
+                        listA +='<li class="list-group-item text-center">' + '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal"' + 'class="text-black fw-bold"' + '>' +  machine_noA + '</a></li>' +
+                                        '<li class="list-group-item text-center"' + 'style="background-color:' + colorA + '">';
+
+                        listA += '<span style="' + 'color:White">-</span></li>';
+                    }
+
+                    listA += '</ul> </div> </td>'
+
+
+                }
+                listA += '</tr>';
+                $('#BlockA tbody').append(listA);
+            }
+
+            let listC ="";
+            for(var iC = 0; iC <= maxrowC; iC++) {
+
+                listC = '<tr>';
+                for(var jC = 0; jC <= maxcolC; jC++) {
+
+                    var filter_dataC = RowdataC.filter(x=> x.RowPos == iC && x.ColPos == jC);
+      
+                    if (filter_dataC.length < 1){
+                        var machine_noC = "-";
+                        var colorC = "None";
+                                                 
+                        listC += '<td>';
+                        listC += '<div class="card" style="width: 12rem; margin-bottom: 1px; background-color:' + colorC + '">';
+                        listC += '</div> </td>';
+                    }
+                    else
+                    {
+                        var machine_noC = filter_dataC[0].MC;
+                        var colorC = filter_dataC[0].Color.trim();
+                        var text_color = colorC == 'Red' ? 'text-white' : 'text-black';
+
+                        listC += '<td>';
+                        listC += '<div class="card" style="width: 12rem; margin-bottom: 1px; background-color:' + colorC + '">';
+                        listC += '<ul class="list-group-no-border-byfahrul list-group-flush">';
+
+                        if (colorC.toString() != 'None')
+                        {
+                            listC += '<li class="list-group-item" ' + 'style="background-color:' + colorC + '">' + '<span style="' + 'color:' + colorC + '">-</span></li>' ;
+                            listC +='<li class="list-group-item text-center">' + '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal" ' + 'class="' + text_color + ' fw-bold"' + '>' + machine_noC + '</a></li>' +
+                                            '<li class="list-group-item text-center"' + 'style="background-color:' + colorC + '">';       
+                        
+                            listC += '<span style="' + 'color:' + colorC + '">-</span></li>';
+                        }
+                        else
+                        {
+                            listC += '<li class="list-group-item text-white">-</li>' ;
+                            listC +='<li class="list-group-item text-center">' + '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal"' + 'class="text-black fw-bold"' + '>' +  machine_noC + '</a></li>' +
+                                            '<li class="list-group-item text-center"' + 'style="background-color:' + colorC + '">';
+
+                            listC += '<span style="' + 'color:White">-</span></li>';
+                        }
+
+                        listC += '</ul> </div> </td>'
+                    }                  
+                }
+                listC += '</tr>';
+                $('#BlockC tbody').append(listC);
+            }
+
+            let listD ="";
+            for(var iD = 0; iD <= maxrowD; iD++) {
+
+                listD = '<tr>';
+                for(var jD = 0; jD <= maxcolD; jD++) {
+
+                    var filter_dataD = RowdataD.filter(x=> x.RowPos == iD && x.ColPos == jD);
+                    var machine_noD = filter_dataD[0].MC;
+                    var colorD = filter_dataD[0].Color.trim();
+                    var text_color = colorD == 'Red' ? 'text-white' : 'text-black';
+
+                    listD += '<td>';
+                    listD += '<div class="card" style="width: 12rem; margin-bottom: 1px; background-color:' + colorD + '">';
+                    listD += '<ul class="list-group-no-border-byfahrul list-group-flush">';
+
+                    if (colorD.toString() != 'None')
+                    {
+                        listD += '<li class="list-group-item" ' + 'style="background-color:' + colorD + '">' + '<span style="' + 'color:' + colorD + '">-</span></li>' ;
+                        listD +='<li class="list-group-item text-center">' + '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal" ' + 'class="' + text_color +  ' fw-bold"' + '>' + machine_noD + '</a></li>' +
+                                        '<li class="list-group-item text-center"' + 'style="background-color:' + colorD + '">';                
+                        listD += '<span style="' + 'color:' + colorD + '">-</span></li>';
+                    }
+                    else
+                    {
+                        listD += '<li class="list-group-item text-white">-</li>' ;
+                        listD +='<li class="list-group-item text-center">' + '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal"' + 'class="text-black fw-bold"' + '>' +  machine_noD + '</a></li>' +
+                                        '<li class="list-group-item text-center"' + 'style="background-color:' + colorD + '">';
+
+                        listD += '<span style="' + 'color:White">-</span></li>';
+                    }
+
+                    listD += '</ul> </div> </td>';
+                }
+                listD += '</tr>';
+                $('#BlockD tbody').append(listD);
+            }
+
+
+            let listAll ="";
+            for(var iAll = 0; iAll <= maxrowAll; iAll++) {
+
+                listAll = '<tr>';
+                for(var jAll = 0; jAll <= maxcolAll; jAll++) {
+
+                    var filter_dataAll = RowdataAll.filter(x=> x.RowPos == iAll && x.ColPos == jAll);
+      
+                    if(filter_dataAll.length == 0){
+                        var machine_noAll ="-";
+                        var colorAll = "None";
+
+                        listAll += '<td>';
+                        listAll += '<div class="card" style="width: 7rem; margin-bottom: 1px; background-color:' + colorAll + '">';
+                        listAll += '</div> </td>';
+                    }
+                    else
+                    {
+                        var machine_noAll = filter_dataAll[0].MC;
+                        var colorAll = filter_dataAll[0].Color.trim();
+                        var text_color = colorAll == 'Red' ? 'text-white' : 'text-black';
+
+                        listAll += '<td>';
+                        listAll += '<div class="card justify-content-center align-items-center" style="width: 5rem; height : 3rem; margin-bottom: 1px; background-color:' + colorAll + '">';
+                        //listAll += '<ul class="list-group-no-border-byfahrul list-group-flush">';
+
+                        if (colorAll.toString() != 'None')
+                        {
+                            //listAll += '<li class="list-group-item" ' + 'style="background-color:' + colorAll + '">' + '<span style="' + 'color:' + colorAll + '">-</span></li>';
+                            //listAll +='<li class="list-group-item text-center fs-2 align-items-center">' + '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal" ' + 'class="' + text_color + ' fw-bold"' + '>' + machine_noAll + '</a></li>';
+                            listAll += '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal" ' + 'class="' + text_color + ' fw-bold"' + '>' + machine_noAll + '</a>';   
+                            //listAll +='<li class="list-group-item text-center"' + 'style="background-color:' + colorAll + '">';
+                            //listAll += '<span style="' + 'color:' + colorAll + '">-</span></li>';
+                        }
+                        else
+                        {
+                            //listAll += '<li class="list-group-item text-white">-</li>' ;
+                            //listAll +='<li class="list-group-item text-center fs-2 align-items-center">' + '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal"' + 'class="text-black fw-bold"' + '>' +  machine_noAll + '</a></li>'
+                            listAll +=  '<a data-bs-target="#" data-bs-toggle="modal" href="#myModal"' + 'class="text-black fw-bold"' + '>' +  machine_noAll + '</a>'; 
+                            //listAll += '<li class="list-group-item text-center"' + 'style="background-color:' + colorAll + '">';
+                            //listAll += '<span style="' + 'color:White">-</span></li>';
+                        }
+
+                        //listAll += '</ul> </div> </td>';
+                        listAll += '</div> </td>';
+                    }
+
+
+                }
+                listAll += '</tr>';
+                $('#BlockAll tbody').append(listAll);
+            }
+
+
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,402 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.ShiftLeaderNotes
+
+@{
+    ViewBag.Title = "Create";
+    ViewBag.Menu = "Shift Leader Notes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">@ViewBag.Menu - @ViewBag.Title</h4>
+    </div>
+    @using (Html.BeginForm("Create", "ShiftLeaderNotes", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="card-body">
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.dept_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("dept_id", null, null, htmlAttributes: new { @class = "form-select text-black gray-color-byfahrul" })
+                    @Html.ValidationMessageFor(model => model.dept_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.mc_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mc_id", null, null, htmlAttributes: new { @class = "form-select text-black gray-color-byfahrul" })
+                    @Html.ValidationMessageFor(model => model.mc_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.note_date, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.DateInput, new { @class = "form-control text-black", inputmode = "none", autocomplete = "off" })     
+                    @Html.ValidationMessageFor(model => model.DateInput, "", new { @class = "text-danger" })           
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.machine_no, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("machine_no", null, null, new { @class = "form-control form-select", @id = "machine_no" })
+                    @Html.ValidationMessageFor(model => model.machine_no, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.stop_from, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @*@Html.TextBoxFor(model => model.stop_from, "{0:dd-MM-yyyy}", new { @class = "form-control", @onchange = "ChangeValue()", type = "datetime-local" })*@
+                    @Html.TextBoxFor(model => model.stop_from_str, new { @class = "form-control text-black", inputmode = "none", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.stop_from, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="mb-2 row">
+                    @Html.LabelFor(model => model.stop_to, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.stop_to, "{0:dd-MM-yyyy}", new { @class = "form-control", type = "datetime-local", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.stop_to, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.shift, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("shift", (IEnumerable<SelectListItem>)ViewBag.Shift, "Select Shift", htmlAttributes: new { @class = "form-select text-black" })
+                    @Html.ValidationMessageFor(model => model.shift, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.pic, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("pic", null, null, htmlAttributes: new { @class = "form-select text-black gray-color-byfahrul" })
+                    @Html.ValidationMessageFor(model => model.pic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br />
+            <br />
+            <div class="col-md-4 col-xl-3">
+                <button type="button" class="btn btn-outline-primary" id="OpenModal">
+                    + Add Trouble
+                </button>
+                <br />
+                @Html.ValidationMessageFor(model => model.ShiftLeaderNotesDetails, "", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div class="table-responsive">
+                <table id="AddNewShiftLeader" class="table align-middle text-nowrap table-sm">
+                    <thead class="header-item">
+                        <tr>
+                            <th>
+                                No
+                            </th>
+
+                            <th>
+                                Trouble Name
+                            </th>
+
+                            <th>
+                                MTC Type
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            @Html.ActionLink("Back", "Index", "ShiftLeaderNotes", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+    }
+</div>
+
+<div class="modal" id="AddItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="detailform">
+                <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                    <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Add Trouble</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        @Html.Label("Mtc Type", "Mtc Type", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("MaintenanceType", null, null, htmlAttributes: new { @class = "form-select text-black", @onchange = "singleSelectChangeValue()" })
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.Label("Trouble Name", "Trouble Name", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("TroubleItem", Enumerable.Empty<SelectListItem>(), "Select Trouble", htmlAttributes: new { @class = "form-select text-black" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Get</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="Back"><span class="fa fa-eject"></span> Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/libs/jquery/dist/jquery.js"></script>
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/libs/Select2/select2.min.js"></script>
+
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.datetimepicker.full.js"></script>
+
+
+<script type="text/javascript">
+
+    $('#machine_no').select2({
+        allowClear: true,
+        placeholder: {
+            id: "0",
+            text: "SELECT ITEM" //Should be text not placeholder
+        },
+        width: '100%',
+    });
+    $("#TroubleItem").select2({
+        allowClear: true,
+        placeholder: {
+            id: "0",
+            text: "SELECT ITEM" //Should be text not placeholder
+        },
+        width: '100%', dropdownParent: $("#AddItem") });
+
+
+
+    $('#DateInput').datetimepicker({
+        format:'d-m-Y',
+        timepicker:false,
+        datepicker:true,
+        onChangeDateTime:function (curr, $input) {
+        },
+    });
+
+    $('#stop_from_str').datetimepicker({
+        //format:'d-m-Y H:i',
+        format:'H:i',
+        timepicker:true,
+        datepicker:false,
+        //onChangeDateTime:function (curr, $input) {
+        //    var _note_date = new Date();
+        //    var split_tgl1 =  $('#DateInput').val().split('-');
+        //    var _note_date = new Date(split_tgl1[2] + "-" + split_tgl1[1] + "-" + split_tgl1[0]);
+
+        //    var _stop_from = new Date($('#stop_from_str').val());
+        //    var split_string = $('#stop_from_str').val().split(' ');
+        //    var split_tgl = split_string[0].split('-');
+        //    //var day = parseInt(split_tgl[0]);
+        //    //var month = parseInt(split_tgl[1]);
+        //    //var year = parseInt(split_tgl[2]);
+        //    var _stop_from = new Date(split_tgl[2] + "-" + split_tgl[1] + "-" + split_tgl[0]);
+        //    var _stop_from_value = split_tgl1[0] + "-" + split_tgl1[1] + "-" + split_tgl1[2] ;
+
+        //    var dt = new Date();
+        //    var time = dt.getHours() + ":" + ("0" + dt.getMinutes()).slice(-2);
+
+        //    if (_stop_from.toString() == _note_date.toString()){
+
+        //    }else{
+        //        //alert("stop from tidak boleh lebih dari note date");
+        //        $('#stop_from_str').val(_stop_from_value + " " + time);
+        //    }
+
+
+
+        //},
+
+    });
+    let machine_sts =  $('#MaintenanceType').val();
+
+    function singleSelectChangeValue() {
+        var selObj = document.getElementById("MaintenanceType");
+        var selValue = selObj.options[selObj.selectedIndex].text;
+
+        var cubes = @Html.Raw(Json.Encode(ViewBag.TroubleItem));
+        //var res = cubes.map(bill => bill.MaxMCID).reduce((acc, amount) => acc + amount);
+        var newarray = cubes.filter(x => x.Trouble_Type == selValue);
+        //newarray.sort;
+        newarray.sort(function(a,b){
+            return a[2]-b[2];
+        })
+        console.log(newarray);
+
+        document.getElementById("TroubleItem").options.length = 0;
+        var topicSel = document.getElementById("TroubleItem");
+
+        topicSel.options[0] = new Option(0,0);
+
+        for(var i = 0; i < newarray.length; i++) {
+            topicSel.options[topicSel.options.length] = new Option(newarray[i].trouble_name,newarray[i].trouble_id);
+        }
+
+        //textboxId.focus();
+        machine_sts =  $('#MaintenanceType').val();
+    }
+
+
+
+    $(document).ready(function () {
+
+        //var time1 = new Date();
+        //time1.setDate(time1.getDate() -1 );
+        //var day1 = ("0" + time1.getDate()).slice(-2);
+        //var month1 = ("0" + (time1.getMonth() + 1)).slice(-2);
+        //var today1 = time1.getFullYear() + "-" + (month1) + "-" + (day1);
+        //var todayWithTime1 = time1.getFullYear() + "-" + (month1) + "-" + (day1) + "T" + "00:00:00";
+        //$('#note_date').val(today1);
+        ////$('#stop_from').val(todayWithTime1);
+
+        //$('#stop_from').text("");
+
+        //var date_input = document.getElementById('note_date');
+        //date_input.valueAsDate = new Date();
+
+
+        //date_input.onchange = function(){
+        //    const DateValue = new Date(this.value.toString());
+        //    var day = ("0" + DateValue.getDate()).slice(-2);
+        //    var month = ("0" + (DateValue.getMonth() + 1)).slice(-2);
+        //    var todayWithTime = DateValue.getFullYear() + "-" + (month) + "-" + (day) + "T" + "00:00:00";
+        //    $('#stop_from').val(todayWithTime);
+        //    console.log(DateValue)
+        //}
+
+
+        $("#OpenModal").click(function () {
+            if ($('#dept_id').val() == ""){
+                alert('Kolom Dept dipilih terlebih dahulu');
+            }
+            else if ($('#mc_id').val() == "")
+            {
+                alert('Kolom Machine Type dipilih terlebih dahulu');
+            }
+            else if ($('#note_date').val() == "")
+            {
+                alert('Kolom Date diisi terlebih dahulu');
+            }
+            else if ($('#shift').val() == "")
+            {
+                alert('Kolom Shift dipilih terlebih dahulu');
+            }
+            else if ($('#LeaderName').val() == "")
+            {
+                alert('Kolom LeaderName dipilih terlebih dahulu');
+            }
+            else{
+
+                singleSelectChangeValue();
+                $("#AddItem").modal("show");
+            }
+        });
+
+
+        $(window).on('shown.bs.modal', function () {
+            //$('#AddItem').modal('show');
+            //alert('shown');
+
+            //var date = new Date($('#note_date').val());
+            //var day = ("0" + date.getDate()).slice(-2);
+            //var month = ("0" + (date.getMonth() + 1)).slice(-2);
+            //var Tanggal = date.getFullYear() + "-" + (month) + "-" + (day);
+
+            //if (Date.parse(date)) {
+            //    $('#Date').val(Tanggal);
+            //}
+            //else
+            //{
+            //    console.log("Tanggal Error");
+            //}
+            var shift = $('#shift option:selected').text();
+            $('#Shift_detail').val( $('#shift').val());
+            $('#MaintenanceType').val(machine_sts);
+            //console.log(shift);
+
+        });
+
+        let counter = 0;
+        $('#detailform').on('submit', function (e) {
+            e.preventDefault();
+
+            let list = '<tr><td class = "text-black">'+ (counter + 1)+ '</td>';
+
+            var _mtctypeText = $('#MaintenanceType').find(":selected").text();
+            var _mtctypeValue =  $('#MaintenanceType').val().trim();
+
+            var _troubleText = $('#TroubleItem').find(":selected").text();
+            var _troubleValue = $('#TroubleItem').val().trim();
+            //console.log(_troubleValue);
+
+            var duplicate = ""
+
+            $('#AddNewShiftLeader tbody tr').each(function () {
+                //var cellValue = $(this).find("input").val();
+                var cellValue = $(this).find("td").eq(1).find("input").val();
+                console.log(cellValue);
+                console.log(_troubleValue);
+                if (cellValue == _troubleValue) {
+                    duplicate = "true";
+                }
+            });
+
+
+            if(_troubleValue != 0) {
+                if (duplicate == "true") {
+                    alert("duplicate data");
+                    //console.log("tes");
+                }else
+                {
+                    list += '<td class = "text-black">' + _troubleText + '<input type="hidden" name="ShiftLeaderNotesDetails' + '[' + String(counter) + '].trouble_id" value="' + _troubleValue + '"/>' + '</td>' ;
+                    list += '<td class = "text-black">' + _mtctypeText + '<input type="hidden" name="ShiftLeaderNotesDetails' + '[' + String(counter) + '].mtc_id" value="' + _mtctypeValue + '"/>' + '</td>' ;
+                    list += '<td><button class="btn btn-danger" onclick="return this.parentNode.parentNode.remove();">delete</button></tr>';
+
+                    $('#AddNewShiftLeader tbody').append(list);
+                    counter++;
+
+                    //$(this)[0].reset();
+                    machine_sts = _mtctypeValue;
+                    $('#MaintenanceType').val(machine_sts);
+                    //console.log(machine_sts);
+                    //$("selector").addClass("class-name");
+                    if ($('#MaintenanceType').attr('disabled') !== undefined) {
+                        //console.log("ada bro");
+                    } else {
+                        $('#MaintenanceType').attr('disabled', 'disabled');
+                    }
+                }
+            }
+
+
+
+        });
+    });
+
+</script>

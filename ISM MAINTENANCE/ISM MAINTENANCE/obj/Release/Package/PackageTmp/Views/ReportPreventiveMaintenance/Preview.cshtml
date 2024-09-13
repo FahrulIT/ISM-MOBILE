@@ -1,0 +1,289 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.Report.FormParameterPrev
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+    string report = "Maintenance Preventive Report";
+}
+
+<div class="card">
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">Report Machine Quality Trouble</h4>
+    </div>
+    @using (Html.BeginForm("Preview", "ReportPreventiveMaintenance", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-body">
+            <div class="mb-1 row">
+                @Html.Label("Department", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("dept_par", null, "Select Department", htmlAttributes: new { @class = "form-select form-select-sm text-black gray-color-byfahrul" })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.Label("Machine Type", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mc_id_par", null, "Select Machine Type", htmlAttributes: new { @class = "form-select form-select-sm text-black gray-color-byfahrul" })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.Label("Tanggal", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.start_date_par, new { @class = "form-control form-control-sm text-black", inputmode = "none", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.start_date_par, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.stop_date_par, new { @class = "form-control form-control-sm text-black", inputmode = "none", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.stop_date_par, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.Label("M/C No", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("machine_par", null, "ALL", htmlAttributes: new { @class = "form-select form-select-sm text-black" })
+                </div>
+            </div>
+
+            <div class="mb-0 row">
+                @Html.Label("PIC MTC", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("PIC_Mtc", null, "ALL", htmlAttributes: new { @class = "form-select form-select-sm text-black" })
+                </div>
+            </div>
+        </div>
+
+            <div class="card-footer text-center">
+                <button type="submit" class="btn btn-primary">Preview</button>
+                <a href="@Url.Action("Welcome", "Home" )" class="btn btn-dark align-content-center">Home</a>
+            </div>
+    }
+
+</div>
+
+<div class="card">
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">@report</h4>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive-sm">
+            <table id="ReportPreventiveMaintenance" class="table table-sm mb-0 text-nowrap" style="font-family:Arial">
+                <thead class="table-primary">
+                    <tr>
+                        <th>No</th>
+                        <th>
+                            Tanggal
+                        </th>
+
+                        <th>
+                            Nomor Mesin
+                        </th>
+
+                        <th>
+                            Pic Name
+                        </th>
+                        <th>Start MTC Time</th>
+                        <th>End MTC Time</th>
+                        <th>MTC Duration</th>
+
+                        <th>Action</th>
+                        <th>Spare part Name</th>
+                        <th>Spare part price</th>
+                        <th>Spare part quantity</th>
+                       
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.Report_Data == null)
+                    {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+
+
+                        </tr>
+                    }
+                    else
+                    {
+                        int counter = 0;
+                        foreach (var item in Model.Report_Data)
+                        {
+                            if (item.RowNumber == 1) { counter = counter + 1; }
+                            <tr>
+                                <td>@(item.RowNumber.ToString() == "1" ? (Convert.ToString(counter)) : "")</td>
+
+                                <td>
+                                    @(item.RowNumber > 1 ? "": Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.mtc_start)))
+                                </td>
+                                <td>
+                                    @item.block.@item.loom_no
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.Pic_Maintenance_Name)
+                                </td>
+                                <td>                                                                     
+                                    @(item.RowNumber > 1 ? "" : @Convert.ToString(string.Format("{0:dd-MM-yyyy HH:mm}", item.mtc_start)))
+                                </td>
+                                <td>                                 
+                                    @(item.RowNumber > 1 ? "" : @Convert.ToString(string.Format("{0:dd-MM-yyyy HH:mm}", item.mtc_finish)))
+                                </td>
+                                <td>
+                                    @(item.RowNumber > 1 ? "" : @Convert.ToString(string.Format("{0:HH:mm}", item.Duration)))
+                                </td>
+                                
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.mtc_action_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.item_code)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.quantity)
+                                </td>
+
+                  
+                            </tr>
+                            
+                        }
+
+                    }
+
+
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="card-footer detail text-center">
+
+    </div>
+</div>
+
+@*<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>*@
+<script src="~/Content/libs/jquery/dist/jquery.js"></script>
+
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/libs/Select2/select2.min.js"></script>
+
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.datetimepicker.full.js"></script>
+
+<script type="text/javascript">
+    $("#machine_par").select2({ width: '100%' });
+
+    $('#start_date_par').datetimepicker({
+        format: 'd-m-Y',
+        timepicker: false,
+        datepicker: true,
+
+    });
+
+    $('#stop_date_par').datetimepicker({
+        format: 'd-m-Y',
+        timepicker: false,
+        datepicker: true,
+
+    });
+
+    $(document).ready(function () {
+        let ReportTitle = '@report';
+
+        var table_modal_mtc_action_edit = $('#ReportPreventiveMaintenance').DataTable({
+            order: [],
+            pageLength: 100,
+            info: false,
+            lengthChange: false,
+            layout:
+            {
+                //bottomEnd: {
+                //    paging: {
+                //        type: 'simple_numbers'
+                //    }
+
+                //},
+                topStart: 'buttons'
+
+            },
+            //fixedColumns: true,
+            scrollCollapse: true,
+            scrollY: 500,
+            buttons: [
+                {
+                    extend: 'excel',
+                    footer: true,
+                    title: ReportTitle,
+                    text: 'Export to Excel',
+                    //className: "btn btn-primary fs-3",
+                    className: "btn bg-primary-subtle text-primary",
+                    @*customize: function (xlsx) {
+                        var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                        var _lastcolumnindex = '@ViewBag.LastColForExel';
+                        var formula_last_col = "";
+                        var dividend = _lastcolumnindex;
+                        var columnName = "";
+                        var modulo;
+
+                        while (dividend > 0) {
+                            modulo = (dividend - 1) % 26;
+                            columnName = String.fromCharCode(65 + modulo).toString() + columnName;
+                            dividend = parseInt((dividend - modulo) / 26);
+                        };
+
+                        formula_last_col = 'row c[r^=' + columnName + ']';
+                        $(formula_last_col, sheet).each(function () {
+                            $(this).attr('s', '2');
+                        });
+                        $('row:first c', sheet).attr('s', '50');//'50' is for left-aligned text and 52 for -right , 51 - center
+                        $('row:first c', sheet).attr('s', '2')
+                        $('row:last c', sheet).attr('s', '2');
+                        $('row:nth-child(2) c', sheet).attr('s', '2'); // '2' is for bold text
+                    }*@
+                },
+                {
+                    extend: 'spacer',
+                },
+                {
+                    extend: 'pdf',
+                    title: ReportTitle,
+                    text: 'Export to Pdf',
+                    //className: "btn btn-secondary fs-3",
+                    className: "btn bg-secondary-subtle text-secondary",
+                },
+                {
+                    extend: 'spacer',
+                },
+                {
+
+                    extend: 'csv',
+                    title: ReportTitle,
+                    text: 'Export to CSV',
+                    //className: "btn btn-success fs-3",
+                    className: "btn bg-success-subtle text-success",
+                }
+
+            ],
+        });//.buttons()
+        //.container()
+        //.appendTo(".card-footer");;
+    });
+</script>

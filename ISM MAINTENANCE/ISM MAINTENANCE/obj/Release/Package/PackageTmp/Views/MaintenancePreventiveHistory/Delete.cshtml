@@ -1,0 +1,195 @@
+﻿@model ISM_MAINTENANCE.Models.DB.vw_preventivemaintenance_history
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+}
+
+<div class="card">
+    <div class="card-header bg-primary">
+        <div class="text-white fs-6 fw-bold"><i class="ti ti-trash"></i>    Are you sure delete this data?</div>
+    </div>
+
+    <div class="card-body">
+
+        <div class="mb-2 row">
+            <label class="control-label col-md-2">Department</label>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.dept_name, new { htmlAttributes = new { @class = "form-control", @Value = "WEAVING", @ReadOnly = true, @Style = "background-color:lightgray;" } })
+                @Html.ValidationMessageFor(model => model.dept_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-2 row">
+            <label class="control-label col-md-2">Machine Type</label>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.mc_name, new { htmlAttributes = new { @class = "form-control", @Value = "AJL", @ReadOnly = true, @Style = "background-color:lightgray;" } })
+                @Html.ValidationMessageFor(model => model.mc_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-2 row">
+            <label class="control-label col-md-2">MTC Schedule</label>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.mtc_schedule, new { htmlAttributes = new { @class = "form-control", @Value = Model.mtc_schedule.ToString("MM-yyyy"), @Readonly = true, @Style = "background-color:lightgray;" } })
+                @*@Html.EditorFor(model => model.mtc_schedule, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = Model.mtc_schedule.ToString("yyyy-MM-dd"), @ReadOnly = true } })*@
+
+                @*<input type="text" id="mtc_schedule" name="mtc_schedule" class="form-control" value="@Model.mtc_schedule.ToString("yyyy-MM")" data-date-format="yyyy-mm" style="background-color:lightgray;"/>*@
+
+                @Html.ValidationMessageFor(model => model.mtc_schedule, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-2 row">
+            <label class="control-label col-md-2">Machine No.</label>
+            <div class="col-md-2">
+                @*@Html.DropDownListFor(model => model.mtcNo, new SelectList(ViewBag.machineNo, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control chosen-select", @Disabled = true })*@
+                @Html.DropDownListFor(model => model.mtcNo, new SelectList(ViewBag.machineNo, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control", @Disabled = true })
+                @Html.ValidationMessageFor(model => model.mtcNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-2 row">
+            <label class="control-label col-md-2">PIC Maintenance</label>
+            <div class="col-md-3">
+                @*@Html.DropDownListFor(model => model.Fullname, new SelectList(ViewBag.userName, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control chosen-select" })*@
+                @*@Html.DropDownListFor(model => model.Fullname, new SelectList(ViewBag.userName, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control", @Disabled = true })*@
+
+                @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control", @Value = Model.Fullname, @Readonly = true, @Style = "background-color:lightgray;" } })
+                @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-2 row">
+            <label class="control-label col-md-2">Start Maintenance</label>
+            <div class="col-md-3">
+                @*@Html.EditorFor(model => model.mtc_start, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", @Value = Model.mtc_start.ToString("yyyy-MM-ddTHH:mm:ss"), @ReadOnly = true } })*@
+
+                @Html.EditorFor(model => model.mtc_start, new { htmlAttributes = new { @class = "form-control", @Value = Model.mtc_start.ToString("dd-MM-yyyy HH:mm"), @Style = "background-color:lightgray;", @Disabled = true } })
+                @Html.ValidationMessageFor(model => model.mtc_start, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-2 row">
+            <label class="control-label col-md-2">Finish Maintenance</label>
+            <div class="col-md-3">
+                @*@Html.EditorFor(model => model.mtc_finish, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local", Value = Model.mtc_finish.ToString("yyyy-MM-ddTHH:mm:ss"), @ReadOnly = true } })*@
+
+                @Html.EditorFor(model => model.mtc_finish, new { htmlAttributes = new { @class = "form-control", @Value = Model.mtc_finish.Value.ToString("dd-MM-yyyy HH:mm"), @Style = "background-color:lightgray;", @Disabled = true } })
+                @Html.ValidationMessageFor(model => model.mtc_finish, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-2 row">
+            <label class="control-label col-md-2">Maintenance Action</label>
+            <div class="col-md-7">
+                @*@Html.DropDownListFor(model => model.mtc_action_name, new SelectList(ViewBag.mtcAction, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control chosen-select" })*@
+                @Html.DropDownListFor(model => model.mtc_action_name, new SelectList(ViewBag.mtcAction, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control", @Disabled = true })
+                @Html.ValidationMessageFor(model => model.mtc_action_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.mtcNo)
+
+        @Html.HiddenFor(model => model.mtc_schedule)
+
+        @Html.HiddenFor(model => model.block)
+
+        @Html.HiddenFor(model => model.loom_no)
+
+        @Html.HiddenFor(model => model.mtc_start)
+
+        @Html.HiddenFor(model => model.dept_id)
+
+        @Html.HiddenFor(model => model.mc_id)
+
+        @Html.HiddenFor(model => model.mtc_id)
+
+        @Html.HiddenFor(model => model.mtc_action_id)
+
+        @Html.HiddenFor(model => model.pic_mtc)
+
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+<div class="card">
+    <div class="card-header bg-primary">
+        <div class="float-start bg-primary">
+            <div class="text-white fs-6 fw-bold"><i class="ti ti-tool"></i> Spare Parts</div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="SparepareDetailTable" class="display table search-table table-sm  align-middle text-nowrap" style="color:black;" >
+                <thead class="header-item">
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Spare Part
+                        </th>
+                        <th>
+                            Unit Price (USD)
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.prevSpareParts)
+                    {
+                        <tr>
+                            <td style="text-align:center;">
+                                @(i = i + 1)
+                            </td>
+                            <td style="width:60%;">
+                                @item.ItemName<input type="hidden" name="Detail_2[@i].item_name" value="@item.item_code" class="form-control" />
+                            </td>
+                            <td>
+                                @item.price<input type="hidden" name="Detail_2[@i].price" value="@item.price" class="form-control text-center" />
+                            </td>
+                            <td>
+                                @item.quantity<input type="hidden" name="Detail_2[@i].quantity" value="@item.quantity" class="form-control text-center" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="card-footer"></div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="mb-1 row">
+        <div class="col-md-5">
+            <button type="submit" value="Delete" class="btn btn-primary"><i class="ti ti-trash"></i>  Delete</button>
+            <a class="btn btn-primary" href="@Url.Action("Index", "MaintenancePreventiveHistory")"><i class="ti ti-arrow-back"></i>  Back</a>
+        </div>
+    </div>
+}
+
+@*<script src="~/Content/PreventiveMaintenance/chosen-1.8.7/docsupport/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/PreventiveMaintenance/chosen-1.8.7/chosen.jquery.js"></script>
+    <script src="~/Content/PreventiveMaintenance/chosen-1.8.7/docsupport/prism.js"></script>
+    <script src="~/Content/PreventiveMaintenance/chosen-1.8.7/docsupport/init.js"></script>*@
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/libs/jquery/dist/jquery.js"></script>
+
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/js/select2.min.js"></script>
+
+@*<link href="~/Content/PreventiveMaintenance/datepicker/css/datepicker.css" rel="stylesheet" />
+    <script src="~/Content/PreventiveMaintenance/datepicker/js/bootstrap-datepicker.js"></script>*@
+
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.datetimepicker.full.js"></script>
+
+<script src="~/Content/PreventiveMaintenance/site.js"></script>

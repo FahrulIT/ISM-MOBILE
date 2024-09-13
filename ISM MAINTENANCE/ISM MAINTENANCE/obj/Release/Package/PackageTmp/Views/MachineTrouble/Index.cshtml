@@ -1,0 +1,125 @@
+﻿@model IEnumerable<ISM_MAINTENANCE.Models.ViewModel.MachineTrouble>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Menu = "Machine Trouble";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int NomorBaris = 0;
+}
+
+<div class="card">
+    <div class="card-header bg-primary">
+            <div class="text-white fs-6 fw-bold">@ViewBag.Menu - @ViewBag.Title</div>
+    </div>
+
+    <div class="card-body">       
+        <div class="justify-content-start d-flex gap-2">
+            <a href="@Url.Action("Create", "MachineTrouble" )" class="btn btn-rounded btn-outline-primary">
+                Add New
+            </a>
+            <a href="@Url.Action("Welcome", "Home" )" class="btn btn-rounded btn-outline-dark align-content-center">Home</a>
+        </div>
+        
+        <div class="table-responsive">
+
+            <table id="" class="display table search-table table-sm  align-middle text-nowrap text-black">
+                <thead class="header-item">
+                    <tr>
+                        <th style="text-align:center">
+                            No
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.trouble_id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.trouble_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dept_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mc_name)
+                        </th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- start row -->
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="text-align:center">
+                                @(NomorBaris += 1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.trouble_id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.trouble_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.dept_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mc_name)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Show", "Show", new { id = item.dept_id.ToString() + "-" + item.mc_id.ToString() + "-" + item.trouble_id.ToString() }, new { @class = "badge rounded-pill bg-info-subtle text-info" })
+                                @Html.ActionLink("Edit", "Edit", new { id = item.dept_id.ToString() + "-" + item.mc_id.ToString() + "-" + item.trouble_id.ToString() }, new { @class = "badge rounded-pill bg-primary-subtle text-primary" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.dept_id.ToString() + "-" + item.mc_id.ToString() + "-" + item.trouble_id.ToString() }, new { @class = "badge rounded-pill bg-danger-subtle text-danger" })
+                            </td>
+                        </tr>
+                    }
+
+                    <!-- end row -->
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    @*function singleSelectChangeValue() {
+        var selObj = document.getElementById("dept_id");
+        var selValue = selObj.options[selObj.selectedIndex].value;
+
+
+        var textboxId = document.getElementById("mcid");
+        var arr = [];
+        while (arr.length < 8) {
+            var r = Math.floor(Math.random() * 100) + 1;
+            if (arr.indexOf(r) === -1) arr.push(r);
+        }
+        textboxId.value = arr[0];
+        //console.log(arr[0]);
+
+        var cubes = @Html.Raw(Json.Encode(ViewBag.MaxDeptId));
+        var res = cubes.map(bill => bill.MaxMCID).reduce((acc, amount) => acc + amount);
+
+
+        for(var i = 0; i < cubes.length; i++) {
+            if (cubes[i].Dept_id == selValue)
+            {
+                textboxId.value = cubes[i].MaxMCID;
+                console.log=cubes[i].MaxMCID;
+            }
+        }
+
+
+        textboxId.focus();
+    };*@
+
+    $(document).ready(function () {
+        $('#dt-search-0').addClass('text-uppercase');
+    });
+
+</script>

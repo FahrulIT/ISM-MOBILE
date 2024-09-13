@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+ }
+
+
+<div class="card">
+    <div class="card-header text-bg-danger  d-flex align-items-center">        
+        <span class="d-flex">
+            <b><i class="ti ti-user-exclamation display-7-byFahrul"></i></b>
+        </span>
+        <span class="d-flex display-7-byFahrul" style="margin-left:0.5em"><b>@ViewBag.Name</b></span>
+    </div>
+
+    <div class="card-body">
+        <h2 class="fw-semibold mb-0 display-8-byFahrul">Anda tidak mempunya akses ke menu ini</h2>
+    </div>
+
+    <div class="card-footer">
+        <a href="@Url.Action("Welcome", "Home" )" class="btn btn-danger align-content-center">Home</a>
+    </div>
+
+</div>

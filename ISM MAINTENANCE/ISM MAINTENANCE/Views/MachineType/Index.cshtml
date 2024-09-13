@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ISM_MAINTENANCE.Models.ViewModel.MachineType>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Menu = "Machine Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int NomorBaris = 0;
+}
+
+<div class="card">
+    <div class="card-header bg-primary">
+        <div class="text-white fs-6 fw-bold">@ViewBag.Menu - @ViewBag.Title</div>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-4 col-xl-3">
+            <a href="@Url.Action("Create", "MachineType" )" class="btn btn-rounded btn-outline-primary">
+                Add New
+            </a>
+        </div>
+
+        <div class="table-responsive">
+
+            <table id="" class="display table search-table table-sm  align-middle text-nowrap">
+                <thead class="header-item">
+                    <tr>
+                        <th style="text-align:center">
+                            No
+                        </th>
+                        <th class="d-none">
+                            @Html.DisplayNameFor(model => model.dept_id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DeptName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mc_id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mc_name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- start row -->
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="text-align:center">
+                                @(NomorBaris += 1)
+                            </td>
+                            <td class="d-none">
+                                @Html.DisplayFor(modelItem => item.dept_id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DeptName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mc_id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mc_name)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.dept_id.ToString() + "-" + item.mc_id.ToString() }, new { @class = "badge rounded-pill bg-primary-subtle text-primary" })
+                                @*@Html.ActionLink("Details", "Details", new { id = Convert.ToInt32(string.Format("{0}{1}", item.dept_id, item.mc_id)) }, new { @class = "badge rounded-pill bg-info-subtle text-info" })*@
+                                @Html.ActionLink("Delete", "Delete", new { id = item.dept_id.ToString() + "-" + item.mc_id.ToString() }, new { @class = "badge rounded-pill bg-danger-subtle text-danger" })
+
+
+                            </td>
+                        </tr>
+                    }
+
+                    <!-- end row -->
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

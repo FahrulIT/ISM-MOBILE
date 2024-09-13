@@ -1,0 +1,181 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MAINTENANCE MONITORING</title>
+
+    <link rel="stylesheet" href="~/Content/css/styles.min.css" />
+
+    <link href="~/Content/Monitoring/dropdown-check-list.1.5/doc/smoothness-1.11.2/jquery-ui-1.11.2.custom.css" rel="stylesheet" />
+    <link href="~/Content/Monitoring/dropdown-check-list.1.5/src/ui.dropdownchecklist.themeroller.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container-fluid p-5">
+        <div class="card">
+            <div class="card-header text-center bg-primary">
+                <div class="text-white fs-4 fw-bold"><i class="ti ti-chart-donut"></i> Monitoring Graphic</div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label" style="color:black;">Graphic Type (*)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.DropDownList("graphicType", new SelectList(ViewBag.graphicType, "Value", "Text"), new { @class = "form-control", @style = "color:black;" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label" style="color:black;">Period From (*)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @*@Html.Editor("periodFrom", new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = DateTime.Now.ToString("yyyy-MM-01"), @style = "color:black;" } })*@
+
+                                @Html.Editor("periodFrom", new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString("01-MM-yyyy"), @style = "color:black;" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label" style="color:black;">Period To (*)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @*@Html.Editor("periodTo", new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = DateTime.Now.ToString("yyyy-MM-dd"), @style = "color:black;" } })*@
+
+                                @Html.Editor("periodTo", new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString("dd-MM-yyyy"), @style = "color:black;" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label" style="color:black;">Maintenance Type (*)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.DropDownList("maintenanceType", new SelectList(ViewBag.maintenanceType, "Value", "Text"), new { @class = "form-control", @style = "color:black;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-info" name="showChart" id="showChart">
+                            <i class="ti ti-chart-donut"></i> Show Chart
+                        </button>
+                    </div>
+                    @*<div class="col-md-1">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioMachine" value="machine" style="color:black;" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Machine
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioQuality" value="quality" style="color:black;">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Quality
+                                </label>
+                            </div>
+                        </div>*@
+                </div>
+                <div class="row">
+                    <div class="col-md-3" id="labelTrouble">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label" style="color:black;" id="typeChart">Trouble Name (*)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" id="valueTrouble">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @*@Html.DropDownList("troubleName", new SelectList(ViewBag.troubleName, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control" })*@
+
+                                <select id="troubleName" multiple="multiple">
+                                    @foreach (var item in ViewBag.troubleName)
+                                    {
+                                        <option selected="selected" value="@item.Text" style="color:black;">@item.Text</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        @*<div class="form-group">
+                                <div class="col-md-12">
+                                    <label class="control-label" style="color:black;">Type Of Chart (*)</label>
+                                </div>
+                            </div>*@
+                    </div>
+                    <div class="col-md-3">
+                        @*<div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.DropDownList("typeOfChart", new SelectList(ViewBag.typeOfChart, "Value", "Text"), "-- PLEASE SELECT --", new { @class = "form-control", @style = "color:black;" })
+                                </div>
+                            </div>*@
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <canvas id="myChart" style="height:450px;"></canvas>
+                </div>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/libs/jquery/dist/jquery.js"></script>
+
+@*<script src="~/Content/Monitoring/chart web.js"></script>*@
+<script src="~/Content/Monitoring/chart.js/dist/Chart.js"></script>
+
+<script src="~/Content/Monitoring/dropdown-check-list.1.5/src/jquery-1.11.2.min.js"></script>
+<script src="~/Content/Monitoring/dropdown-check-list.1.5/src/jquery-ui-1.11.2.min.js"></script>
+<script src="~/Content/Monitoring/dropdown-check-list.1.5/src/ui.dropdownchecklist.js"></script>
+
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.datetimepicker.full.js"></script>
+
+<script src="~/Content/Monitoring/site.js"></script>

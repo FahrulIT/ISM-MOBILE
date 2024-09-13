@@ -1,0 +1,227 @@
+﻿@{
+     ViewBag.Title = "Home Page";
+}
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    var donutchart_obj = '@ViewBag.strDonutChart';
+    var donutJson = JSON.parse(donutchart_obj);
+
+    var donutchartgrey_obj = '@ViewBag.strDonutChart_Grey';
+    var donutJson_Grey = JSON.parse(donutchartgrey_obj);
+
+    var donutchartPass_NonPass = '@ViewBag.strDonutChart_Pass_NonPass';
+    var donutJson_Pass_NonPass = JSON.parse(donutchartPass_NonPass);
+</script>
+
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+
+    google.charts.setOnLoadCallback(drawChart);
+  
+    window.onresize = doALoadOfStuff;
+  
+    function doALoadOfStuff() {
+        drawChart();
+    }
+
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Type');
+        data.addColumn('number', 'Value');
+        data.addRows(donutJson);
+
+        var DonutChart_options =
+        {
+            //title: 'Yarn Stock',
+            //backgroundColor: '#e5e5e5',
+            chartArea:  {
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
+            },
+            legend: "bottom",
+            pieHole: 0.6,
+            //colors: ['#dc3912', '#3366cc']FF8989,ff6384
+            colors: ['#A1C2F1', '#FF8989', '#ff9f40', '#ffcd56', '#4bc0c0', '#9966ff', '#c9cbcf']
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, DonutChart_options);
+
+        var DonutChartGrey_Data = new google.visualization.DataTable();
+        DonutChartGrey_Data.addColumn('string', 'Grade');
+        DonutChartGrey_Data.addColumn('number', 'Value');
+        DonutChartGrey_Data.addRows(donutJson_Grey);
+
+        var GreyDonut_options =
+       {
+           //title: 'Yarn Stock',
+           //backgroundColor: '#e5e5e5',
+           chartArea: {
+               left: 0,
+               top: 0,
+               width: '100%',
+               height: '100%',
+           },
+           legend: 'bottom',
+           pieHole: 0.6,
+           //colors: ['#dc3912', '#3366cc']
+           colors: ['#A1C2F1', '#FF8989', '#ff9f40', '#ffcd56', '#4bc0c0', '#9966ff', '#c9cbcf']
+       };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchartGreyStock'));
+        chart.draw(DonutChartGrey_Data, GreyDonut_options);
+
+        //Pass_NonPass
+        var Donut_Pass_NonPass = new google.visualization.DataTable();
+        Donut_Pass_NonPass.addColumn('string', 'Grade');
+        Donut_Pass_NonPass.addColumn('number', 'Value');
+        Donut_Pass_NonPass.addRows(donutJson_Pass_NonPass);
+        Donut_Pass_NonPass.getFilteredRows([{ column: 1, minValue: 0.00001 }]);
+
+        var Donut_Pass_NonPass_options =
+       {
+           chartArea: { width: '100%', height: '100%' },
+           legend: {
+               //textStyle: { fontSize: 14 },
+               position: 'bottom',
+               maxLines: 20
+
+           },
+           pieHole: 0.6, colors: ['#A1C2F1', '#FF8989', '#ff9f40', '#ffcd56', '#4bc0c0', '#9966ff', '#c9cbcf']
+           //colors: ['#dc3912', '#3366cc']
+       };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donut_pass_nonpass'));
+        chart.draw(Donut_Pass_NonPass, Donut_Pass_NonPass_options);
+    }
+</script>
+
+
+<!-- End of Topbar -->
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow h-100 py-2"  style="border-left:0.25rem solid #FA9649">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Yarn Total
+                            </div>
+                            <div class="h7 mb-0 font-weight-bold text-gray-800">@ViewBag.StrTotalYarn lbs</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-flag fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow h-100 py-2" style="border-left:0.25rem solid #FA9649">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Grey Total
+                            </div>
+                            <div class="h7 mb-0 font-weight-bold text-gray-800">@ViewBag.strTotalGrey mtr</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-flag fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow h-100 py-2" style="border-left:0.25rem solid #FA9649">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Finish Good Total
+                            </div>
+                            <div class="h7 mb-0 font-weight-bold text-gray-800">@ViewBag.strTotalFinishgood mtr</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-flag fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Row -->
+
+
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold text-primary">Yarn Stock</h6>
+                </div>
+                <div class="card-body">
+                    <div id="donutchart" ></div>
+                    <a href="@Url.Action("Index", "YarnStock")" class="btn btn-light btn-icon-split">
+                        <span class="icon">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                        <span class="text">More Details</span>
+                    </a>
+                </div>
+            </div>           
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header text-primary">
+                    <h6 class="m-0 font-weight-bold text-primary">Grey Stock</h6>
+                </div>
+                <div class="card-body">
+                    <div id="donutchartGreyStock"></div>
+                    <a href="@Url.Action("Index", "GreyStock")" class="btn btn-light btn-icon-split">
+                        <span class="icon">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                        <span class="text">More Details</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header text-primary">
+                    <h6 class="m-0 font-weight-bold text-primary">Finish Good Stock</h6>
+                </div>
+                <div class="card-body">
+                    <div id="donut_pass_nonpass"></div>
+                    <a href="@Url.Action("Index", "Finishgoods")" class="btn btn-light btn-icon-split">
+                        <span class="icon">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                        <span class="text">More Details</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!-- /.container-fluid -->

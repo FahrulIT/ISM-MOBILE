@@ -1,0 +1,15 @@
+﻿  {
+      "name": "ISTEM MOBILE SYSTEM",
+      "short_name": "IMS",
+      "icons": [
+        {
+          "src": "/ISTEM_512x512.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ],
+      "start_url": "/",
+      "display": "standalone",
+      "background_color": "#ffffff",
+      "theme_color": "#000000"
+    }

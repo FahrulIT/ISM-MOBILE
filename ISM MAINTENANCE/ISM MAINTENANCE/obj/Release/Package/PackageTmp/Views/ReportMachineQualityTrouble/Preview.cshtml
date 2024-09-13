@@ -1,0 +1,369 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.Report.FormParameter
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+    string report = Model.trouble_type_par == "Q" ? "Quality Trouble Report" : "Machine Trouble Report";
+}
+
+<div class="card">
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">Report Machine Quality Trouble</h4>
+    </div>
+    @using (Html.BeginForm("Preview", "ReportMachineQualityTrouble", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-body">
+            <div class="mb-1 row">
+                @Html.Label("Department", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("dept_par", null, null, htmlAttributes: new { @class = "form-select form-select-sm text-black gray-color-byfahrul" })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.Label("Machine Type", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mc_id_par", null, null, htmlAttributes: new { @class = "form-select form-select-sm text-black gray-color-byfahrul" })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.Label("Tanggal", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-5">
+                    @*@Html.TextBoxFor(model => model.start_date_par, "{0:dd-MM-yyyy}", new { @class = "form-control form-control-sm text-black", @onchange = "ChangeValue()", type = "date" })*@
+                    @Html.TextBoxFor(model => model.start_date, new { @class = "form-control text-black", inputmode = "none", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.start_date, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-5">
+                    @*@Html.TextBoxFor(model => model.stop_date_par, "{0:dd-MM-yyyy}", new { @class = "form-control form-control-sm text-black", @onchange = "ChangeValue()", type = "date" })*@
+                    @Html.TextBoxFor(model => model.stop_date, new { @class = "form-control text-black", inputmode = "none", autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.stop_date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.Label("Trouble", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-2">
+                    @Html.RadioButtonFor(model => model.trouble_type_par, "M", new { @class = "col-form-label-sm me-2", @checked = "checked" })
+                    @Html.Label("Machine", "Machine", htmlAttributes: new { @class = "col-form-label text-black" })
+                </div>
+                <div class="col-md-5">
+                    @Html.RadioButtonFor(model => model.trouble_type_par, "Q", new { @class = "col-form-label-sm me-2" })
+                    @Html.Label("Quality", "Quality", htmlAttributes: new { @class = "col-form-label text-black" })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.Label("M/C No", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("machine_par", null, "ALL", htmlAttributes: new { @class = "form-select form-select-sm text-black" })
+                </div>
+            </div>
+
+            <div class="mb-0 row">
+                @Html.Label("PIC MTC", htmlAttributes: new { @class = "col-md-2 col-form-label col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("PIC_Mtc", null, "ALL", htmlAttributes: new { @class = "form-select form-select-sm text-black" })
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer text-center">
+            <button type="submit" class="btn btn-primary">Preview</button>
+            <a href="@Url.Action("Welcome", "Home" )" class="btn btn-dark align-content-center">Home</a>
+        </div>
+    }
+
+</div>
+
+<div class="card">
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">@report</h4>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive-sm">
+            <table id="ReportMachineQualityTrouble" class="table table-sm mb-0 text-nowrap">
+                <thead class="table-primary">
+                    <tr>
+                        <th>
+                            Row Number
+                        </th>
+
+                        <th class="text-center">
+                            No
+                        </th>
+
+                        <th>
+                            Tanggal
+                        </th>
+
+                        <th>
+                            MC Stop from
+                        </th>
+
+                        <th>
+                            Nama Leader Shift
+                        </th>
+                        <th>
+                            Shift
+                        </th>
+
+                        <th>Nomor Mesin</th>
+
+                        <th>PIC MTC</th>
+                        <th>Start MTC Time</th>
+                        <th>End MTC Time</th>
+                        <th>MTC Durasi</th>
+
+                        <th>Jenis Trouble</th>
+                        <th>Action/Perbaikan</th>
+                        <th>Nama Sparepart</th>
+                        <th>Nomor Catalogue</th>
+                        <th>Harga Sparepart</th>
+                        <th>Sparepart Quantity</th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.Report_Data == null)
+                    {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.Report_Data)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.RowNo)
+                                </td>
+
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelitem => item.No)
+                                </td>
+
+                                <td>
+                                    @Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.stop_from))
+                                </td>
+
+                                <td>
+                                    @Convert.ToString(string.Format("{0:HH:mm}", item.stop_from))
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.Pic_LeaderShift_Name)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.shift)
+                                </td>
+
+                                <td>
+                                    @item.block.@item.loom_no
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.Pic_Maintenance_Name)
+                                </td>
+
+                                <td>
+                                    @Convert.ToString(string.Format("{0:dd-MM-yyyy HH:mm}", item.mtc_start))
+                                </td>
+
+                                <td>
+                                    @Convert.ToString(string.Format("{0:dd-MM-yyyy HH:mm}", item.mtc_finish))
+                                </td>
+
+                                <td>
+
+                                    @Convert.ToString(string.Format("{0:HH:mm}", item.Duration))
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.trouble_name)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.mtc_action_name)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.sparepart_name)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.no_catalog)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.price)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelitem => item.quantity)
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="card-footer detail text-center">
+
+    </div>
+</div>
+
+@*<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>*@
+<script src="~/Content/libs/jquery/dist/jquery.js"></script>
+
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/libs/Select2/select2.min.js"></script>
+
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.datetimepicker.full.js"></script>
+
+<script type="text/javascript">
+    $("#machine_par").select2({ width: '100%' });
+
+    $('#start_date').datetimepicker({
+        format: 'd-m-Y',
+        timepicker: false,
+        datepicker: true,
+
+    });
+
+    $('#stop_date').datetimepicker({
+        format: 'd-m-Y',
+        timepicker: false,
+        datepicker: true,
+
+    });
+
+    $(document).ready(function () {
+        let ReportTitle = '@report';
+
+        var table_modal_mtc_action_edit = $('#ReportMachineQualityTrouble').DataTable({
+            order: [0, 'asc'],
+            columnDefs: [
+                           {
+                               target: 0,
+                               visible: false,
+                               searchable: false
+                           }
+            ],
+            pageLength: 100,
+            info: false,
+            lengthChange: false,
+            layout:
+            {
+                //bottomEnd: {
+                //    paging: {
+                //        type: 'simple_numbers'
+                //    }
+
+                //},
+                topStart: 'buttons'
+
+            },
+            //fixedColumns: true,
+            scrollCollapse: true,
+            scrollY: 500,
+            buttons: [
+                {
+                    extend: 'excel',
+                    footer: true,
+                    title: ReportTitle,
+                    text: 'Export to Excel',
+                    //className: "btn btn-primary fs-3",
+                    className: "btn bg-primary-subtle text-primary",
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+                    }
+                    @*customize: function (xlsx) {
+                        var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                        var _lastcolumnindex = '@ViewBag.LastColForExel';
+                        var formula_last_col = "";
+                        var dividend = _lastcolumnindex;
+                        var columnName = "";
+                        var modulo;
+
+                        while (dividend > 0) {
+                            modulo = (dividend - 1) % 26;
+                            columnName = String.fromCharCode(65 + modulo).toString() + columnName;
+                            dividend = parseInt((dividend - modulo) / 26);
+                        };
+
+                        formula_last_col = 'row c[r^=' + columnName + ']';
+                        $(formula_last_col, sheet).each(function () {
+                            $(this).attr('s', '2');
+                        });
+                        $('row:first c', sheet).attr('s', '50');//'50' is for left-aligned text and 52 for -right , 51 - center
+                        $('row:first c', sheet).attr('s', '2')
+                        $('row:last c', sheet).attr('s', '2');
+                        $('row:nth-child(2) c', sheet).attr('s', '2'); // '2' is for bold text
+                    }*@
+                },
+                {
+                    extend: 'spacer',
+                },
+                {
+                    extend: 'pdf',
+                    title: ReportTitle,
+                    text: 'Export to Pdf',
+                    //className: "btn btn-secondary fs-3",
+                    className: "btn bg-secondary-subtle text-secondary",
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+                    }
+                },
+                {
+                    extend: 'spacer',
+                },
+                {
+
+                    extend: 'csv',
+                    title: ReportTitle,
+                    text: 'Export to CSV',
+                    //className: "btn btn-success fs-3",
+                    className: "btn bg-success-subtle text-success",
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+                    }
+                }
+
+            ],
+        });//.buttons()
+        //.container()
+        //.appendTo(".card-footer");;
+    });
+</script>

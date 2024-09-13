@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default Web Site/ISM_MOBILE" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\APPL\\ISTEM\ MOBILE\\ISM\ MOBILE\\ISM\ MOBILE\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\APPL\\ISTEM\ MOBILE\\ISM\ MOBILE\\ISM\ MOBILE\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="AppConnectionDB-Web.config Connection String" description="" value="Data Source=TIN-064\SQLSERVER2014;Initial Catalog=istem_sms;Integrated Security=False;User ID=nodejs;Password=nodejs;MultipleActiveResultSets=True" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\APPL\\ISTEM\ MOBILE\\ISM\ MOBILE\\ISM\ MOBILE\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AppConnectionDB']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=TIN-064\SQLSERVER2014;Initial Catalog=istem_sms;Integrated Security=False;User ID=nodejs;Password=nodejs;MultipleActiveResultSets=True" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\APPL\\ISTEM\ MOBILE\\ISM\ MOBILE\\ISM\ MOBILE\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

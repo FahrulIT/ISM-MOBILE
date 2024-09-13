@@ -1,0 +1,178 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.TRM_detail_1
+
+@{
+    ViewBag.Title = "Details1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int NomorBaris = 0;
+}
+<div class="card">
+
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">Maintenance Result - Detail Machine Trouble</h4>
+    </div>
+
+    @using (Html.BeginForm("Create", "MaintenanceResult", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-body">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.mtc_slip_no1)
+            @Html.HiddenFor(model => model.mtc_slip_no2)
+            @Html.HiddenFor(model => model.dept_id)
+            @Html.HiddenFor(model => model.mc_id)
+
+
+            <div class="mb-2 row">
+                @Html.Label("Department", "Department", htmlAttributes: new { @class = "col-sm-2 col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.TextBox("Machine_no", (string)ViewBag.deptname, new { @class = "form-control form-control-sm", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.dept_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.Label("Machine Type", "Machine Type", htmlAttributes: new { @class = "col-sm-2 col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.TextBox("Machine_no", (string)ViewBag.machinetype, new { @class = "form-control form-control-sm", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.mc_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.Label("Maintenance Slip No", "Maintenance Slip No", htmlAttributes: new { @class = "col-sm-2 col-form-label-sm" })
+                <div class="col-md-10">
+                    <div class="input-group">
+                        @Html.TextBox("mtc_slip", (string)ViewBag.SlipNo, new { @class = "form-control form-control-sm me-2", @readonly = "readonly" })
+                        @*<div>
+                                <button type="button" class="btn btn-outline-dark me-6" data-bs-toggle="modal" data-bs-target="#GetSlip">Get</button>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.Label("Maintenance Ke ", "Maintenance Ke", htmlAttributes: new { @class = "col-sm-2 col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mtc_ser_no, new { htmlAttributes = new { @class = "form-control form-control-sm text-end", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.mtc_ser_no, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="mb-2 row">
+                @Html.Label("Machine No", "Machine No", htmlAttributes: new { @class = "col-sm-2 col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.TextBox("Machine_no", (string)ViewBag.machine_no, new { @class = "form-control form-control-sm" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.Label("Maintenance Type", "Maintenance Type", htmlAttributes: new { @class = "col-sm-2 col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.TextBox("mtc_type", (string)ViewBag.mtc_type, new { @class = "form-control form-control-sm" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.mtc_pic_name, htmlAttributes: new { @class = "col-sm-2 col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mtc_pic", null, "Select PIC", htmlAttributes: new { @class = "form-select form-select-sm" })
+                    @Html.ValidationMessageFor(model => model.mtc_pic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-2 row">
+                @Html.LabelFor(model => model.mtc_start, htmlAttributes: new { @class = "col-sm-2 col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.mtc_start, "{0:yyyy-MM-dd HH:mm:ss}", new { @class = "form-control form-control-sm", type = "datetime-local" })
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mtc_end, htmlAttributes: new { @class = "col-sm-2 col-form-label-sm" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.mtc_end, "{0:yyyy-MM-dd HH:mm:ss}", new { @class = "form-control form-control-sm", type = "datetime-local" })
+                </div>
+            </div>
+
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mtc_status_name, htmlAttributes: new { @class = "col-sm-2 col-form-label-sm" })
+                <div class="col-md-3">
+                    @Html.RadioButtonFor(model => model.mtc_status, "U", new { @class = "col-form-label-sm me-2" })
+                    @Html.Label("Not Finished", "Not Finished", htmlAttributes: new { @class = "col-form-label-sm" })
+                </div>
+                <div class="col-md-6">
+                    @Html.RadioButtonFor(model => model.mtc_status, "F", new { @class = "col-form-label-sm me-2" })
+                    @Html.Label("Finished", "Finished", htmlAttributes: new { @class = "col-form-label-sm" })
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                @*<button type="button" class="btn btn-outline-dark" id="AddMtcAction">
+                    + Add Item
+                </button>*@
+            </div>
+
+            <div class="table-responsive">
+                <table id="Mr_MaintenanceAction" class="table search-table table-sm align-middle text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th style="display:none"></th>
+                            <th scope="col">Trouble</th>
+                            <th scope="col">Maintenance Action</th>
+                            @*<th scope="col">Action</th>*@
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @*<tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>*@
+
+                        @if (Model.Detail2 != null)
+                        {
+                            for (int i = 0; i < Model.Detail2.Count; i++)
+                            {
+                                <tr>
+                                    <td style="text-align:center">
+                                        <input type="hidden" name="Index" value="B-" + "@i" />
+                                        @(NomorBaris += 1)
+                                    </td>
+                                    <td style="display:none">
+                                        @Html.EditorFor(Item => Item.Detail2[i].trouble_id, new { htmlAttributes = new { @class = "form-control form-control-sm", @id = "Detail2[" + i + "]." + "trouble_id" } })
+                                    </td>
+                                    <td>
+                                        @Html.EditorFor(Item => Item.Detail2[i].trouble_name, new { htmlAttributes = new { @class = "form-control form-control-sm", @id = "Detail2[" + i + "]." + "trouble_name", @readonly = "readonly" } })
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Details", "Details2", new { id = Model.dept_id.ToString() + ";" + Model.mc_id.ToString() + ";" + Model.mtc_slip_no1.ToString() + ";" + Model.mtc_slip_no2.ToString() + ";" + Model.mtc_ser_no.ToString() + ";" + Model.Detail2[i].trouble_id + ";" + ViewBag.mtcid }, new { @class = "badge rounded-pill bg-primary-subtle text-primary" })
+                                    </td>
+                                    @*<td>
+                                            <button class="btn btn-danger" onclick="return this.parentNode.parentNode.remove();">delete</button>
+                                        </td>*@
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            @*<button type="submit" class="btn btn-primary">Save</button>*@
+            @Html.ActionLink("Back", "Index", "MaintenanceResult", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+    }
+
+
+
+</div>
+

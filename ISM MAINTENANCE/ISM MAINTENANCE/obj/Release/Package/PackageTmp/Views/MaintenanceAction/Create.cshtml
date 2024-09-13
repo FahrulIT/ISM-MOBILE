@@ -1,0 +1,161 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.MaintenanceAction
+
+@{
+    ViewBag.Title = "Create";
+    ViewBag.Menu = "Maintenance Action";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    @using (Html.BeginForm("Create", "MaintenanceAction", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-header text-bg-primary">
+            <h4 class="mb-0 text-white fs-6">@ViewBag.Menu - @ViewBag.Title</h4>
+        </div>
+
+        <div class="card-body">
+            @*@Html.AntiForgeryToken()*@
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.dept_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("dept_id", null, null, htmlAttributes: new { @class = "form-select text-black" })
+                    @Html.ValidationMessageFor(model => model.dept_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mc_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mc_id", null, null, htmlAttributes: new { @class = "form-select text-black" })
+                    @Html.ValidationMessageFor(model => model.mc_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mtc_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mtc_id", null, "Select Maintenance Type", htmlAttributes: new { @class = "form-select text-black", @onchange = "singleSelectChangeValue()" })
+                    @Html.ValidationMessageFor(model => model.mtc_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.trouble_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("trouble_id", null, "Select Machine Trouble Type", htmlAttributes: new { @class = "form-select text-black", @onchange = "GetCode()" })
+                    @Html.ValidationMessageFor(model => model.trouble_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mtc_action_id, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mtc_action_id, new { htmlAttributes = new { @class = "form-control text-black" } })
+                    @Html.ValidationMessageFor(model => model.mtc_action_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mtc_action_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mtc_action_name, new { htmlAttributes = new { @class = "form-control text-uppercase text-black" } })
+                    @Html.ValidationMessageFor(model => model.mtc_action_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            @Html.ActionLink("Back", "Index", "MaintenanceAction", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+    }
+
+</div>
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    function singleSelectChangeValue() {
+        var selObj = document.getElementById("mtc_id");
+        var selValue = selObj.options[selObj.selectedIndex].text;
+
+        var cubes = @Html.Raw(Json.Encode(ViewBag.Test));
+        //var res = cubes.map(bill => bill.MaxMCID).reduce((acc, amount) => acc + amount);
+        var newarray = cubes.filter(x => x.Trouble_Type == selValue);
+        newarray.sort;
+        //console.log(newarray);
+
+        document.getElementById("trouble_id").options.length = 0;
+        var topicSel = document.getElementById("trouble_id");
+
+        for(var i = 0; i < newarray.length; i++) {
+            topicSel.options[topicSel.options.length] = new Option(newarray[i].trouble_name,newarray[i].trouble_id);
+        }
+
+        if(selValue == "PREVENTIVE"){
+            var Data_mtc_action = @Html.Raw(Json.Encode(ViewBag.MtcAction));
+            var Filter_mtc_action = Data_mtc_action.filter(x=> x.dept_id == $('#dept_id').val() && x.mc_id ==  $('#mc_id').val() && x.mtc_id == $('#mtc_id').val());
+            var str = Filter_mtc_action[Filter_mtc_action.length-1].mtc_action_id;
+            var match = str.replace(/[^a-zA-Z]/g, '');
+            var code = ""
+            var id = 0;
+
+            var a = str.replace(match, '');
+            if (a.length==1 && parseInt(a) < 9){
+                id = parseInt(a) + 1;
+                code = match + "0" + id;
+            }
+            else{
+                id = parseInt(a) + 1;     
+                code = match + id;
+            }
+            $('#mtc_action_id').val(code);
+
+        }
+        else{
+            $('#mtc_action_id').val("");
+        }
+
+
+
+
+    }
+
+    function GetCode(){
+        var _deptid = $('#dept_id').val();
+        var _mc_id = $('#mc_id').val();
+        var _mtc_id = $('#mtc_id').val();
+        var _trouble_id = $('#trouble_id').val();
+
+        var Data_mtc_action = @Html.Raw(Json.Encode(ViewBag.MtcAction));
+        var Filter_mtc_action = Data_mtc_action.filter(x=> x.dept_id == _deptid && x.mc_id == _mc_id && x.mtc_id == _mtc_id && x.trouble_id == _trouble_id);
+        //Filter_mtc_action.sort(4);
+        var _mtc_action_id = "";
+        var id = "";
+        if(Filter_mtc_action.length ==0){
+            _mtc_action_id = _trouble_id + "01";
+        }else
+        {
+            var str = Filter_mtc_action[Filter_mtc_action.length-1].mtc_action_id;
+            console.log(str);
+            str = str.replace(_trouble_id, '');
+            //console.log(str.replace(_trouble_id, ''));
+            var nomor = parseInt(str);
+
+            if (nomor.toString().length == 1 && nomor < 9 ) {
+                id  = "0" + (nomor + 1);
+            }else{
+                id = nomor + 1;
+            }
+            _mtc_action_id = _trouble_id + id;
+        }
+
+        $('#mtc_action_id').val(_mtc_action_id);
+        console.log(Filter_mtc_action);
+        console.log(_trouble_id);
+        console.log(_mtc_action_id);
+    }
+</script>

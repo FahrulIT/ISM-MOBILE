@@ -1,0 +1,194 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.MaintenanceHistoryHeader
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string tanggal = Model.note_date.ToString("dd-MM-yyyy");
+    string Nomor = Model.dept_name + "/" + Model.mc_type + "/" + tanggal + "/" + Model.shift + "/" + Model.machine_no;
+    int nomorbaris = 0;
+    int nomorbaris2 = 0;
+}
+<div class="card">
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">M/C Quality Trouble Maintenance History - Details</h4>
+    </div>
+
+    <div class="card-body">
+
+        <div class="mb-1 row">
+            @Html.Label("Dept/MC Type/Note Date/shift/Machine Number", htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            @*<div class="col-md-4">
+                @Html.TextBox("nomor", "Dept/MC Type/Note Date/shift/Machine Number", new { @class = "form-control", @readonly = "readonly" })
+            </div>*@
+
+            <div class="col-md-10">
+                @Html.TextBox("nomor", Nomor, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.stop_from, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.stop_from, "{0:dd-MM-yyyy HH:mm:ss}", new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.pic_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBox("PIC", Model.pic_name, new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.mtc_start, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.mtc_start, "{0:dd-MM-yyyy HH:mm:ss}", new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.mtc_stop, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.mtc_stop, "{0:dd-MM-yyyy HH:mm:ss}", new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.finish_sts, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBox("Finish", Model.finish_sts, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+
+
+        <br />
+        <br />
+        <div class="col-md-4 col-xl-3">
+            <button type="button" class="btn btn-outline-primary" id="OpenModal_MtcAction" data-bs-toggle="modal" data-bs-target="#MaintenanceActionModal">
+                Maintenance Action - Detail
+            </button>
+        </div>
+        <br />
+
+        <div class="table-responsive-sm">
+            <table id="MaintenanceActionDetailTable" class="table table-sm-customByFahrul align-middle text-nowrap mb-0">
+                <thead class="header-item">
+                    <tr>
+                        <th>
+                            No
+                        </th>
+
+                        <th>
+                            MTC Type
+                        </th>
+
+                        <th>
+                            Trouble Name
+                        </th>
+                        <th>
+                            Maintenance Action
+                        </th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.Detail_1)
+                    {
+                        <tr>
+                            <td style="text-align:center">
+                                @(nomorbaris += 1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mtc_type)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.trouble_name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mtc_action_name)
+                            </td>                         
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+        <br />
+        @*id="OpenModal_SparePart"*@
+        <div class="col-md-4 col-xl-3">
+            <button type="button" class="btn btn-outline-primary" id="OpenModal_SparePart" data-bs-toggle="modal" data-bs-target="#SparepartModal">
+                Spare Part - Detail
+            </button>
+        </div>
+        <br />
+
+        <div class="table-responsive">
+            <table id="SparepareDetailTable" class="table table-sm-customByFahrul align-middle text-nowrap mb-0">
+                <thead class="header-item">
+                    <tr>
+                        <th>
+                            No
+                        </th>
+
+                        <th>
+                            Spare Part
+                        </th>
+
+                        <th>
+                            Unit Price (USD)
+                        </th>
+
+                        <th>
+                            Qty
+                        </th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                @foreach (var item in Model.Detail_2)
+                {
+                    <tr>
+                        <td style="text-align:center">
+                            @(nomorbaris2 += 1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.item_name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.price)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.quantity)
+                        </td>
+                    </tr>
+                }</tbody>
+            </table>
+
+        </div>
+
+
+
+    </div>
+
+    <div class="card-footer">
+        <div class="mb-1 row">
+            <div class="col-md-5">                
+                <a class="btn btn-primary" href="@Url.Action("Index","MaintenanceHistory")">Back To List</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+

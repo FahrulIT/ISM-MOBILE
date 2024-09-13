@@ -1,0 +1,801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="istem_smsModelStoreContainer" CdmEntityContainer="WvMaintenanceEntities">
+    <EntitySetMapping Name="ms_dept">
+      <EntityTypeMapping TypeName="istem_smsModel.ms_dept">
+        <MappingFragment StoreEntitySet="ms_dept">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="act_rec" ColumnName="act_rec" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ms_machine_type">
+      <EntityTypeMapping TypeName="istem_smsModel.ms_machine_type">
+        <MappingFragment StoreEntitySet="ms_machine_type">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="act_rec" ColumnName="act_rec" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ms_maintenance">
+      <EntityTypeMapping TypeName="istem_smsModel.ms_maintenance">
+        <MappingFragment StoreEntitySet="ms_maintenance">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="act_rec" ColumnName="act_rec" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="mtc_name" ColumnName="mtc_name" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ms_maintenance_action">
+      <EntityTypeMapping TypeName="istem_smsModel.ms_maintenance_action">
+        <MappingFragment StoreEntitySet="ms_maintenance_action">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="act_rec" ColumnName="act_rec" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="mtc_action_name" ColumnName="mtc_action_name" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="wv_grey_insp_defect_master">
+      <EntityTypeMapping TypeName="istem_smsModel.wv_grey_insp_defect_master">
+        <MappingFragment StoreEntitySet="wv_grey_insp_defect_master">
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_date" ColumnName="proc_date" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="proc_no" ColumnName="proc_no" />
+          <ScalarProperty Name="rec_sts" ColumnName="rec_sts" />
+          <ScalarProperty Name="defect_category" ColumnName="defect_category" />
+          <ScalarProperty Name="defect_type" ColumnName="defect_type" />
+          <ScalarProperty Name="defect_alias" ColumnName="defect_alias" />
+          <ScalarProperty Name="defect_name" ColumnName="defect_name" />
+          <ScalarProperty Name="defect_code" ColumnName="defect_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ms_machine_trouble">
+      <EntityTypeMapping TypeName="istem_smsModel.ms_machine_trouble">
+        <MappingFragment StoreEntitySet="ms_machine_trouble">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="act_rec" ColumnName="act_rec" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="trouble_name" ColumnName="trouble_name" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysuser_app">
+      <EntityTypeMapping TypeName="istem_smsModel.sysuser_app">
+        <MappingFragment StoreEntitySet="sysuser_app">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="proc_date" ColumnName="proc_date" />
+          <ScalarProperty Name="c_user_id" ColumnName="c_user_id" />
+          <ScalarProperty Name="rec_sts" ColumnName="rec_sts" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="departement" ColumnName="departement" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="NIK" ColumnName="NIK" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_Machine_Trouble">
+      <EntityTypeMapping TypeName="istem_smsModel.v_Machine_Trouble">
+        <MappingFragment StoreEntitySet="v_Machine_Trouble">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Machine" ColumnName="Machine" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_Machine_Type">
+      <EntityTypeMapping TypeName="istem_smsModel.v_Machine_Type">
+        <MappingFragment StoreEntitySet="v_Machine_Type">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="act_rec" ColumnName="act_rec" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departement_master">
+      <EntityTypeMapping TypeName="istem_smsModel.departement_master">
+        <MappingFragment StoreEntitySet="departement_master">
+          <ScalarProperty Name="comp_code" ColumnName="comp_code" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="proc_date" ColumnName="proc_date" />
+          <ScalarProperty Name="c_user_id" ColumnName="c_user_id" />
+          <ScalarProperty Name="Dept_Desc" ColumnName="Dept_Desc" />
+          <ScalarProperty Name="Dept_ID" ColumnName="Dept_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_Maintenance_Action">
+      <EntityTypeMapping TypeName="istem_smsModel.v_Maintenance_Action">
+        <MappingFragment StoreEntitySet="v_Maintenance_Action">
+          <ScalarProperty Name="mtc_action_name" ColumnName="mtc_action_name" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="trouble_name" ColumnName="trouble_name" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_name" ColumnName="mtc_name" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_Maintenance_Type_for_Maintenance_Action">
+      <EntityTypeMapping TypeName="istem_smsModel.v_Maintenance_Type_for_Maintenance_Action">
+        <MappingFragment StoreEntitySet="v_Maintenance_Type_for_Maintenance_Action">
+          <ScalarProperty Name="trouble_name" ColumnName="trouble_name" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="Trouble_Type" ColumnName="Trouble_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_Maintenance_Activity">
+      <EntityTypeMapping TypeName="istem_smsModel.v_Maintenance_Activity">
+        <MappingFragment StoreEntitySet="v_Maintenance_Activity">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_no" ColumnName="proc_no" />
+          <ScalarProperty Name="rec_sts" ColumnName="rec_sts" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="mtc_status" ColumnName="mtc_status" />
+          <ScalarProperty Name="mtc_name" ColumnName="mtc_name" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+          <ScalarProperty Name="mtc_slip_no2" ColumnName="mtc_slip_no2" />
+          <ScalarProperty Name="mtc_slip_no1" ColumnName="mtc_slip_no1" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_Machine_Master_AJL">
+      <EntityTypeMapping TypeName="istem_smsModel.v_Machine_Master_AJL">
+        <MappingFragment StoreEntitySet="v_Machine_Master_AJL">
+          <ScalarProperty Name="MachineNo" ColumnName="MachineNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_Mtc_Action_For_Mtc_Result">
+      <EntityTypeMapping TypeName="istem_smsModel.v_Mtc_Action_For_Mtc_Result">
+        <MappingFragment StoreEntitySet="v_Mtc_Action_For_Mtc_Result">
+          <ScalarProperty Name="trouble_name" ColumnName="trouble_name" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_name" ColumnName="mtc_name" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_Details2">
+      <EntityTypeMapping TypeName="istem_smsModel.v_Details2">
+        <MappingFragment StoreEntitySet="v_Details2">
+          <ScalarProperty Name="mtc_action_name" ColumnName="mtc_action_name" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_no" ColumnName="proc_no" />
+          <ScalarProperty Name="rec_sts" ColumnName="rec_sts" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_ser_no" ColumnName="mtc_ser_no" />
+          <ScalarProperty Name="mtc_slip_no2" ColumnName="mtc_slip_no2" />
+          <ScalarProperty Name="mtc_slip_no1" ColumnName="mtc_slip_no1" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_maintenance_action">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_maintenance_action">
+        <MappingFragment StoreEntitySet="tr_maintenance_action">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_maintenance_sparepart">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_maintenance_sparepart">
+        <MappingFragment StoreEntitySet="tr_maintenance_sparepart">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_shift_leader_note">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_shift_leader_note">
+        <MappingFragment StoreEntitySet="tr_shift_leader_note">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_no" ColumnName="proc_no" />
+          <ScalarProperty Name="rec_sts" ColumnName="rec_sts" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="pic" ColumnName="pic" />
+          <ScalarProperty Name="stop_to" ColumnName="stop_to" />
+          <ScalarProperty Name="stop_from" ColumnName="stop_from" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_shift_leader_note_detail">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_shift_leader_note_detail">
+        <MappingFragment StoreEntitySet="tr_shift_leader_note_detail">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_Shift_Leader_Header">
+      <EntityTypeMapping TypeName="istem_smsModel.v_Shift_Leader_Header">
+        <MappingFragment StoreEntitySet="v_Shift_Leader_Header">
+          <ScalarProperty Name="mtc_name" ColumnName="mtc_name" />
+          <ScalarProperty Name="stop_to" ColumnName="stop_to" />
+          <ScalarProperty Name="stop_from" ColumnName="stop_from" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="pic" ColumnName="pic" />
+          <ScalarProperty Name="machine_no" ColumnName="machine_no" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_maintenance">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_maintenance">
+        <MappingFragment StoreEntitySet="tr_maintenance">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_no" ColumnName="proc_no" />
+          <ScalarProperty Name="rec_sts" ColumnName="rec_sts" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="finish_sts" ColumnName="finish_sts" />
+          <ScalarProperty Name="pic_mtc" ColumnName="pic_mtc" />
+          <ScalarProperty Name="mtc_finish" ColumnName="mtc_finish" />
+          <ScalarProperty Name="mtc_start" ColumnName="mtc_start" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_Shift_Leader">
+      <EntityTypeMapping TypeName="istem_smsModel.v_Shift_Leader">
+        <MappingFragment StoreEntitySet="v_Shift_Leader">
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="namatrouble" ColumnName="namatrouble" />
+          <ScalarProperty Name="trouble_name" ColumnName="trouble_name" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_name" ColumnName="mtc_name" />
+          <ScalarProperty Name="stop_to" ColumnName="stop_to" />
+          <ScalarProperty Name="stop_from" ColumnName="stop_from" />
+          <ScalarProperty Name="pic" ColumnName="pic" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_MaintenanceHistory">
+      <EntityTypeMapping TypeName="istem_smsModel.v_MaintenanceHistory">
+        <MappingFragment StoreEntitySet="v_MaintenanceHistory">
+          <ScalarProperty Name="mtc_name" ColumnName="mtc_name" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="pic_mtc" ColumnName="pic_mtc" />
+          <ScalarProperty Name="finish_sts" ColumnName="finish_sts" />
+          <ScalarProperty Name="mtc_finish" ColumnName="mtc_finish" />
+          <ScalarProperty Name="mtc_start" ColumnName="mtc_start" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="machine_master">
+      <EntityTypeMapping TypeName="istem_smsModel.machine_master">
+        <MappingFragment StoreEntitySet="machine_master">
+          <ScalarProperty Name="jcm_f" ColumnName="jcm_f" />
+          <ScalarProperty Name="grey_no" ColumnName="grey_no" />
+          <ScalarProperty Name="seq_no" ColumnName="seq_no" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="proc_date" ColumnName="proc_date" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="proc_no" ColumnName="proc_no" />
+          <ScalarProperty Name="rec_sts" ColumnName="rec_sts" />
+          <ScalarProperty Name="rec_no" ColumnName="rec_no" />
+          <ScalarProperty Name="proc_by" ColumnName="proc_by" />
+          <ScalarProperty Name="operator" ColumnName="operator" />
+          <ScalarProperty Name="rpm" ColumnName="rpm" />
+          <ScalarProperty Name="loom_model" ColumnName="loom_model" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="loom_type" ColumnName="loom_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="autonum_preventivemaintenance" FunctionName="istem_smsModel.Store.autonum_preventivemaintenance">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="istem_smsModel.autonum_preventivemaintenance_Result">
+          <ScalarProperty Name="voucher" ColumnName="voucher" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="view_preventivemaintenance" FunctionName="istem_smsModel.Store.view_preventivemaintenance">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="istem_smsModel.view_preventivemaintenance_Result">
+          <ScalarProperty Name="deptName" ColumnName="deptName" />
+          <ScalarProperty Name="machName" ColumnName="machName" />
+          <ScalarProperty Name="voucherNo" ColumnName="voucherNo" />
+          <ScalarProperty Name="mtcNo" ColumnName="mtcNo" />
+          <ScalarProperty Name="mtcTime" ColumnName="mtcTime" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="mtc_slip_no1" ColumnName="mtc_slip_no1" />
+          <ScalarProperty Name="mtc_slip_no2" ColumnName="mtc_slip_no2" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="mtc_time" ColumnName="mtc_time" />
+          <ScalarProperty Name="finish_sts" ColumnName="finish_sts" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="v_MaintenanceSparepart">
+      <EntityTypeMapping TypeName="istem_smsModel.v_MaintenanceSparepart">
+        <MappingFragment StoreEntitySet="v_MaintenanceSparepart">
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_MaintenanceActionShiftLeaderNotes">
+      <EntityTypeMapping TypeName="istem_smsModel.v_MaintenanceActionShiftLeaderNotes">
+        <MappingFragment StoreEntitySet="v_MaintenanceActionShiftLeaderNotes">
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mtc_action_name" ColumnName="mtc_action_name" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="trouble_name" ColumnName="trouble_name" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_name" ColumnName="mtc_name" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_preventivemaintenance_history">
+      <EntityTypeMapping TypeName="istem_smsModel.vw_preventivemaintenance_history">
+        <MappingFragment StoreEntitySet="vw_preventivemaintenance_history">
+          <ScalarProperty Name="mtcSpace" ColumnName="mtcSpace" />
+          <ScalarProperty Name="proc_no" ColumnName="proc_no" />
+          <ScalarProperty Name="pic_mtc" ColumnName="pic_mtc" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="mtc_finish" ColumnName="mtc_finish" />
+          <ScalarProperty Name="mtc_start" ColumnName="mtc_start" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="mtc_schedule" ColumnName="mtc_schedule" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="mtc_action_name" ColumnName="mtc_action_name" />
+          <ScalarProperty Name="mtc_name" ColumnName="mtc_name" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="mtcDuration" ColumnName="mtcDuration" />
+          <ScalarProperty Name="finishMtc" ColumnName="finishMtc" />
+          <ScalarProperty Name="startMtc" ColumnName="startMtc" />
+          <ScalarProperty Name="mtcNo" ColumnName="mtcNo" />
+          <ScalarProperty Name="mtcSchedule" ColumnName="mtcSchedule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_preventivemaintenance_sparepart">
+      <EntityTypeMapping TypeName="istem_smsModel.vw_preventivemaintenance_sparepart">
+        <MappingFragment StoreEntitySet="vw_preventivemaintenance_sparepart">
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="mtc_schedule" ColumnName="mtc_schedule" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_prev_maintenance">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_prev_maintenance">
+        <MappingFragment StoreEntitySet="tr_prev_maintenance">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_no" ColumnName="proc_no" />
+          <ScalarProperty Name="rec_sts" ColumnName="rec_sts" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="pic_mtc" ColumnName="pic_mtc" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="mtc_finish" ColumnName="mtc_finish" />
+          <ScalarProperty Name="mtc_start" ColumnName="mtc_start" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="mtc_schedule" ColumnName="mtc_schedule" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_SAP_OITM">
+      <EntityTypeMapping TypeName="istem_smsModel.v_SAP_OITM">
+        <MappingFragment StoreEntitySet="v_SAP_OITM">
+          <ScalarProperty Name="no_catalog" ColumnName="no_catalog" />
+          <ScalarProperty Name="nama_sparepart" ColumnName="nama_sparepart" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_SAP_OITM_PRICE">
+      <EntityTypeMapping TypeName="istem_smsModel.v_SAP_OITM_PRICE">
+        <MappingFragment StoreEntitySet="v_SAP_OITM_PRICE">
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_prev_maintenance_sparepart">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_prev_maintenance_sparepart">
+        <MappingFragment StoreEntitySet="tr_prev_maintenance_sparepart">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="mtc_schedule" ColumnName="mtc_schedule" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ms_maintenance_action_machine">
+      <EntityTypeMapping TypeName="istem_smsModel.vw_ms_maintenance_action_machine">
+        <MappingFragment StoreEntitySet="vw_ms_maintenance_action_machine">
+          <ScalarProperty Name="transactionUse" ColumnName="transactionUse" />
+          <ScalarProperty Name="mtc_action_name" ColumnName="mtc_action_name" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="mtcActionName" ColumnName="mtcActionName" />
+          <ScalarProperty Name="troubelName" ColumnName="troubelName" />
+          <ScalarProperty Name="machine" ColumnName="machine" />
+          <ScalarProperty Name="department" ColumnName="department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ms_maintenance_action_preventive">
+      <EntityTypeMapping TypeName="istem_smsModel.vw_ms_maintenance_action_preventive">
+        <MappingFragment StoreEntitySet="vw_ms_maintenance_action_preventive">
+          <ScalarProperty Name="transactionUse" ColumnName="transactionUse" />
+          <ScalarProperty Name="mtc_action_name" ColumnName="mtc_action_name" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="mtcActionName" ColumnName="mtcActionName" />
+          <ScalarProperty Name="troubelName" ColumnName="troubelName" />
+          <ScalarProperty Name="machine" ColumnName="machine" />
+          <ScalarProperty Name="department" ColumnName="department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ms_maintenance_action_quality">
+      <EntityTypeMapping TypeName="istem_smsModel.vw_ms_maintenance_action_quality">
+        <MappingFragment StoreEntitySet="vw_ms_maintenance_action_quality">
+          <ScalarProperty Name="transactionUse" ColumnName="transactionUse" />
+          <ScalarProperty Name="mtc_action_name" ColumnName="mtc_action_name" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="mtcActionName" ColumnName="mtcActionName" />
+          <ScalarProperty Name="troubelName" ColumnName="troubelName" />
+          <ScalarProperty Name="machine" ColumnName="machine" />
+          <ScalarProperty Name="department" ColumnName="department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_MaintenanceActionforModal">
+      <EntityTypeMapping TypeName="istem_smsModel.v_MaintenanceActionforModal">
+        <MappingFragment StoreEntitySet="v_MaintenanceActionforModal">
+          <ScalarProperty Name="mtc_action_name" ColumnName="mtc_action_name" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="trouble_name" ColumnName="trouble_name" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_name" ColumnName="mtc_name" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ms_user_access_menu">
+      <EntityTypeMapping TypeName="istem_smsModel.ms_user_access_menu">
+        <MappingFragment StoreEntitySet="ms_user_access_menu">
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="submenu" ColumnName="submenu" />
+          <ScalarProperty Name="menu" ColumnName="menu" />
+          <ScalarProperty Name="roles" ColumnName="roles" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ms_machine_trouble_hist">
+      <EntityTypeMapping TypeName="istem_smsModel.ms_machine_trouble_hist">
+        <MappingFragment StoreEntitySet="ms_machine_trouble_hist">
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="act_rec" ColumnName="act_rec" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="trouble_name" ColumnName="trouble_name" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_maintenance_action_hist">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_maintenance_action_hist">
+        <MappingFragment StoreEntitySet="tr_maintenance_action_hist">
+          <ScalarProperty Name="user_id_edit" ColumnName="user_id_edit" />
+          <ScalarProperty Name="user_id_del" ColumnName="user_id_del" />
+          <ScalarProperty Name="proc_time_edit" ColumnName="proc_time_edit" />
+          <ScalarProperty Name="proc_time_del" ColumnName="proc_time_del" />
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="mtc_action_id" ColumnName="mtc_action_id" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_maintenance_hist">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_maintenance_hist">
+        <MappingFragment StoreEntitySet="tr_maintenance_hist">
+          <ScalarProperty Name="user_id_edit" ColumnName="user_id_edit" />
+          <ScalarProperty Name="user_id_del" ColumnName="user_id_del" />
+          <ScalarProperty Name="proc_time_edit" ColumnName="proc_time_edit" />
+          <ScalarProperty Name="proc_time_del" ColumnName="proc_time_del" />
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_no" ColumnName="proc_no" />
+          <ScalarProperty Name="rec_sts" ColumnName="rec_sts" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="finish_sts" ColumnName="finish_sts" />
+          <ScalarProperty Name="pic_mtc" ColumnName="pic_mtc" />
+          <ScalarProperty Name="mtc_finish" ColumnName="mtc_finish" />
+          <ScalarProperty Name="mtc_start" ColumnName="mtc_start" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_maintenance_sparepart_hist">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_maintenance_sparepart_hist">
+        <MappingFragment StoreEntitySet="tr_maintenance_sparepart_hist">
+          <ScalarProperty Name="user_id_edit" ColumnName="user_id_edit" />
+          <ScalarProperty Name="user_id_del" ColumnName="user_id_del" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="proc_time_edit" ColumnName="proc_time_edit" />
+          <ScalarProperty Name="proc_time_del" ColumnName="proc_time_del" />
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_shift_leader_note_detail_hist">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_shift_leader_note_detail_hist">
+        <MappingFragment StoreEntitySet="tr_shift_leader_note_detail_hist">
+          <ScalarProperty Name="user_id_edit" ColumnName="user_id_edit" />
+          <ScalarProperty Name="user_id_del" ColumnName="user_id_del" />
+          <ScalarProperty Name="proc_time_edit" ColumnName="proc_time_edit" />
+          <ScalarProperty Name="proc_time_del" ColumnName="proc_time_del" />
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="trouble_id" ColumnName="trouble_id" />
+          <ScalarProperty Name="mtc_id" ColumnName="mtc_id" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_shift_leader_note_hist">
+      <EntityTypeMapping TypeName="istem_smsModel.tr_shift_leader_note_hist">
+        <MappingFragment StoreEntitySet="tr_shift_leader_note_hist">
+          <ScalarProperty Name="user_id_edit" ColumnName="user_id_edit" />
+          <ScalarProperty Name="user_id_del" ColumnName="user_id_del" />
+          <ScalarProperty Name="proc_time_edit" ColumnName="proc_time_edit" />
+          <ScalarProperty Name="proc_time_del" ColumnName="proc_time_del" />
+          <ScalarProperty Name="proc_time" ColumnName="proc_time" />
+          <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+          <ScalarProperty Name="proc_no" ColumnName="proc_no" />
+          <ScalarProperty Name="rec_sts" ColumnName="rec_sts" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="pic" ColumnName="pic" />
+          <ScalarProperty Name="stop_to" ColumnName="stop_to" />
+          <ScalarProperty Name="stop_from" ColumnName="stop_from" />
+          <ScalarProperty Name="loom_no" ColumnName="loom_no" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="note_date" ColumnName="note_date" />
+          <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ms_user_access_button">
+      <EntityTypeMapping TypeName="istem_smsModel.ms_user_access_button">
+        <MappingFragment StoreEntitySet="ms_user_access_button">
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="button" ColumnName="button" />
+          <ScalarProperty Name="submenu" ColumnName="submenu" />
+          <ScalarProperty Name="menu" ColumnName="menu" />
+          <ScalarProperty Name="roles" ColumnName="roles" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_user_ism_maintenance">
+      <EntityTypeMapping TypeName="istem_smsModel.v_user_ism_maintenance">
+        <MappingFragment StoreEntitySet="v_user_ism_maintenance">
+          <ScalarProperty Name="roles" ColumnName="roles" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="departement" ColumnName="departement" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

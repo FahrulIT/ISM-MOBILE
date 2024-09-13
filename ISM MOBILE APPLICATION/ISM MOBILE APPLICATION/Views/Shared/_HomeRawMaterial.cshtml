@@ -1,0 +1,310 @@
+﻿
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <span class="font-medium fw-semibold card-title" style="font-size:15px">Raw Material (LBS)</span>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Warehouse
+                            </div>
+                        </div>
+                        <div id="chart_RMWH" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                        <div class="" style="display:flex;justify-content:center;">
+                            @*<a href="#" class="btn btn btn-outline-dark">Detail</a>*@
+                            <button type="button" class="btn btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#ModalForRMWH">Detail</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="ModalForRMWH" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-fullscreen">
+                                    <div class="modal-content">
+                                        <div class="modal-header modal-colored-header bg-primary">
+                                            <h5 class="modal-title text-white" id="exampleModalLabel">Raw Material Warehouse</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" style="font-family:Arial">
+                                            <div class="table-responsive">
+                                                <table id="RM-WH" class="display" style="width:100%">
+                                                    <thead>
+                                                        <!-- start row -->
+                                                        <tr>
+                                                            <th scope="col" colspan="1" rowspan="2">Item</th>
+                                                            <th scope="col" colspan="3" rowspan="1" class="text-center" data-dt-order="disable">Until Today</th>
+                                                            <th scope="col" colspan="2" rowspan="1" class="text-center" data-dt-order="disable">This Month Total</th>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th scope="col" class="text-end">Percentage</th>
+                                                            <th scope="col" class="text-end">Plan</th>
+                                                            <th scope="col" class="text-end">Actual</th>
+                                                            <th scope="col" class="text-end">Tot Plan</th>
+                                                            <th scope="col" class="text-end">Curr Inv</th>
+
+                                                            <!--<th scope="col">TM Plan</th>
+                                                            <th scope="col">TM Inv</th>-->
+
+                                                        </tr>
+                                                        <!-- end row -->
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- start row -->
+                                                        @*@if (ViewBag.Count_Detail_Usage_RMC == 0)*@
+                                                        @if (ViewBag.Detail_RMWH == null)
+                                                        {
+                                                            <tr>
+                                                                <th scope="row">-</th>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        }
+                                                        else
+                                                        {
+                                                            foreach (var data in ViewBag.Detail_RMWH)
+                                                            {
+                                                                <tr>
+                                                                    <td>@data.Item</td>
+                                                                    <td class="text-end">@data.Persentase.ToString("#,##0.00") %</td>
+                                                                    <td class="text-end">@data.Plan.ToString("#,##0.00")</td>
+                                                                    <td class="text-end">@data.Actual.ToString("#,##0.00")</td>
+                                                                    <td class="text-end">@data.PlanofMonth.ToString("#,##0.00")</td>
+                                                                    <td class="text-end">@data.CurrentInv.ToString("#,##0.00")</td>
+                                                                    <!--<td>0</td>
+                                                                    <td>0</td>-->
+                                                                </tr>
+                                                            }
+                                                        }
+
+                                                        <!-- end row -->
+                                                    </tbody>
+
+                                                    <tfoot>
+                                                        @*@if (ViewBag.Count_SubtotalPlan_Usage_RMC == 0)*@
+                                                        @if (ViewBag.SubtotalPlan_RMWH == null)
+                                                        {
+                                                            <tr>
+                                                                <th scope="row">Total (Pnned)</th>
+                                                                <td class="text-end fw-bolder">-</td>
+                                                                <td class="text-end fw-bolder">-</td>
+                                                                <td class="text-end fw-bolder">-</td>
+                                                                <td class="text-end fw-bolder">-</td>
+                                                                <td class="text-end fw-bolder">-</td>
+                                                            </tr>
+                                                        }
+                                                        else
+                                                        {
+                                                            foreach (var data in ViewBag.SubtotalPlan_RMWH)
+                                                            {
+                                                                <tr>
+                                                                    <th scope="row">@data.Item</th>
+                                                                    <td class="text-end fw-bolder">@data.Persentase.ToString("#,##0.00") %</td>
+                                                                    <td class="text-end fw-bolder">@data.Plan.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.Actual.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.PlanofMonth.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.CurrentInv.ToString("#,##0.00")</td>
+
+                                                                </tr>
+                                                            }
+                                                        }
+
+                                                        @*@if (ViewBag.Count_SubtotalAll_Usage_RMC == 0)*@
+                                                        @if (ViewBag.SubtotalAll_RMWH == null)
+                                                        {
+                                                            <tr>
+                                                                <th scope="row">Total (All)</th>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        }
+                                                        else
+                                                        {
+                                                            foreach (var data in ViewBag.SubtotalAll_RMWH)
+                                                            {
+                                                                <tr>
+                                                                    <th scope="row">@data.Item</th>
+                                                                    <td class="text-end fw-bolder">@data.Persentase.ToString("#,##0.00") %</td>
+                                                                    <td class="text-end fw-bolder">@data.Plan.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.Actual.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.PlanofMonth.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.CurrentInv.ToString("#,##0.00")</td>
+                                                                    <!--<td>0</td>
+                                                                    <td>0</td>-->
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    </tfoot>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Consumption
+                            </div>
+                        </div>
+                        <div id="chart_Usage_RMC" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                        <div class="" style="display:flex;justify-content:center;">
+                            @*<a href="#" class="btn btn btn-outline-dark">Detail</a>*@
+                            <button type="button" class="btn btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#ModalForRMCUsage">Detail</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="ModalForRMCUsage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-fullscreen">
+                                    <div class="modal-content">
+                                        <div class="modal-header modal-colored-header bg-primary">
+                                            <h5 class="modal-title text-white" id="exampleModalLabel">Raw Material Consumption</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" style="font-family:Arial">
+                                            <div class="table-responsive">
+                                                <table id="RM-CONSUME" class="display" style="width:100%">
+                                                    <thead>
+                                                        <!-- start row -->
+                                                        <tr>
+                                                            <th scope="col" colspan="1" rowspan="2">Item</th>
+                                                            <th scope="col" colspan="3" rowspan="1" class="text-center" data-dt-order="disable">Until Today</th>
+                                                            <th scope="col" colspan="2" rowspan="1" class="text-center" data-dt-order="disable">This Month Total</th>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th scope="col" class="text-end">Percentage</th>
+                                                            <th scope="col" class="text-end">Plan</th>
+                                                            <th scope="col" class="text-end">Actual</th>
+                                                            <th scope="col" class="text-end">Tot Plan</th>
+                                                            <th scope="col" class="text-end">Curr Inv</th>
+
+                                                            <!--<th scope="col">TM Plan</th>
+                                                            <th scope="col">TM Inv</th>-->
+
+                                                        </tr>
+                                                        <!-- end row -->
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- start row -->
+                                                        @*@if (ViewBag.Count_Detail_Usage_RMC == 0)*@
+                                                        @if (ViewBag.Detail_Usage_RMC == null)
+                                                        {
+                                                            <tr>
+                                                                <th scope="row">-</th>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        }
+                                                        else
+                                                        {
+                                                            foreach (var data in ViewBag.Detail_Usage_RMC)
+                                                            {
+                                                                <tr>
+                                                                    <td>@data.Item</td>
+                                                                    <td class="text-end">@data.Persentase.ToString("#,##0.00") %</td>
+                                                                    <td class="text-end">@data.Plan.ToString("#,##0.00")</td>
+                                                                    <td class="text-end">@data.Actual.ToString("#,##0.00")</td>
+                                                                    <td class="text-end">@data.PlanofMonth.ToString("#,##0.00")</td>
+                                                                    <td class="text-end">@data.CurrentInv.ToString("#,##0.00")</td>
+                                                                    <!--<td>0</td>
+                                                                    <td>0</td>-->
+                                                                </tr>
+                                                            }
+                                                        }
+
+                                                        <!-- end row -->
+                                                    </tbody>
+
+                                                    <tfoot>
+                                                        @*@if (ViewBag.Count_SubtotalPlan_Usage_RMC == 0)*@
+                                                        @if (ViewBag.SubtotalPlan_Usage_RMC == null)
+                                                        {
+                                                            <tr>
+                                                                <th scope="row">Total (Planned)</th>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        }
+                                                        else
+                                                        {
+                                                            foreach (var data in ViewBag.SubtotalPlan_Usage_RMC)
+                                                            {
+                                                                <tr>
+                                                                    <th scope="row">@data.Item</th>
+                                                                    <td class="text-end fw-bolder">@data.Persentase.ToString("#,##0.00") %</td>
+                                                                    <td class="text-end fw-bolder">@data.Plan.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.Actual.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.PlanofMonth.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.CurrentInv.ToString("#,##0.00")</td>
+                                                                    <!--<td>0</td>
+                                                                    <td>0</td>-->
+                                                                </tr>
+                                                            }
+                                                        }
+
+                                                        @*@if (ViewBag.Count_SubtotalAll_Usage_RMC == 0)*@
+                                                        @if (ViewBag.SubtotalAll_Usage_RMC == null)
+                                                        {
+                                                            <tr>
+                                                                <th scope="row">Total (All)</th>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        }
+                                                        else
+                                                        {
+                                                            foreach (var data in ViewBag.SubtotalAll_Usage_RMC)
+                                                            {
+                                                                <tr>
+                                                                    <th scope="row">@data.Item</th>
+                                                                    <td class="text-end fw-bolder">@data.Persentase.ToString("#,##0.00") %</td>
+                                                                    <td class="text-end fw-bolder">@data.Plan.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.Actual.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.PlanofMonth.ToString("#,##0.00")</td>
+                                                                    <td class="text-end fw-bolder">@data.CurrentInv.ToString("#,##0.00")</td>
+                                                                    <!--<td>0</td>
+                                                                    <td>0</td>-->
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    </tfoot>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

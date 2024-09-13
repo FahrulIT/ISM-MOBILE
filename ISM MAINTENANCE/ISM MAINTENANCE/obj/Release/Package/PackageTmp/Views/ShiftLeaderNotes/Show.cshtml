@@ -1,0 +1,186 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.ShiftLeaderNotes
+
+@{
+    ViewBag.Title = "Show Data";
+    ViewBag.Menu = "Shift Leader Notes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int NomorBaris = 0;
+    string tanggal = Model.note_date.ToString("dd-MM-yyyy");
+    string stop_from = Model.stop_from == null ? "": Model.stop_from.ToString("dd-MM-yyyy HH:mm");
+}
+
+<div class="card">
+    @using (Html.BeginForm("Edit_add_remove_detail", "ShiftLeaderNotes", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-header text-bg-primary">
+            <h4 class="mb-0 text-white">@ViewBag.Menu - @ViewBag.Title</h4>
+        </div>
+
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.mc_id)
+            @Html.HiddenFor(model => model.dept_id)
+            @Html.HiddenFor(model => model.note_date, "{0:MM-dd-yyyy}")
+
+            @Html.HiddenFor(model => model.block)
+            @Html.HiddenFor(model => model.loom_no)
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.dept_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dept_name, new { htmlAttributes = new { @class = "form-control text-black", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.mc_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mc_name, new { htmlAttributes = new { @class = "form-control text-black", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.note_date, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @*@Html.Editor(tanggal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+                    <input class="form-control text-box single-line text-black" id="" name="" readonly="readonly" type="text" value=@tanggal>
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.shift, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.shift, new { htmlAttributes = new { @class = "form-control text-black", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.machine_no, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.machine_no, new { htmlAttributes = new { @class = "form-control text-black", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="mb-1 row">
+                @Html.LabelFor(model => model.stop_from, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBox(stop_from, stop_from, new { @class = "form-control text-black", @readonly = "readonly" })
+                    @*@Html.TextBox("mtc_end", "{0:yyyy-MM-dd HH:mm:ss}", new { @class = "form-control", type = "datetime-local" })*@
+                </div>
+            </div>
+
+            <div class="mb-4 row">
+                @Html.LabelFor(model => model.PicName, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PicName, new { htmlAttributes = new { @class = "form-control text-black", @readonly = "readonly" } })
+                    
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <button type="button" class="btn btn-outline-primary" id="OpenModal">
+                    Detail
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table id="AddNewShiftLeader" class="table search-table table-sm align-middle text-nowrap">
+                    <thead class="header-item">
+                        <tr>
+                            <th style="text-align:center">
+                                No
+                            </th>
+                            <th>
+                                Trouble Name
+                            </th>
+                            <th>
+                                Mtc Type
+                            </th>
+                            <th style="display:none">
+                                Mtc ID
+                            </th>
+                            <th style="display:none">
+                                trouble ID
+                            </th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <!-- start row -->
+                        @for (int i = 0; i < Model.ShiftLeaderNotesDetails.Count; i++)
+                        {
+                            <tr>
+                                <td style="text-align:center">
+                                    <input type="hidden" name="Index" value="B-@(i)" />
+                                    @(NomorBaris += 1)
+                                </td>
+
+                                <td>
+                                    @Html.EditorFor(modelItem => modelItem.ShiftLeaderNotesDetails[i].trouble_name, new { htmlAttributes = new { @class = "form-control form-control-sm text-black", @id = "ShiftLeaderNotesDetails[" + i + "]." + "trouble_name" } })
+                                </td>
+                                <td>
+                                    @Html.EditorFor(modelItem => modelItem.ShiftLeaderNotesDetails[i].mtc_name, new { htmlAttributes = new { @class = "form-control form-control-sm text-black", @id = "ShiftLeaderNotesDetail[" + i + "]." + "mtc_name" } })
+                                </td>
+                                <td style="display:none">
+                                    @Html.EditorFor(modelItem => modelItem.ShiftLeaderNotesDetails[i].mtc_id, new { htmlAttributes = new { @class = "form-control form-control-sm text-black", @id = "ShiftLeaderNotesDetail[" + i + "]." + "mtc_id" } })
+                                </td>
+                                <td style="display:none">
+                                    @Html.EditorFor(modelItem => modelItem.ShiftLeaderNotesDetails[i].trouble_id, new { htmlAttributes = new { @class = "form-control form-control-sm text-black", @id = "ShiftLeaderNotesDetail[" + i + "]." + "trouble_id" } })
+                                </td>
+
+                            </tr>
+                        }
+
+                        <!-- end row -->
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-footer">
+            @Html.ActionLink("Back", "Index", "ShiftLeaderNotes", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+    }
+</div>
+
+
+<div class="modal fade" id="AddItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="detailform">
+                <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                    <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Add Trouble</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                   
+                    <div class="mb-3 row">
+                        @Html.Label("Mtc Type", "Mtc Type", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("MaintenanceType", null, "Select Maintenance Type", htmlAttributes: new { @class = "form-select text-black" })
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.Label("Trouble Name", "Trouble Name", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("TroubleItem", Enumerable.Empty<SelectListItem>(), "Select Trouble", htmlAttributes: new { @class = "form-select text-black" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Save</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="Back"><span class="fa fa-eject"></span> Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

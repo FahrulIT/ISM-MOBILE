@@ -1,0 +1,178 @@
+﻿@model IEnumerable<ISM_MAINTENANCE.Models.ViewModel.TRM_detail_4>
+@{
+    ViewBag.Title = "Details3";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int nomor = 0;
+}
+
+<div class="card">
+    @if (ViewBag.StatusInput == "Done")
+    {
+        <div class="card-header text-bg-primary">
+            @*<h4 class="mb-0 text-white fs-6">Maintenance Result - Detail Maintenance Action</h4>*@
+            <h4 class="mb-0 text-white fs-5">@ViewBag.mtcActionName - Detail Maintenance Action</h4>
+        </div>
+
+    }
+    else
+    {
+        <div class="card-header text-bg-primary">
+            <h4 class="mb-0 text-white fs-6">Add - Detail Sparepart</h4>
+        </div>
+
+    }
+
+    @using (Html.BeginForm("Details3", "MaintenanceResult", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-body">
+            <div class="col-md-4 col-xl-3">
+                @if (ViewBag.StatusInput == "Done")
+                {
+                    <div></div>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-outline-dark" id="OpenModalDetails3">
+                        + Add Item
+                    </button>
+                }
+            </div>
+
+            <div class="table-responsive">
+                <table id="Details2_table" class="table search-table table-sm align-middle text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th scope="col">Sparepart</th>
+                            <th scope="col">Unit Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Action</th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @*
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>*@
+
+                        @for (int i = 0; i < Model.Count(); i++)
+                        {
+                            <tr>
+                                <td>@(nomor += 1)</td>
+                                <td>@Html.EditorFor(data => Model.ToList()[i].item_name, new { htmlAttributes = new { @class = "form-control form-control-sm", @readonly = "readonly" } })</td>
+                                <td>@Html.EditorFor(data => Model.ToList()[i].price, new { htmlAttributes = new { @class = "form-control form-control-sm", @readonly = "readonly" } })</td>
+                                <td>@Html.EditorFor(data => Model.ToList()[i].quantity, new { htmlAttributes = new { @class = "form-control form-control-sm", @readonly = "readonly" } })</td>
+                                <td>Action</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].dept_id)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].mtc_slip_no1)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].mtc_slip_no2)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].mtc_ser_no)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].trouble_id)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].mtc_action_id)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].item_code)</td>
+                                <td>
+                                    @if (ViewBag.StatusInput == "Done")
+                                    {
+                                        <button class="btn btn-danger" id="RemoveRow" disabled>delete</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-danger" id="RemoveRow">delete</button>
+                                    }
+
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @if (ViewBag.StatusInput == "Done")
+            {
+                <div class="col fw-bold fs-2">
+                    !!!Untuk Rubah data gunakan menu edit data!!!
+                </div>
+            }
+
+        </div>
+
+        <div class="card-footer">
+            @if (ViewBag.StatusInput == "Done")
+            {
+                <div></div>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-primary">Save</button>
+            }
+            @Html.ActionLink("Back", "Details3", "MaintenanceResult", new { id = @ViewBag.BackParameter }, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+
+    }
+</div>
+
+<div class="modal fade" id="AddItem_details3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="details3ModalForm">
+                <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                    <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Add Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        @Html.Label("Maintenance Action", "Maintenance Action", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("SapItem", null, "Select Action", htmlAttributes: new { @class = "form-select" })
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.Label("Sparepart", "Sparepart", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.TextBox("Sparepart", "", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.Label("Quantity", "Quantity", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.TextBox("Quantity", "", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"><span class="fa fa-save"></span> Save</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="Back"><span class="fa fa-eject"></span> Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#OpenModalDetails3").click(function () {
+            $("#AddItem_details3").modal("show");
+        });
+    });
+</script>
+

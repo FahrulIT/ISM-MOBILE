@@ -1,0 +1,269 @@
+﻿@model IEnumerable<ISM_MAINTENANCE.Models.ViewModel.TRM_detail_3>
+
+@{
+    ViewBag.Title = "Details2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int nomor = 0;
+}
+
+<div class="card">
+    @if (ViewBag.StatusInput == "Done")
+    {
+        <div class="card-header text-bg-primary">
+            @*<h4 class="mb-0 text-white fs-6">Maintenance Result - Detail Maintenance Action</h4>*@
+            <h4 class="mb-0 text-white fs-5">@ViewBag.trouble_name - Detail Maintenance Action</h4>
+        </div>
+
+    }
+    else
+    {
+        <div class="card-header text-bg-primary">
+            <h4 class="mb-0 text-white fs-6">Add - Detail Maintenance Action</h4>
+        </div>
+
+    }
+
+    @using (Html.BeginForm("Details2", "MaintenanceResult", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-body">
+            @*<div class="mb-4 row">
+                    @Html.Label("Machine Trouble", "Machine Trouble : " + (string)ViewBag.trouble_name, htmlAttributes: new { @class = "col-md-6 col-form-label-lg fw-bold" })
+                    <div class="col-md-10">
+                        @Html.TextBox("trouble_name", (string)ViewBag.trouble_name, new { @class = "form-control form-control-sm", @readonly = "readonly" })
+                    </div>
+                </div>*@
+
+            <div class="col-md-4 col-xl-3">
+                @if (ViewBag.StatusInput == "Done")
+                {
+                    <div></div>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-outline-dark" id="OpenModal">
+                        + Add Item
+                    </button>
+                }
+            </div>
+
+            <div class="table-responsive">
+                <table id="Details2_table" class="table search-table table-sm align-middle text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th scope="col">Maintenance Action</th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th scope="col">Sparepart</th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @*
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>*@
+
+                        @for (int i = 0; i < Model.Count(); i++)
+                        {
+                            <tr>
+                                <td>@(nomor += 1)</td>
+                                <td>@Html.EditorFor(data => Model.ToList()[i].mtc_action_name, new { htmlAttributes = new { @class = "form-control form-control-sm", @readonly = "readonly" } })</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].dept_id)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].mc_id)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].mtc_slip_no1)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].mtc_slip_no2)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].mtc_ser_no)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].mtc_action_id)</td>
+                                <td style="display:none">@Html.EditorFor(data => Model.ToList()[i].trouble_id)</td>
+                                <td>@Html.ActionLink("Details", "Details3", "MaintenanceResult", new { id = @ViewBag.BackParameter + "-"+ Model.ToList()[i].trouble_id + "-" + @ViewBag.mtcid + "-" + Model.ToList()[i].mtc_action_id.ToString().Trim() }, new { @class = "btn bg-danger-subtle text-danger ms-6" })</td>
+                                <td>
+                                    @if (ViewBag.StatusInput == "Done")
+                                    {
+                                        <button class="btn btn-danger" id="RemoveRow" disabled>delete</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-danger" id="RemoveRow">delete</button>
+                                    }
+
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @if (ViewBag.StatusInput == "Done")
+            {
+                <div class="col fw-bold fs-2">
+                    !!!Untuk Rubah data gunakan menu edit data!!!
+                </div>
+            }
+
+        </div>
+
+        <div class="card-footer">
+            @if (ViewBag.StatusInput == "Done")
+            {
+                <div></div>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-primary">Save</button>
+            }
+            @Html.ActionLink("Back", "Details1", "MaintenanceResult", new { id = @ViewBag.BackParameter }, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+
+    }
+</div>
+
+<div class="modal fade" id="AddItem_details2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="details2ModalForm">
+                <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                    <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Add Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="mb-3 row">
+                        @Html.Label("Machine Trouble", "Machine Trouble", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.TextBox("Machine Trouble", (string)ViewBag.trouble_name, "{0:dd-MM-yyyy HH:mm:ss}", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.Label("Maintenance Action", "Maintenance Action", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("mtc_action", null, "Select Action", htmlAttributes: new { @class = "form-select" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"><span class="fa fa-save"></span> Save</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="Back"><span class="fa fa-eject"></span> Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#OpenModal").click(function () {
+            $("#AddItem_details2").modal("show");
+        });
+
+        let counter = $('#Details2_table tr').length;
+
+        $("#details2ModalForm").on('submit', function (e) {
+            e.preventDefault();
+
+            var _desc = $('#mtc_action').find(":selected").text();
+            var duplicate = ""
+
+            $('#Details2_table tbody tr').each(function () {
+                var cellValue = $(this).find("input").val();
+                if (cellValue == _desc) {
+                    duplicate = "true";
+                }
+            });
+
+
+            if (duplicate == "true") {
+                alert("duplicate data");
+            }
+            else {
+                var _deptid = '@ViewBag.dept_id';
+                var _mcid = '@ViewBag.mc_id';
+                var _slip1 = '@ViewBag.slip1';
+                var _slip2 = '@ViewBag.slip2';
+                var _serno = '@ViewBag.ser_no';
+                var _troubleid = '@ViewBag.trouble_id';
+                var _actionid = $('#mtc_action').val().trim();
+
+                let list = '<tr><td>' + (counter) + '</td>';
+
+                list += '<td>' + '<input type = "text" class = "form-control form-control-sm" name="[' + String(counter - 1) + '].mtc_action_name" value ="' + _desc.trim() + '"/>' + '</td>';
+                list += '<td style="display:none">' + '<input type="text" name="[' + String(counter - 1) + '].dept_id" value ="' + _deptid.toString().trim() + '"/>' + '</td>';
+                list += '<td style="display:none">' + '<input type="text" name="[' + String(counter - 1) + '].mc_id" value = "' + _mcid.toString().trim() + '"/>' + '</td>';
+                list += '<td style="display:none">' + '<input type="text" name="[' + String(counter - 1) + '].mtc_slip_no1" value = "' + _slip1.toString().trim() + '"/>' + '</td>';
+                list += '<td style="display:none">' + '<input type="text" name="[' + String(counter - 1) + '].mtc_slip_no2" value = "' + _slip2.toString().trim() + '"/>' + '</td>';
+                list += '<td style="display:none">' + '<input type="text" name="[' + String(counter - 1) + '].mtc_ser_no" value = "' + _serno.toString().trim() + '"/>' + '</td>';
+                list += '<td style="display:none">' + '<input type="text" name="[' + String(counter - 1) + '].mtc_action_id" value = "' + _actionid.toString().trim() + '"/>' + '</td>';
+                list += '<td style="display:none">' + '<input type="text" name="[' + String(counter - 1) + '].trouble_id" value = "' + _troubleid.toString().trim() + '"/>' + '</td>';
+
+                list += '<td>Details</td>';
+                list += '<td><button class="btn btn-danger" id="RemoveRow">delete</button></tr>';
+
+
+                $('#Details2_table tbody').append(list);
+
+                counter++;
+
+            }
+        });
+
+
+        $(document).on('click', '#RemoveRow', function (e) {
+            e.preventDefault();
+            if ($('#Details2_table>tbody>tr').length > 1) {
+                $(this).parent().parent().remove();
+                //$(this).closest('tr').remove();
+                numberRows($('#Details2_table tbody'));
+                counter = counter - 1;
+                return false;
+            }
+            else {
+                //$(this).parent().parent().show();
+                alert('Form must have at least one row')
+                numberRows($('#Details2_table tbody'));
+            }
+        });
+
+        function numberRows($t) {
+            $t.find("tr").each(function (i, el) {
+                $(el).find("td").eq(0).html((i + 1));
+                $(el).find("td").eq(1).find("input").prop("name", "[" + i + "].mtc_action_name");
+                $(el).find("td").eq(2).find("input").prop("name", "[" + i + "].dept_id");
+                $(el).find("td").eq(3).find("input").prop("name", "[" + i + "].mc_id");
+                $(el).find("td").eq(4).find("input").prop("name", "[" + i + "].mtc_slip_no1");
+                $(el).find("td").eq(5).find("input").prop("name", "[" + i + "].mtc_slip_no2");
+                $(el).find("td").eq(6).find("input").prop("name", "[" + i + "].mtc_ser_no");
+                $(el).find("td").eq(7).find("input").prop("name", "[" + i + "].mtc_action_id");
+                $(el).find("td").eq(8).find("input").prop("name", "[" + i + "].trouble_id");
+            });
+
+            //$t.find("tr").each(function (i, el) {
+            //    $(el).find("td").eq(0).html((i + 1));
+            //    $(el).find("td").eq(1).find("input").prop("name", "[" + i + "].dept_id");
+            //});
+        }
+
+
+    });
+
+
+</script>

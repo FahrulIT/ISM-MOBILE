@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="WvMaintenanceEntities-Web.config Connection String" description="WvMaintenanceEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.DB.WvMaintenanceModel.csdl|res://*/Models.DB.WvMaintenanceModel.ssdl|res://*/Models.DB.WvMaintenanceModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=192.168.21.10\ISTEM_CIM;initial catalog=istem_sms;user id=wv;password=w; MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\APPL\\ISTEM\ MOBILE\\ISM\ MAINTENANCE\\ISM\ MAINTENANCE\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WvMaintenanceEntities']/@connectionString" />
+  </parameter>
+</parameters>

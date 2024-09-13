@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ISM_MOBILE.Models.UserList>  
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+<div class="container-fluid">
+
+    @{
+        ViewBag.Title = "UserList";
+    }
+
+    <h2>UserList</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Email)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

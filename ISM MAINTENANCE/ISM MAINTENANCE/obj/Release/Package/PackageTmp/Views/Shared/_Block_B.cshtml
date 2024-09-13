@@ -1,0 +1,453 @@
+﻿    <!--  Block B -->
+<div class="tab-pane" id="BLOCK-B" role="tabpanel">
+    <div class="row align-items-center mb-2">
+        <div class="hstack my-4 gap-3 justify-content-center">
+            <button type="button" class="btn d-flex w-autoresizebyres d-block fw-bolder text-black display-7-byFahrul align-items-center" style="background-color:#EEEDED">
+                MACHINE TROUBLE <span class="badge ms-auto fw-bold display-7-byFahrul" style="background-color:#FF1E00">@ViewBag.MachineTroubleB</span>
+            </button>
+
+            <button type="button" class="btn d-flex w-autoresizebyres text-black fw-bolder d-block display-7-byFahrul align-items-center" style="background-color:#EEEDED">
+                QUALITY TROUBLE <span class="badge fw-bold text-black ms-auto display-7-byFahrul" style="background-color:#FAFF00">@ViewBag.QualityTroubleB</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="table-responsive">
+            <table id ="BlockB" class="table table-sm mb-0" style="border-color:transparent">
+                <thead class="text-dark fs-4">
+                    @*<tr>
+                        <th>
+                            <h6 class="fs-4 fw-semibold mb-0"></h6>
+                        </th>
+                        <th>
+                            <h6 class="fs-4 fw-semibold mb-0"></h6>
+                        </th>
+                        <th>
+                            <h6 class="fs-4 fw-semibold mb-0"></h6>
+                        </th>
+                        <th>
+                            <h6 class="fs-4 fw-semibold mb-0"></h6>
+                        </th>
+                        <th>
+                            <h6 class="fs-4 fw-semibold mb-0"></h6>
+                        </th>
+                        <th>
+                            <h6 class="fs-4 fw-semibold mb-0"></h6>
+                        </th>
+                        <th>
+                            <h6 class="fs-4 fw-semibold mb-0"></h6>
+                        </th>
+                    </tr>*@
+                </thead>
+                <tbody>
+                    @*<tr>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center" style="background-color:#5463FF">-</li>
+                                    <li class="list-group-item text-center">B.266</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center" style="background-color:#FF204E">-</li>
+                                    <li class="list-group-item text-center">B.265</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center" style="background-color:#F6FA70">-</li>
+                                    <li class="list-group-item text-center">B.264</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.263</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.262</li>
+                                </ul>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.261</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.260</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.256</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.255</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.254</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.253</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.252</li>
+                                </ul>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.251</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.250</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.246</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.245</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.244</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.243</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.242</li>
+                                </ul>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.241</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.240</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.236</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.235</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.234</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.233</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.232</li>
+                                </ul>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.231</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.230</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.226</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.225</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.224</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.223</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.222</li>
+                                </ul>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.221</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.220</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.216</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.215</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.214</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.213</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.212</li>
+                                </ul>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.211</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" style="width: 10rem; margin-bottom: 1px">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item text-center">Machine</li>
+                                    <li class="list-group-item text-center">-</li>
+                                    <li class="list-group-item text-center">B.210</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>*@
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!--  Block B -->
+

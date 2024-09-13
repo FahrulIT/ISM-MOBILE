@@ -1,0 +1,1918 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    const string SpinningPartialView = "_HomeSpinning";
+    const string WeavingPartialView = "_HomeWeaving";
+    const string DyeingPartialView = "_HomeDyeing";
+    const string RawMaterialPartialView = "_HomeRawMaterial";
+    string Currentdate = DateTime.Now.ToString("dd MMMMM yyyy");
+
+
+    //string Currentdate = "31 January 2024";
+
+}
+
+
+@if (ViewBag.UserRoles == "Admin" || ViewBag.UserRoles == "Management")
+{    <!--First Row-->
+    <div class="row">
+        <div class="col">
+            <div class="card border-start border-primary overflow-hidden">
+                <div class="card-body">
+                    <div class="d-flex no-block align-items-center mb-6">
+                        <div>
+                            <span class="text-primary display-1"><i class="ti ti-calendar-event"></i></span>
+                        </div>
+                        <div class="ms-4">
+                            <h5 class="fs-7 fw-bold mb-0">@Currentdate</h5>
+                            <h7 class="fw-medium text-primary fs-4">Quantity Situation</h7>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @*<h5 class="mb-0 fs-5 fw-semibold">Improving Work Processes</h5>*@
+        <div class="col-sm-6 col-xl-3">
+            <div class="card bg-light-primary">
+                <div class="card-body p-2">
+                    <div class="card-body p-1">
+                        <div class="mb-6 opac" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                            <div>
+                                <h6 class="mb-1 fs-4">Raw Material (LBS)</h6>
+                            </div>
+                        </div>
+
+                        <p class="fs-4 mb-1 fw-bold text-primary">Warehouse</p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-1">
+                                <a data-bs-toggle="modal" href="#ModalForRM-WH-Plan"><span class="badge bg-primary">P</span></a>
+                                <!-- Modal -->
+                                <div class="modal fade align" id="ModalForRM-WH-Plan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-light-primary">
+                                            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                                                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Export</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="mb-1 text-center">
+                                                    <p>This process will download raw material warehouse plan data to excel</p>
+
+                                                    <div class="">
+                                                        <table id="RM-WH-PLAN" class="display" style="width:100%;">
+                                                            <thead>
+                                                                <!-- start row -->
+
+                                                                <tr>
+                                                                    <th scope="col">Year</th>
+                                                                    <th scope="col">Month</th>
+                                                                    <th scope="col">Item</th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th scope="col">@tgl_start</th>
+                                                                    }
+                                                                    <th scope="col">Total</th>
+                                                                </tr>
+
+                                                                <!-- end row -->
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- start row -->
+                                                                @if (ViewBag.ExportListRMWH == null)
+                                                                {
+                                                                    <tr>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+
+                                                                        @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                        {
+                                                                            <td>-</td>
+                                                                        }
+                                                                        <td>-</td>
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    foreach (var Data in ViewBag.ExportListRMWH)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@Data.TAHUN</td>
+                                                                            <td>@Data.BLN</td>
+                                                                            <td>@Data.item_name</td>
+                                                                            <td class="text-end">@Data._1.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._2.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._3.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._4.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._5.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._6.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._7.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._8.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._9.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._10.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._11.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._12.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._13.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._14.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._15.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._16.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._17.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._18.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._19.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._20.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._21.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._22.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._23.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._24.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._25.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._26.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._27.ToString("#,##0.00")</td>
+
+                                                                            @if (ViewBag.LastDay == 28)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                            }
+                                                                            else if (ViewBag.LastDay == 29)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else if (ViewBag.Lastday == 30)
+                                                                            {
+
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._31.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            <td class="text-end">@Data.Total.ToString("#,##0.00")</td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+
+                                                                <!-- end row -->
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>Total</th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th>-</th>
+                                                                    }
+                                                                    <th>-</th>
+                                                                </tr>
+
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_RMWH_Plan.ToString("#,##0")</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="badge bg-primary">A</span>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_RMWH_Actual.ToString("#,##0")</span>
+                            </div>
+                        </div>
+
+                        <p class="mt-3 fs-4 mb-1 fw-bold text-primary">Consumption</p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-1">
+                                @*<span class="badge bg-primary">P</span>*@
+                                <a data-bs-toggle="modal" href="#ModalForRM_CONSUME_PLAN"><span class="badge bg-primary">P</span></a>
+
+                                <div class="modal fade" id="ModalForRM_CONSUME_PLAN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-light-primary">
+                                            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                                                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Export</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-1 text-center">
+                                                    <p>This process will download raw material consumption plan data to excel</p>
+
+                                                    <div class="">
+                                                        <table id="RM-CONSUME-PLAN" class="display" style="width:100%;">
+                                                            <thead>
+                                                                <!-- start row -->
+
+                                                                <tr>
+                                                                    <th scope="col">Year</th>
+                                                                    <th scope="col">Month</th>
+                                                                    <th scope="col">Item</th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th scope="col">@tgl_start</th>
+                                                                    }
+                                                                    <th scope="col">Total</th>
+                                                                </tr>
+
+                                                                <!-- end row -->
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- start row -->
+                                                                @if (ViewBag.ExportListRMC == null)
+                                                                {
+                                                                    <tr>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+
+                                                                        @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                        {
+                                                                            <td>-</td>
+                                                                        }
+                                                                        <td>-</td>
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    foreach (var Data in ViewBag.ExportListRMC)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@Data.TAHUN</td>
+                                                                            <td>@Data.BLN</td>
+                                                                            <td>@Data.item_name</td>
+                                                                            <td class="text-end">@Data._1.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._2.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._3.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._4.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._5.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._6.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._7.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._8.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._9.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._10.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._11.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._12.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._13.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._14.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._15.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._16.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._17.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._18.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._19.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._20.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._21.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._22.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._23.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._24.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._25.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._26.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._27.ToString("#,##0.00")</td>
+
+                                                                            @if (ViewBag.LastDay == 28)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                            }
+                                                                            else if (ViewBag.LastDay == 29)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else if (ViewBag.Lastday == 30)
+                                                                            {
+
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._31.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            <td>@Data.Total</td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+
+                                                                <!-- end row -->
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>Total</th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th>-</th>
+                                                                    }
+                                                                    <th>-</th>
+                                                                </tr>
+
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_RMC_Plan.ToString("#,##0")</span>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="badge bg-primary">A</span>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_RMC_Actual.ToString("#,##0")</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card bg-light-danger">
+                <div class="card-body p-2">
+                    <div class="card-body p-1">
+                        <div class="mb-6" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                            <div>
+                                <h6 class="mb-1 fs-4">Spinning - Yarn (LBS)</h6>
+                            </div>
+                        </div>
+
+                        <p class="fs-4 mb-1 fw-bold text-danger">Warehouse</p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-1">
+                                @*<span class="badge bg-danger">P</span>*@
+                                <a data-bs-toggle="modal" href="#ModalFor-SP-WH-Plan"><span class="badge bg-danger">P</span></a>
+                                <!-- Modal -->
+                                <div class="modal fade align" id="ModalFor-SP-WH-Plan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-light-danger">
+                                            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                                                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Export</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-1 text-center">
+                                                    <p>This process will download spinning warehouse plan data to excel</p>
+
+                                                    <div class="">
+                                                        <table id="SP-WH-PLAN" class="display" style="width:100%;">
+                                                            <thead>
+                                                                <!-- start row -->
+
+                                                                <tr>
+                                                                    <th scope="col">Year</th>
+                                                                    <th scope="col">Month</th>
+                                                                    <th scope="col">Item</th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th scope="col">@tgl_start</th>
+                                                                    }
+                                                                    <th scope="col">Total</th>
+                                                                </tr>
+
+                                                                <!-- end row -->
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- start row -->
+                                                                @if (ViewBag.ExportListSPWH == null)
+                                                                {
+                                                                    <tr>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+
+                                                                        @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                        {
+                                                                            <td>-</td>
+                                                                        }
+                                                                        <td>-</td>
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    foreach (var Data in ViewBag.ExportListSPWH)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@Data.TAHUN</td>
+                                                                            <td>@Data.BLN</td>
+                                                                            <td>@Data.item_name</td>
+                                                                            <td class="text-end">@Data._1.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._2.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._3.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._4.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._5.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._6.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._7.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._8.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._9.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._10.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._11.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._12.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._13.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._14.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._15.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._16.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._17.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._18.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._19.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._20.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._21.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._22.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._23.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._24.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._25.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._26.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._27.ToString("#,##0.00")</td>
+
+                                                                            @if (ViewBag.LastDay == 28)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                            }
+                                                                            else if (ViewBag.LastDay == 29)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else if (ViewBag.Lastday == 30)
+                                                                            {
+
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._31.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            <td>@Data.Total</td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+
+                                                                <!-- end row -->
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>Total</th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th>-</th>
+                                                                    }
+                                                                    <th>-</th>
+                                                                </tr>
+
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_SP_Plan.ToString("#,##0")</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="badge bg-danger">A</span>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_SP_Actual.ToString("#,##0")</span>
+                            </div>
+                        </div>
+
+                        <p class="mt-3 fs-4 mb-1 fw-bold text-danger">Consumption</p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-1">
+                                @*<span class="badge bg-danger">P</span>*@
+                                <a data-bs-toggle="modal" href="#ModalFor_SP_CONSUME_PLAN"><span class="badge bg-danger">P</span></a>
+                                <div class="modal fade" id="ModalFor_SP_CONSUME_PLAN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-light-danger">
+                                            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                                                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Export</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-1 text-center">
+                                                    <p>This process will download spinning consumption plan data to excel</p>
+
+                                                    <div class="">
+                                                        <table id="SP-CONSUME-PLAN" class="display" style="width:100%;">
+                                                            <thead>
+                                                                <!-- start row -->
+
+                                                                <tr>
+                                                                    <th scope="col">Year</th>
+                                                                    <th scope="col">Month</th>
+                                                                    <th scope="col">Item</th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th scope="col">@tgl_start</th>
+                                                                    }
+                                                                    <th scope="col">Total</th>
+                                                                </tr>
+
+                                                                <!-- end row -->
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- start row -->
+                                                                @if (ViewBag.ExportListSPC == null)
+                                                                {
+                                                                    <tr>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+
+                                                                        @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                        {
+                                                                            <td>-</td>
+                                                                        }
+                                                                        <td>-</td>
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    foreach (var Data in ViewBag.ExportListSPC)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@Data.TAHUN</td>
+                                                                            <td>@Data.BLN</td>
+                                                                            <td>@Data.item_name</td>
+                                                                            <td class="text-end">@Data._1.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._2.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._3.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._4.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._5.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._6.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._7.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._8.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._9.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._10.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._11.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._12.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._13.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._14.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._15.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._16.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._17.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._18.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._19.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._20.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._21.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._22.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._23.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._24.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._25.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._26.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._27.ToString("#,##0.00")</td>
+
+                                                                            @if (ViewBag.LastDay == 28)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                            }
+                                                                            else if (ViewBag.LastDay == 29)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else if (ViewBag.Lastday == 30)
+                                                                            {
+
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._31.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            <td>@Data.Total.ToString("#,##0.00")</td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+
+                                                                <!-- end row -->
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>Total</th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th>-</th>
+                                                                    }
+                                                                    <th>-</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_SP_Plan.ToString("#,##0")</span>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="badge bg-danger">A</span>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_SP_Actual.ToString("#,##0")</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card bg-light-success">
+                <div class="card-body p-2">
+                    <div class="card-body p-1">
+                        <div class="mb-6" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                            <div>
+                                <h6 class="mb-1 fs-4">Weaving - Grey (MTR)</h6>
+                            </div>
+                        </div>
+                        <p class="fs-4 mb-1 fw-bold text-success">Warehouse</p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-1">
+                                @*<span class="badge bg-success">P</span>*@
+                                <a data-bs-toggle="modal" href="#ModalForWV-GREY-PLAN"><span class="badge bg-success">P</span></a>
+                                <!-- Modal -->
+                                <div class="modal fade align" id="ModalForWV-GREY-PLAN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-light-success">
+                                            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                                                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Export</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-1 text-center">
+                                                    <p>This process will download weaving grey plan data to excel</p>
+
+                                                    <div class="">
+                                                        <table id="WV-GREY-PLAN" class="display" style="width:100%;">
+                                                            <thead>
+                                                                <!-- start row -->
+
+                                                                <tr>
+                                                                    <th scope="col">Year</th>
+                                                                    <th scope="col">Month</th>
+                                                                    <th scope="col">Item</th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th scope="col">@tgl_start</th>
+                                                                    }
+                                                                    <th scope="col">Total</th>
+                                                                </tr>
+
+                                                                <!-- end row -->
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- start row -->
+                                                                @if (ViewBag.ExportListWVWH == null)
+                                                                {
+                                                                    <tr>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+
+                                                                        @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                        {
+                                                                            <td>-</td>
+                                                                        }
+                                                                        <td>-</td>
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    foreach (var Data in ViewBag.ExportListWVWH)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@Data.TAHUN</td>
+                                                                            <td>@Data.BLN</td>
+                                                                            <td>@Data.item_name</td>
+                                                                            <td class="text-end">@Data._1.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._2.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._3.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._4.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._5.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._6.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._7.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._8.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._9.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._10.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._11.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._12.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._13.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._14.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._15.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._16.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._17.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._18.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._19.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._20.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._21.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._22.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._23.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._24.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._25.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._26.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._27.ToString("#,##0.00")</td>
+
+                                                                            @if (ViewBag.LastDay == 28)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                            }
+                                                                            else if (ViewBag.LastDay == 29)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else if (ViewBag.Lastday == 30)
+                                                                            {
+
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._31.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            <td class="text-end">@Data.Total.ToString("#,##0.00")</td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+
+                                                                <!-- end row -->
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>Total</th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th>-</th>
+                                                                    }
+                                                                    <th>-</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_WV_Plan.ToString("#,##0")</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="badge bg-success">A</span>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_WV_Actual.ToString("#,##0")</span>
+                            </div>
+                        </div>
+
+                        <p class="mt-3 fs-4 mb-1 fw-bold text-success">Dyeing Input</p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-1">
+                                @*<span class="badge bg-success">P</span>*@
+                                <a data-bs-toggle="modal" href="#ModalFor_WV_CONSUME_PLAN"><span class="badge bg-success">P</span></a>
+                                <div class="modal fade" id="ModalFor_WV_CONSUME_PLAN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-light-success">
+                                            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                                                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Export</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-1 text-center">
+                                                    <p>This process will download dyeing input plan data to excel</p>
+
+                                                    <div class="">
+                                                        <table id="WV-CONSUME-PLAN" class="display" style="width:100%;">
+                                                            <thead>
+                                                                <!-- start row -->
+
+                                                                <tr>
+                                                                    <th scope="col">Year</th>
+                                                                    <th scope="col">Month</th>
+                                                                    <th scope="col">Item</th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th scope="col">@tgl_start</th>
+                                                                    }
+                                                                    <th scope="col">Total</th>
+                                                                </tr>
+
+                                                                <!-- end row -->
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- start row -->
+                                                                @if (ViewBag.ExportListWVC == null)
+                                                                {
+                                                                    <tr>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+
+                                                                        @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                        {
+                                                                            <td>-</td>
+                                                                        }
+                                                                        <td>-</td>
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    foreach (var Data in ViewBag.ExportListWVC)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@Data.TAHUN</td>
+                                                                            <td>@Data.BLN</td>
+                                                                            <td>@Data.item_name</td>
+                                                                            <td class="text-end">@Data._1.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._2.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._3.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._4.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._5.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._6.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._7.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._8.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._9.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._10.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._11.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._12.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._13.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._14.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._15.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._16.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._17.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._18.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._19.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._20.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._21.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._22.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._23.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._24.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._25.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._26.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._27.ToString("#,##0.00")</td>
+
+                                                                            @if (ViewBag.LastDay == 28)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                            }
+                                                                            else if (ViewBag.LastDay == 29)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else if (ViewBag.Lastday == 30)
+                                                                            {
+
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._31.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            <td class="text-end">@Data.Total.ToString("#,##0.00")</td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+
+                                                                <!-- end row -->
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>Total</th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th>-</th>
+                                                                    }
+                                                                    <th>-</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_WV_Plan.ToString("#,##0")</span>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="badge bg-success">A</span>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_WV_Actual.ToString("#,##0")</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card bg-light-warning">
+                <div class="card-body p-2">
+                    <div class="card-body p-1">
+                        <div class="mb-6" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                            <div>
+                                <h6 class="mb-1 fs-4">Dyeing - Finish Goods (MTR)</h6>
+                            </div>
+                        </div>
+
+                        <p class="fs-4 mb-1 fw-bold text-warning">Warehouse</p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-1">
+                                @*<span class="badge bg-warning">P</span>*@
+                                <a data-bs-toggle="modal" href="#ModalForDY-FinishGoods-PLAN"><span class="badge bg-warning">P</span></a>
+                                <!-- Modal -->
+                                <div class="modal fade align" id="ModalForDY-FinishGoods-PLAN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-light-warning">
+                                            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                                                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Export</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-1 text-center">
+                                                    <p>This process will download dyeing finish goods plan data to excel</p>
+
+                                                    <div class="">
+                                                        <table id="DY-FG-PLAN" class="display" style="width:100%;">
+                                                            <thead>
+                                                                <!-- start row -->
+
+                                                                <tr>
+                                                                    <th scope="col">Year</th>
+                                                                    <th scope="col">Month</th>
+                                                                    <th scope="col">Item</th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th scope="col">@tgl_start</th>
+                                                                    }
+                                                                    <th scope="col">Total</th>
+                                                                </tr>
+
+                                                                <!-- end row -->
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- start row -->
+                                                                @if (ViewBag.ExportListDYWH == null)
+                                                                {
+                                                                    <tr>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+
+                                                                        @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                        {
+                                                                            <td>-</td>
+                                                                        }
+                                                                        <td>-</td>
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    foreach (var Data in ViewBag.ExportListDYWH)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@Data.TAHUN</td>
+                                                                            <td>@Data.BLN</td>
+                                                                            <td>@Data.item_name</td>
+                                                                            <td class="text-end">@Data._1.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._2.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._3.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._4.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._5.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._6.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._7.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._8.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._9.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._10.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._11.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._12.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._13.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._14.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._15.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._16.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._17.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._18.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._19.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._20.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._21.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._22.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._23.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._24.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._25.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._26.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._27.ToString("#,##0.00")</td>
+
+                                                                            @if (ViewBag.LastDay == 28)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                            }
+                                                                            else if (ViewBag.LastDay == 29)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else if (ViewBag.Lastday == 30)
+                                                                            {
+
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._31.ToString("#,##0.00")</td>
+                                                                            }
+                                                                            <td class="text-end">@Data.Total.ToString("#,##0.00")</td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+
+                                                                <!-- end row -->
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>Total</th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th>-</th>
+                                                                    }
+                                                                    <th>-</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_DY_Plan.ToString("#,##0")</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="badge bg-warning">A</span>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_DY_Actual.ToString("#,##0")</span>
+                            </div>
+                        </div>
+
+                        <p class="mt-3 fs-4 mb-1 fw-bold text-warning">Delivery</p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-1">
+                                @*<span class="badge bg-warning">P</span>*@
+                                <a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-warning">P</span></a>
+                                <div class="modal fade" id="ModalFor_DY_CONSUME_PLAN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content bg-light-warning">
+                                            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                                                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Export</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-1 text-center">
+                                                    <p>This process will download finish goods delivery plan data to excel</p>
+
+                                                    <div class="">
+                                                        <table id="DY-CONSUME-PLAN" class="display" style="width:100%;">
+                                                            <thead>
+                                                                <!-- start row -->
+
+                                                                <tr>
+                                                                    <th scope="col">Year</th>
+                                                                    <th scope="col">Month</th>
+                                                                    <th scope="col">Item</th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th scope="col">@tgl_start</th>
+                                                                    }
+                                                                    <th scope="col">Total</th>
+                                                                </tr>
+
+                                                                <!-- end row -->
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- start row -->
+                                                                @if (ViewBag.ExportListDYC == null)
+                                                                {
+                                                                    <tr>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+                                                                        <td>-</td>
+
+                                                                        @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                        {
+                                                                            <td>-</td>
+                                                                        }
+                                                                        <td>-</td>
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    foreach (var Data in ViewBag.ExportListDYC)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@Data.TAHUN</td>
+                                                                            <td>@Data.BLN</td>
+                                                                            <td>@Data.item_name</td>
+                                                                            <td class="text-end">@Data._1.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._2.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._3.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._4.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._5.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._6.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._7.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._8.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._9.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._10.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._11.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._12.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._13.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._14.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._15.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._16.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._17.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._18.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._19.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._20.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._21.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._22.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._23.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._24.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._25.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._26.ToString("#,##0.00")</td>
+                                                                            <td class="text-end">@Data._27.ToString("#,##0.00")</td>
+
+                                                                            @if (ViewBag.LastDay == 28)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                            }
+                                                                            else if (ViewBag.LastDay == 29)
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else if (ViewBag.Lastday == 30)
+                                                                            {
+
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <td class="text-end">@Data._28.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._29.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._30.ToString("#,##0.00")</td>
+                                                                                <td class="text-end">@Data._31.ToString("#,##0.00")</td>
+                                                                            }
+                                                                            <td class="text-end">@Data.Total.ToString("#,##0.00")</td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+
+                                                                <!-- end row -->
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>Total</th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+                                                                    @for (int tgl_start = 1; tgl_start <= ViewBag.lastDay; tgl_start++)
+                                                                    {
+                                                                        <th>-</th>
+                                                                    }
+                                                                    <th>-</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Plan.ToString("#,##0")</span>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="badge bg-warning">A</span>
+                                <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Actual.ToString("#,##0")</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<!--Second Row-->
+
+@if (ViewBag.UserRoles == "Admin" || ViewBag.UserRoles == "Management")
+{
+    <!--SPINNING -->
+    @Html.Partial(RawMaterialPartialView)
+    @Html.Partial(SpinningPartialView)
+    @Html.Partial(WeavingPartialView)
+    @Html.Partial(DyeingPartialView)
+}
+
+@if (ViewBag.UserRoles == "Spinning")
+{
+    @Html.Partial(SpinningPartialView)
+}
+
+@if (ViewBag.UserRoles == "Weaving")
+{
+    @Html.Partial(WeavingPartialView)
+}
+
+@if (ViewBag.UserRoles == "Dyeing")
+{
+    @Html.Partial(DyeingPartialView)
+}
+
+<!--Javascript-->
+
+<script src="~/Chart/dist/apexcharts.js"></script>
+<script>
+
+    var PersentaseWH_SP = '@ViewBag.PersentaseWH_SP';
+    var PersentaseUsage_SP = '@ViewBag.PersentaseUsage_SP';
+    var PersentaseWH_WV = '@ViewBag.PersentaseWH_WV';
+    var PersentaseUsage_WV = '@ViewBag.PersentaseUsage_WV';
+    var PersentaseWH_DY = '@ViewBag.PersentaseWH_DY';
+    var PersentaseUsage_DY = '@ViewBag.PersentaseUsage_DY';
+    var PersentaseUsage_RMC = '@ViewBag.PersentaseUsage_RMC';
+    var Persentase_RMWH = '@ViewBag.PersentaseRMWH';
+
+    window.onload = doALoadOfStuff;
+
+    function doALoadOfStuff() {
+        drawChart();
+    }
+
+    function drawChart() {
+
+        var LebarLayar = window.innerWidth;
+        var TinggiLayar = window.innerHeight;
+        var UkuranFont = 0;
+        var UkuranFontLabel = 0;
+        var TinggiChart = '';
+        var LebarChart = '';
+        var Percent = 0.00;
+        var SisaPercent = 0.00;
+        var SeriesForChart = [];
+        var LabelsForChart = [];
+        var i = 0;
+
+        if (LebarLayar < 500) {
+            UkuranFont = 5;
+            UkuranFontLabel = 8;
+            TinggiChart = '160px';
+            LebarChart = '100%';
+        }
+        else {
+            UkuranFont = 10;
+            UkuranFontLabel = 12;
+            TinggiChart = '90%';
+            LebarChart = '90%';
+        }
+
+
+        //setup persentase
+        //Percent = 115;
+        Percent = PersentaseWH_SP;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+
+
+        var SpinningOptWH = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart, //['100 %', '3 %'],
+            plotOptions:
+            {
+                radialBar:
+                {
+                    dataLabels:
+                    {
+                        value: {
+                            show: false,
+
+                        },
+
+                        total: {
+                            show: true,
+                            label: Percent + ' %', //'103 %',
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_SP_WH"), SpinningOptWH);
+        chart.render();
+
+        //DataForChart.push(80);
+        //setup persentase
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = PersentaseUsage_SP;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var SpinningOptAct = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_SP_Act"), SpinningOptAct);
+        chart.render();
+
+        //DataForChart.push(100, 45);
+        //setup persentase
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 145;
+        Percent = PersentaseWH_WV;
+        SisaPercent = Percent;
+
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var WeavingOptWH = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            //series: [100,50],
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+            {
+                radialBar:
+                {
+                    dataLabels:
+                    {
+                        value: {
+                            show: false,
+
+                        },
+
+                        total: {
+                            show: true,
+                            label: Percent + ' %' //'145 %',
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+        var chart = new ApexCharts(document.querySelector("#chart_WV_WH"), WeavingOptWH);
+        chart.render();
+
+        // DataForChart.push(98);
+        //setup persentase
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 98;
+        Percent = PersentaseUsage_WV;
+        SisaPercent = Percent;
+
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var WeavingOptAct = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+            {
+                radialBar:
+                {
+                    dataLabels:
+                    {
+                        value: {
+                            show: false,
+                        },
+
+                        total: {
+                            show: true,
+                            label: Percent + ' %', //'98 %',
+                            color: '#373d3f',
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_WV_Act"), WeavingOptAct);
+        chart.render();
+
+
+        // DataForChart.push(90);
+        //setup persentase
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 90;
+        Percent = PersentaseWH_DY;
+        SisaPercent = Percent;
+
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var DyeingOptWH = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+       {
+           radialBar:
+           {
+               dataLabels:
+               {
+                   value: {
+                       show: false,
+
+                   },
+
+                   total: {
+                       show: true,
+                       label: Percent + ' %',//'90 %',
+
+                   }
+               }
+
+           }
+       }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_DY_WH"), DyeingOptWH);
+        chart.render();
+
+        //DataForChart = [];
+        //DataForChart.push(70);
+
+        //setup persentase
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 70;
+        Percent = PersentaseUsage_DY;
+        SisaPercent = Percent;
+
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+
+        var DyeingOptAct = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+       {
+           radialBar:
+           {
+               dataLabels:
+               {
+                   value: {
+                       show: false,
+
+                   },
+
+                   total: {
+                       show: true,
+                       label: Percent + ' %',// '70 %',
+
+                   }
+               }
+
+           }
+       }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_DY_Act"), DyeingOptAct);
+        chart.render();
+
+        //DataForChart = [];
+        //DataForChart.push(70);
+
+        //setup persentase
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 70;
+        Percent = PersentaseUsage_RMC;
+        SisaPercent = Percent;
+
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+
+        var RMCOptAct = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+       {
+           radialBar:
+           {
+               dataLabels:
+               {
+                   value: {
+                       show: false,
+
+                   },
+
+                   total: {
+                       show: true,
+                       label: Percent + ' %',// '70 %',
+
+                   }
+               }
+
+           }
+       }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_Usage_RMC"), RMCOptAct);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 70;
+        Percent = Persentase_RMWH;
+        SisaPercent = Percent;
+
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+
+        var RMWHOptAct = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+       {
+           radialBar:
+           {
+               dataLabels:
+               {
+                   value: {
+                       show: false,
+
+                   },
+
+                   total: {
+                       show: true,
+                       label: Percent + ' %',// '70 %',
+
+                   }
+               }
+
+           }
+       }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_RMWH"), RMWHOptAct);
+        chart.render();
+
+    }
+
+</script>

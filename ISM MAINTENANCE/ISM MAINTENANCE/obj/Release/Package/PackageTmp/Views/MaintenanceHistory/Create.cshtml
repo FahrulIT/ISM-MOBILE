@@ -1,0 +1,740 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.MaintenanceHistoryHeader
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var temp = ViewBag.ShiftLeaderNotes;
+    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US", true);
+    culture.NumberFormat.NumberDecimalSeparator = ".";
+    System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
+}
+
+<div class="card">
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">M/C Quality Trouble Maintenance History - Add New</h4>
+    </div>
+
+    @using (Html.BeginForm("Create", "MaintenanceHistory", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+    <div class="card-body">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.note_date)
+        @Html.HiddenFor(model => model.block)
+        @Html.HiddenFor(model => model.loom)
+        @*@Html.HiddenFor(model => model.stop_from)*@
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.dept_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.DropDownList("dept_id", null, null, htmlAttributes: new { @class = "form-select text-black gray-color-byfahrul" })
+                @Html.ValidationMessageFor(model => model.dept_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.mc_type, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.DropDownList("mc_id", null, null, htmlAttributes: new { @class = "form-select text-black gray-color-byfahrul" })
+                @Html.ValidationMessageFor(model => model.mc_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.machine_no, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                <div class="input-group">
+                    @Html.TextBox("machine_no", null, new { @class = "form-control me-2 text-black gray-color-byfahrul", @readonly = "readonly" })
+                    <div>
+                        <button type="button" class="btn btn-outline-dark me-6" data-bs-toggle="modal" data-bs-target="#ShiftLeaderNotesModal" id="GetShiftLeaderNotes">Choose</button>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.machine_no, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.note_date, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBox("TanggalString", "", new { @class = "form-control gray-color-byfahrul text-black ", @readonly = "readonly" })   
+                @Html.ValidationMessageFor(model => model.TanggalString, "", new { @class = "text-danger" })          
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.shift, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @*@Html.DropDownList("shift", (IEnumerable<SelectListItem>)ViewBag.Shift, "Select Shift", htmlAttributes: new { @class = "form-select" })*@
+                @Html.TextBox("shift", "", new { @class = "form-control gray-color-byfahrul text-black", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.shift, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.stop_from, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBox("stop_from_str", "", new { @class = "form-control gray-color-byfahrul text-black ", @readonly = "readonly" }) 
+                @Html.ValidationMessageFor(model => model.stop_from_str, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.pic_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.DropDownList("pic_id", null, null, htmlAttributes: new { @class = "form-select  text-black" })
+                @Html.ValidationMessageFor(model => model.pic_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.mtc_start, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @*@Html.TextBoxFor(model => model.mtc_start, "{0:dd-MM-yyyy}", new { @class = "form-control text-black ", @onchange = "ChangeValue()", type = "datetime-local" })*@
+                @Html.TextBoxFor(model => model.mtc_start_str, new { @class = "form-control text-black ", inputmode = "none", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.mtc_start_str, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.mtc_stop, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @*@Html.TextBoxFor(model => model.mtc_stop, "{0:dd-MM-yyyy}", new { @class = "form-control gray-color-byfahrul text-black ", @onchange = "ChangeValue()", type = "datetime-local" })*@
+                @Html.TextBoxFor(model => model.mtc_stop_str, new { @class = "form-control text-black", inputmode = "none", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.mtc_stop_str, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            @Html.LabelFor(model => model.finish_sts, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-2">
+                @Html.RadioButtonFor(model => model.finish_sts, "F", new { @class = "col-form-label me-2" })
+                @Html.Label("Finished", "Finish", htmlAttributes: new { @class = "col-form-label  text-black " })
+            </div>
+            <div class="col-md-5">
+                @Html.RadioButtonFor(model => model.finish_sts, "", new { @class = "col-form-label me-2" })
+                @Html.Label("Not Finish", "Not Finished", htmlAttributes: new { @class = "col-form-label  text-black " })
+            </div>
+
+        </div>
+
+        <br />
+        <br />
+        <div class="col-md-4 col-xl-3">
+            <button type="button" class="btn btn-outline-primary" id="OpenModal_MtcAction">
+                @*data-bs-toggle="modal" data-bs-target="#MaintenanceActionModal"*@
+                + Add Maintenance Action
+            </button>
+            <br />
+            @Html.ValidationMessageFor(model => model.Detail_1, "", new { @class = "text-danger" })
+        </div>
+        <br />
+
+        <div class="table-responsive">
+            <table id="MaintenanceActionDetailTable" class="table table-sm align-middle text-nowrap mb-0 text-black">
+                <thead class="header-item">
+                    <tr>
+                        <th>
+                            No
+                        </th>
+
+                        <th>
+                            MTC Type
+                        </th>
+
+                        <th>
+                            Trouble Name
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                    </tr>
+                </thead>
+
+                <tbody></tbody>
+            </table>
+
+        </div>
+        <br />
+        @*id="OpenModal_SparePart"*@
+        <div class="col-md-4 col-xl-3">
+            <button type="button" class="btn btn-outline-primary" id="OpenModal_SparePart" data-bs-toggle="modal" data-bs-target="#SparepartModal">
+                + Add Spare Part
+            </button>
+            <br />
+            @Html.ValidationMessageFor(model => model.Detail_2, "", new { @class = "text-danger" })
+        </div>
+        <br />
+
+        <div class="table-responsive">
+            <table id="SparepareDetailTable" class="table table-sm-customByFahrul align-middle text-nowrap mb-0 text-black ">
+                <thead class="header-item">
+                    <tr>
+                        <th>
+                            No
+                        </th>
+
+                        <th>
+                            Spare Part
+                        </th>
+
+                        <th>
+                            Unit Price (USD)
+                        </th>
+
+                        <th>
+                            Qty
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+                </thead>
+
+                <tbody></tbody>
+            </table>
+
+        </div>
+
+
+
+    </div>
+
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        @Html.ActionLink("Back", "Index", "MaintenanceHistory", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+    </div>
+    }
+</div>
+
+<!-- Modal Shift Leader Notes-->
+<div class="modal fade" id="ShiftLeaderNotesModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Get Shift Leader Notes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="CloseModalShift"></button>
+            </div>
+
+            <div class="card card-body">
+                <div class="table-responsive">
+                    <table id="ShiftleaderNotesTable" class="table table-sm align-middle text-nowrap mb-0 text-dark fs-4 text-center text-black">
+                        <thead>
+                            <!-- start row -->
+                            <tr>
+                                <th scope="col" ">Machine No</th>
+                                <th scope="col">Date</th>                 
+                                <th scope="col">Lama Stop</th>
+                                <th scope="col">Shift</th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            <!-- end row -->
+                        </thead>
+                        <tbody>
+                            <!-- start row -->
+                            @if (ViewBag.ShiftLeaderNotes == null)
+                            {
+                            <tr>
+                                <td scope="row">-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td style="display:none">-</td>
+                                <td style="display:none">-</td>
+                                <td style="display:none">-</td>
+                                <td style="display:none">-</td>
+                                <td style="display:none">-</td>
+                                <td>-</td>
+                            </tr>
+                            }
+                            else
+                            {
+                                foreach (var data in ViewBag.ShiftLeaderNotes)
+                                {
+                            <tr>
+                                <td>@data.machine_no.ToString()</td>
+                                <td>@data.note_date.ToString("dd-MM-yyyy")</td>     
+                                <td>@data.LamaStop.ToString()</td>
+                                <td>@data.shift.ToString()</td>
+                                <td style="display:none">@data.block.ToString()</td>
+                                <td style="display:none">@data.loom_no.ToString()</td>
+                                <td style="display:none">@data.note_date</td>
+                                <td style="display:none">@data.LamaStopNumerik</td>
+                                <td style="display:none">@Convert.ToString(String.Format("{0:HH:mm}", data.stop_from))</td>
+                                <td><button type="button" id="GetShift" class="btn btn-outline-primary GetShift">SELECT</button></td>
+                            </tr>
+                                }
+                            }
+                            <!-- end row -->
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<!-- Modal Shift Leader Notes-->
+<!-- Maintenance Action Modal -->
+<div class="modal fade" id="MaintenanceActionModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Get Maintenance Action</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                @*<div class="card-body m-2">*@
+                <div class="table-responsive">
+                    <table id="MaintenanceActionTable" class="table table-sm mb-0 text-nowrap text-black fs-4">
+                        <thead>
+                            <!-- start row -->
+                            <tr>
+                                @*<th scope="col">Select</th>*@
+                                <th></th>
+                                <th scope="col">Mtc Type</th>
+                                <th scope="col">Trouble Name</th>
+                                <th scope="col">Maintenance Action</th>
+                                <th style="display:none">MTC ID</th>
+                                <th style="display:none">Trouble ID</th>
+                                <th style="display:none">MTC Action ID</th>
+                                <th style="display:none">Loom</th>
+                                <th style="display:none">block</th>
+                                <th style="display:none">shift</th>
+                                <th style="display:none">note date</th>
+                              
+                            </tr>
+                            <!-- end row -->
+                        </thead>
+                        <tbody>
+                            <!-- start row -->
+                            @if (ViewBag.MaintenanceAction == null)
+                            {
+                            <tr>
+                                <th scope="row">-</th>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            }
+                            else
+                            {
+                                foreach (var data in ViewBag.MaintenanceAction)
+                                {
+                            <tr>
+                                <td></td>
+                                <td>@data.mtc_type.ToString() </td>
+                                <td>@data.trouble_name.ToString()</td>
+                                <td>@data.mtc_action_name.ToString()</td>
+                                <td style="display:none">@data.mtc_id.ToString()</td>
+                                <td style="display:none">@data.trouble_id.ToString()</td>
+                                <td style="display:none">@data.mtc_action_id.ToString()</td>
+                                <td style="display:none">@data.loom.ToString()</td>
+                                <td style="display:none">@data.block.ToString()</td>
+                                <td style="display:none">@data.shift.ToString()</td>
+                                <td style="display:none">@data.note_date.ToString("dd-MM-yyyy")</td>
+                             
+                            </tr>
+                                }
+                            }
+                            <!-- end row -->
+                        </tbody>
+
+                    </table>
+                </div>
+                <!--</div>-->
+            </div>
+
+
+            <div class="modal-footer justify-content-start">
+                <button type="button" class="btn btn-primary" id="GetSelectedMaintenanceAction"><span class="fa fa-save"></span> Get</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="Back"><span class="fa fa-eject"></span> Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Maintenance Action Modal -->
+<!-- Sparepart Modal -->
+<div class="modal fade" id="SparepartModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="details3ModalForm">
+                <div class="modal-header text-center" style="border-bottom:2px solid; border-bottom-color: rgba(165, 173, 179, 0.3);">
+                    <h5 class="modal-title text-black fw-bold" id="exampleModalLabel">Add Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        @Html.Label("Sparepart", "Sparepart", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.DropDownList("SapItem", null, new { @class = "form-select text-black " })
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.Label("Unit price", "Unit price", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.TextBox("UnitPrice", "", new { @class = "form-control text-black ", @id = "UnitPrice", @readonly = "readonly" })
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.Label("Quantity", "Quantity", htmlAttributes: new { @class = "col-md-3 col-form-label mx-2" })
+                        <div class="col-md-8">
+                            @Html.TextBox("Quantity", "", new { @class = "form-control text-black " })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer justify-content-start">
+                    <button type="button" class="btn btn-primary" id="GetSparepart"><span class="fa fa-save"></span> Get</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="Back"><span class="fa fa-eject"></span> Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Sparepart Modal -->
+
+
+<script src="~/Content/libs/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/libs/jquery/dist/jquery.js"></script>
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script src="~/Content/libs/Select2/select2.min.js"></script>
+<link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.datetimepicker.full.js"></script>
+
+<script type="text/javascript">   
+    $("#SapItem").select2({
+        allowClear: true,
+        placeholder: {
+            id: "0",
+            text: "SELECT ITEM"
+        }, width: '100%', dropdownParent: $("#SparepartModal") });
+
+    $('#SapItem').on('select2:select', function (e) {
+        var data = e.params.data;
+        var itemlist = @Html.Raw(Json.Encode(ViewBag.SapItemWithPrice));
+        var Item = itemlist.filter(x=> x.ItemCode == data.id);
+        var ItemPrice = parseFloat(Item[0].Price);
+        //console.log(Item);
+        $('#UnitPrice').val(ItemPrice.toFixed(2));
+    });
+
+    $('#mtc_start_str').datetimepicker({
+        format:'d-m-Y H:i',
+        timepicker:true,
+        datepicker:true,
+        disableTouchKeyboard: true,
+        onChangeDateTime:function (curr, $input) {
+            var _stop_from = new Date();
+            var split_str = $('#stop_from_str').val().split(' ');
+            var split_tgl = split_str[0].split('-');
+            var split_waktu = split_str[1].split(':');
+            var str_time_value  = split_tgl[2] + "-" + split_tgl[1] + "-" + split_tgl[0] + " " + split_waktu[0] + ":" + split_waktu[1];
+            _stop_from  = new Date(str_time_value);
+    
+
+            var _mtc_start = new Date();
+            split_str =$input[0].value.split(' ');
+            split_tgl = split_str[0].split('-');
+            split_waktu = split_str[1].split(':');
+            str_time_value  = split_tgl[2] + "-" + split_tgl[1] + "-" + split_tgl[0] + " " + split_waktu[0] + ":" + split_waktu[1];
+            _mtc_start  = new Date(str_time_value);
+               
+            console.log(_stop_from);
+            console.log(_mtc_start);
+            
+
+            if (_mtc_start < _stop_from){
+                $('#mtc_start_str').val($('#stop_from_str').val());
+            }else{                                
+            }
+        }
+    });
+
+    $('#mtc_stop_str').datetimepicker({
+        format:'d-m-Y H:i',
+        timepicker:true,
+        datepicker:true,
+        disableTouchKeyboard: true,
+        onChangeDateTime:function (curr, $input) {
+            var _stop_from = new Date();
+            var split_str = $('#stop_from_str').val().split(' ');
+            var split_tgl = split_str[0].split('-');
+            var split_waktu = split_str[1].split(':');
+            var str_time_value  = split_tgl[2] + "-" + split_tgl[1] + "-" + split_tgl[0] + " " + split_waktu[0] + ":" + split_waktu[1];
+            _stop_from  = new Date(str_time_value);
+    
+
+            var _mtc_stop = new Date();
+            split_str =$input[0].value.split(' ');
+            split_tgl = split_str[0].split('-');
+            split_waktu = split_str[1].split(':');
+            str_time_value  = split_tgl[2] + "-" + split_tgl[1] + "-" + split_tgl[0] + " " + split_waktu[0] + ":" + split_waktu[1];
+            _mtc_stop  = new Date(str_time_value);
+               
+         
+
+            if (_mtc_stop <= _stop_from){
+                $('#mtc_stop_str').val($('#stop_from_str').val());
+            }else{                                
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var table = $('#MaintenanceActionTable').DataTable({
+            info: false,
+            lengthChange: false,
+            columnDefs: [
+                {
+                    orderable: false,
+                    render: DataTable.render.select(),
+                    targets: 0
+                }
+            ],
+            //scrollX: true,
+            select: {
+                style: 'multi',
+                //selector: 'td:third-child', //menentukan kolom mana yg harus diklik
+                headerCheckbox: true
+            },
+            order: [[1, 'asc']]
+        });
+
+        var table2 = $('#ShiftleaderNotesTable').DataTable({
+            pageLength: 10,
+            //info: false,
+            //lengthChange: false,
+            //searching: true,
+            layout:
+            {
+                topStart : null,
+                topEnd : 'search',
+                bottomStart : null,
+                bottomEnd: {
+                    paging: {
+                        type: 'simple_numbers'
+                    }
+                }
+            },
+            order: [[7, 'desc']]
+        });
+
+        //GetSelectedMaintenanceAction
+        let counter = 0;
+        $("#GetSelectedMaintenanceAction").click(function () {
+
+            var selData = table.rows(".selected").data();
+            console.log(selData);
+
+            for(var i = 0; i < selData.length; i++) {
+                //console.log(selData[i][0]);
+                //console.log(selData[i][1]);
+                //console.log(selData[i][2]);
+                console.log(selData[i][3]);
+
+                var duplicate = ""
+
+                if (selData[i][3] == "BELUM DI REGISTER") {
+                    continue;
+                }
+
+                $('#MaintenanceActionDetailTable tbody tr').each(function () {
+
+                    var cell1Value = $(this).find("td").eq(1).find("input").val();
+                    var cell2Value = $(this).find("td").eq(2).find("input").val();
+                    var cell3Value = $(this).find("td").eq(3).find("input").val();
+                    //console.log(cellValue);
+                    //console.log("tes");
+                    if (cell1Value == selData[i][1] && cell2Value == selData[i][2] && cell3Value == selData[i][3]) {
+                        duplicate = "true";
+                    }
+
+                });
+
+
+                if (duplicate == "true") {
+                    alert("duplicate data");
+                    //console.log("tes");
+                }else
+                {
+                    let list = '<tr><td class="text-black">'+ (counter + 1)+ '</td>';
+                    list += '<td class="text-black">' + selData[i][1] + '<input type="hidden" name="Detail_1' + '[' + String(counter) + '].mtc_type" value="' + selData[i][1] + '"/>' + '</td>' ;
+                    list += '<td class="text-black">' + selData[i][2] + '<input type="hidden" name="Detail_1' + '[' + String(counter) + '].trouble_name" value="' + selData[i][2] + '"/>' + '</td>' ;
+                    list += '<td class="text-black">' + selData[i][3] + '<input type="hidden" name="Detail_1' + '[' + String(counter) + '].mtc_action_name" value="' + selData[i][3] + '"/>' + '</td>';
+                    list += '<td style="display:none">' + selData[i][4] + '<input type="hidden" name="Detail_1' + '[' + String(counter) + '].mtc_id" value="' + selData[i][4] + '"/>' + '</td>';
+                    list += '<td style="display:none">' + selData[i][5] + '<input type="hidden" name="Detail_1' + '[' + String(counter) + '].trouble_id" value="' + selData[i][5] + '"/>' + '</td>';
+                    list += '<td style="display:none">' + selData[i][6] + '<input type="hidden" name="Detail_1' + '[' + String(counter) + '].mtc_action_id" value="' + selData[i][6] + '"/>' + '</td>';
+                    list += '<td><button class="btn btn-danger" onclick="return this.parentNode.parentNode.remove();">delete</button></tr>';
+
+                    $('#MaintenanceActionDetailTable tbody').append(list);
+                    counter++;
+                }
+
+            }
+        });
+
+        //$('#MaintenanceActionModal').on('shown.bs.modal', function () {
+        //modal load event based on id
+        //});
+
+        $('#OpenModal_MtcAction').click(function () {
+
+            let strmachineno = $("#machine_no").val();
+            const MachineNo = strmachineno.split(".");
+            let loom = MachineNo[1];
+            let block = MachineNo[0];
+            let shift = $("#shift").val();
+            let notedate = $("#note_date").val();
+            let datestr = notedate.split("-");
+            let datefilter = datestr[2] + "-" + datestr[1] + "-" + datestr[0]
+
+            if (loom=="" || block == "" || datefilter=="" || shift == "")
+            {
+                alert("!!Choose data from shift leader notes first!!");
+            }
+            else
+            {             
+                table.column(10).search(datefilter);
+                table.column(9).search(shift);
+                table.column(8).search(block);
+                table.column(7).search(loom).draw();
+                $("#MaintenanceActionModal").modal("show");
+            }
+
+        });
+
+
+        $("#GetSparepart").click(function () {
+            counter = 0;
+            counter = $('#SparepareDetailTable tr').length;
+            var Itemcode = $('#SapItem').val();
+            var Itemname = $('#SapItem :selected').text();
+            var price = $('#UnitPrice').val();
+            var qty = $('#Quantity').val();
+
+            var _desc = $('#SapItem').val();
+            console.log(_desc);
+            console.log(counter);
+            var duplicate = ""
+
+            $('#SparepareDetailTable tbody tr').each(function () {
+                var cellValue = $(this).find("input").val();
+                if (cellValue == _desc) {
+                    duplicate = "true";
+                }
+            });
+
+
+            if (duplicate == "true") {
+                alert("duplicate data");
+                console.log("tes");
+            }
+            else{
+                var Decimal = new RegExp(/^\d+(\.\d+)+$/g);
+                var NonDecimal = new RegExp(/^[0-9]+$/g);
+                let CheckFormatNumber = "";
+
+                console.log(price);
+                if (Decimal.test(qty) || NonDecimal.test(qty)) {
+                    if(qty < 1) {
+                        CheckFormatNumber = "tidak sesuai";
+                        alert("Quantity tidak boleh nol");
+                    }
+                }else{
+                    CheckFormatNumber = "tidak sesuai";
+                    alert("Format Qty : 1.00 (decimal) atau 10 (bulat)");
+                }
+
+                Decimal = new RegExp(/^\d+(\.\d+)+$/g);
+                NonDecimal = new RegExp(/^[0-9]+$/g);
+
+                if (Decimal.test(price) || NonDecimal.test(price)){
+                }else{
+                    CheckFormatNumber = "tidak sesuai";
+                    alert("Format Price : 1.00 (decimal) atau 1 (bulat)");
+                }
+
+                if (CheckFormatNumber == ""){
+                    //console.log(pilih);
+                    let list = '<tr><td>'+ counter + '</td>';
+
+                    list += '<td class="text-black">' + Itemname + '<input type="hidden" name="Detail_2' + '[' + String(counter-1) + '].item_name" value="' + Itemcode + '"/>' + '</td>' ;
+                    list += '<td class="text-black">' + price+ '<input type="hidden" name="Detail_2' + '[' + String(counter-1) + '].price" value="' + price + '"/>' + '</td>' ;
+                    list += '<td class="text-black">' + qty + '<input type="hidden" name="Detail_2' + '[' + String(counter-1) + '].quantity" value= "' + qty + '"/>' + '</td>' ;
+                    list += '<td><button class="btn btn-danger" onclick="return this.parentNode.parentNode.remove();">delete</button></tr>';
+
+                    $('#SparepareDetailTable tbody').append(list);
+                    counter++;
+                }
+
+
+
+            }
+
+        });
+
+
+
+        $(document).on("click", ".GetShift", function(){
+            var $tr = $(this).closest("tr");
+            var data = $tr.children("td").map(function () {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+            $("#machine_no").val(data[0]);
+            $("#shift").val(data[3]);
+            $('#block').val(data[4]);
+            $('#loom').val(data[5]);
+
+            const x = data[1];
+            let test = x.split("-");
+            console.log(test);
+            let Tanggal = test[2] + "-" + test[1] + "-" + test[0];
+            let TanggalStr =  test[0] + "-" + test[1] + "-" + test[2];
+
+            let Today = new Date();
+
+            let waktu = data[8].replace(".",":");
+            let Time = test[0] + "-" + test[1] + "-" + test[2] + " " + waktu;
+            let TimeDate = new Date(Time);
+
+            $('#note_date').val(Tanggal);
+            $('#TanggalString').val(TanggalStr);
+            $('#stop_from_str').val(Time);
+            $('#mtc_start_str').val(Time);
+            $("#CloseModalShift").click();
+        });
+    });
+</script>

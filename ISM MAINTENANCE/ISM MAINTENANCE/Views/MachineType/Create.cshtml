@@ -1,0 +1,82 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.MachineType
+
+@{
+    ViewBag.Title = "Create";
+    ViewBag.Menu = "Machine Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    @using (Html.BeginForm("Create", "MachineType", FormMethod.Post, new { @class = "", role = "form" }))
+    {
+        <div class="card-header text-bg-primary">
+            <h4 class="mb-0 text-white fs-6">@ViewBag.Menu - @ViewBag.Title</h4>
+        </div>
+
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.DeptName, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("dept_id", null, "Select Department", htmlAttributes: new { @class = "form-select", @onchange = "singleSelectChangeValue()" })
+                    @Html.ValidationMessageFor(model => model.dept_id, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mc_id, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mc_id, new { htmlAttributes = new { @id = "mcid", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.mc_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                @Html.LabelFor(model => model.mc_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mc_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.mc_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            @Html.ActionLink("Back", "Index", "MachineType", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+        </div>
+    }
+</div>
+
+@*<script type="text/javascript">*@
+    @*function singleSelectChangeValue() {
+        var selObj = document.getElementById("dept_id");
+        var selValue = selObj.options[selObj.selectedIndex].value;
+
+
+        var textboxId = document.getElementById("mcid");
+        var arr = [];
+        while (arr.length < 8) {
+            var r = Math.floor(Math.random() * 100) + 1;
+            if (arr.indexOf(r) === -1) arr.push(r);
+        }
+        textboxId.value = arr[0];
+        //console.log(arr[0]);*@
+
+        @*var cubes = @Html.Raw(Json.Encode(ViewBag.MaxDeptId));
+        var res = cubes.map(bill => bill.MaxMCID).reduce((acc, amount) => acc + amount);
+
+
+        for(var i = 0; i < cubes.length; i++) {
+            if (cubes[i].Dept_id == selValue)
+            {
+                textboxId.value = cubes[i].MaxMCID;
+                console.log=cubes[i].MaxMCID;
+            }
+        }*@
+
+       
+        @*textboxId.focus();
+    }*@
+@*</script>*@

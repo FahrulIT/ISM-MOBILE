@@ -1,0 +1,64 @@
+﻿@model ISM_MAINTENANCE.Models.ViewModel.MaintenanceAction
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.Menu = "Maintenance Action";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+@using (Html.BeginForm("Delete", "MaintenanceAction", FormMethod.Post, new { @class = "", role = "form" }))
+{
+    <div class="card-header text-bg-primary">
+        <h4 class="mb-0 text-white fs-6">@ViewBag.Menu - @ViewBag.Title</h4>
+    </div>
+
+    <div class="card-body mb-1">
+        <h3 class="mb-4">Are you sure you want to delete this?</h3>
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="mb-3 row">
+            @Html.LabelFor(model => model.dept_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.dept_name, new { disabled = "disabled", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.dept_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            @Html.LabelFor(model => model.mc_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.mc_name, new { disabled = "disabled", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.mc_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="mb-3 row">
+            @Html.LabelFor(model => model.mtc_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.mtc_name, new { disabled = "disabled", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.mtc_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="mb-3 row">
+            @Html.LabelFor(model => model.trouble_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.trouble_name, new { disabled = "disabled", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.trouble_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            @Html.LabelFor(model => model.mtc_action_name, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.mtc_action_name, new { disabled = "disabled", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.mtc_action_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Yes</button>
+        @Html.ActionLink("No", "Index", "MaintenanceAction", null, new { @class = "btn bg-danger-subtle text-danger ms-6" })
+    </div>
+}
+    </div>
