@@ -1,0 +1,1293 @@
+﻿@{
+    var header1 = "Factory Supplies";
+    var header2 = "Repair Maintenance";
+    var header3 = "Repair From Engineering";
+    var header4 = "Total";
+
+    ViewBag.Title = "Home Page";
+}
+<div class="row">
+    @*<h5 class="mb-0 fs-5 fw-semibold">Improving Work Processes</h5>*@
+    <div class="col">
+        <div class="card bg-light-primary">
+            <div class="card-body p-2">
+                <div class="card-body p-1">
+                    <div class="mb-1" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                        <div>
+                            <h6 class="mb-1 fs-4">Spinning</h6>
+                        </div>
+                    </div>
+
+                    <p class="fs-4 mb-1 fw-bold text-primary">@header1</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <a data-bs-toggle="modal" href="#ModalForRM-WH-Plan"><span class="badge bg-primary">B</span></a>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_RMWH_Plan.ToString("#,##0")</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_RMWH_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-primary">@header2</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-primary">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalForRM_CONSUME_PLAN"><span class="badge bg-primary">B</span></a>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_RMC_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_RMC_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-primary">@header3</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-primary">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalForRM_CONSUME_PLAN"><span class="badge bg-primary">B</span></a>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_RMC_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_RMC_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-primary">@header4</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-primary">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalForRM_CONSUME_PLAN"><span class="badge bg-primary">B</span></a>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_RMC_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_RMC_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card bg-light-danger">
+            <div class="card-body p-2">
+                <div class="card-body p-1">
+                    <div class="mb-1" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                        <div>
+                            <h6 class="mb-1 fs-4">Weaving</h6>
+                        </div>
+                    </div>
+
+                    <p class="fs-4 mb-1 fw-bold text-danger">@header1</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-danger">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor-SP-WH-Plan"><span class="badge bg-danger">B</span></a>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_SP_Plan.ToString("#,##0")</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_SP_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-danger">@header2</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-danger">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_SP_CONSUME_PLAN"><span class="badge bg-danger">B</span></a>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_SP_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_SP_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-danger">@header3</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-danger">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_SP_CONSUME_PLAN"><span class="badge bg-danger">B</span></a>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_SP_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_SP_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-danger">@header4</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-danger">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_SP_CONSUME_PLAN"><span class="badge bg-danger">B</span></a>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_SP_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_SP_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card bg-light-success">
+            <div class="card-body p-2">
+                <div class="card-body p-1">
+                    <div class="mb-1" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                        <div>
+                            <h6 class="mb-1 fs-4">Dyeing</h6>
+                        </div>
+                    </div>
+                    <p class="fs-4 mb-1 fw-bold text-success">@header1</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-success">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalForWV-GREY-PLAN"><span class="badge bg-success">B</span></a>
+
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_WV_Plan.ToString("#,##0")</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_WV_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-success">@header2</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-success">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_WV_CONSUME_PLAN"><span class="badge bg-success">B</span></a>
+
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_WV_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_WV_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-success">@header3</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-success">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_WV_CONSUME_PLAN"><span class="badge bg-success">B</span></a>
+
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_WV_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_WV_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-success">@header4</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-success">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_WV_CONSUME_PLAN"><span class="badge bg-success">B</span></a>
+
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_WV_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_WV_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card bg-light-warning">
+            <div class="card-body p-2">
+                <div class="card-body p-1">
+                    <div class="mb-1" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                        <div>
+                            <h6 class="mb-1 fs-4">Engineering</h6>
+                        </div>
+                    </div>
+
+                    <p class="fs-4 mb-1 fw-bold text-warning">@header1</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-warning">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalForDY-FinishGoods-PLAN"><span class="badge bg-warning">B</span></a>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_DY_Plan.ToString("#,##0")</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_DY_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-warning">@header2</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-warning">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-warning">B</span></a>
+
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-warning">@header3</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-warning">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-warning">B</span></a>
+
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-warning">@header4</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-warning">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-warning">B</span></a>
+
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card">
+            <div class="card-body p-2">
+                <div class="card-body p-1">
+                    <div class="mb-1" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                        <div>
+                            <h6 class="mb-1 fs-4">General Affair</h6>
+                        </div>
+                    </div>
+
+                    <p class="fs-4 mb-1 fw-bold text-info">@header1</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-warning">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalForDY-FinishGoods-PLAN"><span class="badge bg-info">B</span></a>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_DY_Plan.ToString("#,##0")</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_WH_DY_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-info">@header2</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-warning">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-info">B</span></a>
+
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-info">@header3</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-warning">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-info">B</span></a>
+
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 fw-bold text-info">@header4</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<span class="badge bg-warning">P</span>*@
+                            <a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-info">B</span></a>
+
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Plan.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">A</span>
+                            <span class="fw-bold fs-3 d-flex align-content-center">@ViewBag.Qty_Usage_DY_Actual.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <span class="font-medium fw-semibold card-title" style="font-size:15px">Raw Material (LBS)</span>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Warehouse
+                            </div>
+                        </div>
+                        <div id="chart_RMWH" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col-6">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Consumption
+                            </div>
+                        </div>
+                        <div id="chart_Usage_RMC" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <span class="font-medium fw-semibold card-title" style="font-size:15px">Spinning</span>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Warehouse
+                            </div>
+                        </div>
+                        <div id="chart_SPWH" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col-6">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Consumption
+                            </div>
+                        </div>
+                        <div id="chart_SPC" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <span class="font-medium fw-semibold card-title" style="font-size:15px">Weaving</span>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Warehouse
+                            </div>
+                        </div>
+                        <div id="chart_WVWH" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col-6">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Consumption
+                            </div>
+                        </div>
+                        <div id="chart_WVC" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <span class="font-medium fw-semibold card-title" style="font-size:15px">Dyeing</span>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Warehouse
+                            </div>
+                        </div>
+                        <div id="chart_DYWH" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col-6">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Consumption
+                            </div>
+                        </div>
+                        <div id="chart_DYC" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script src="~/Content/template/Modernize/libs/apexcharts/dist/apexcharts.js"></script>*@
+
+@Scripts.Render("~/bundles/AdminKit/js/ApexChart")
+
+<script>
+    var WH_RM_BUDGET = new Array();
+    var WH_RM_ACTUAL = new Array();
+
+    var C_RM_BUDGET = new Array();
+    var C_RM_ACTUAL = new Array();
+
+    var WH_SP_BUDGET = new Array();
+    var WH_SP_ACTUAL = new Array();
+
+    var C_SP_BUDGET = new Array();
+    var C_SP_ACTUAL = new Array();
+
+    var WH_WV_BUDGET = new Array();
+    var WH_WV_ACTUAL = new Array();
+
+    var C_WV_BUDGET = new Array();
+    var C_WV_ACTUAL = new Array();
+    
+    var WH_DY_BUDGET = new Array();
+    var WH_DY_ACTUAL = new Array();
+
+    var C_DY_BUDGET = new Array();
+    var C_DY_ACTUAL = new Array();
+
+
+    //RM
+    var array_budget = @Html.Raw(Json.Encode(@ViewBag.QtyChart_WH_RM_Budget));
+    var array_actual = @Html.Raw(Json.Encode(@ViewBag.QtyChart_WH_RM_Actual));
+
+    for(var i =0; i<array_budget.length;i++){
+        WH_RM_BUDGET[i] = array_budget[i];
+    }
+
+    for(var i =0; i<array_actual.length;i++){
+        WH_RM_ACTUAL[i] = array_actual[i];
+    }
+
+    array_budget = @Html.Raw(Json.Encode(@ViewBag.QtyChart_C_RM_Budget));
+    array_actual = @Html.Raw(Json.Encode(@ViewBag.QtyChart_C_RM_Actual));
+
+    for(var i =0; i<array_budget.length;i++){
+        C_RM_BUDGET[i] = array_budget[i];
+    }
+
+    for(var i =0; i<array_actual.length;i++){
+        C_RM_ACTUAL[i] = array_actual[i];
+    }
+
+    //SP
+    array_budget = @Html.Raw(Json.Encode(@ViewBag.QtyChart_WH_SP_Budget));
+    array_actual = @Html.Raw(Json.Encode(@ViewBag.QtyChart_WH_SP_Actual));
+
+    for(var i =0; i<array_budget.length;i++){
+        WH_SP_BUDGET[i] = array_budget[i];
+    }
+
+    for(var i =0; i<array_actual.length;i++){
+        WH_SP_ACTUAL[i] = array_actual[i];
+    }
+
+    array_budget = @Html.Raw(Json.Encode(@ViewBag.QtyChart_C_SP_Budget));
+    array_actual = @Html.Raw(Json.Encode(@ViewBag.QtyChart_C_SP_Actual));
+
+    for(var i =0; i<array_budget.length;i++){
+        C_SP_BUDGET[i] = array_budget[i];
+    }
+
+    for(var i =0; i<array_actual.length;i++){
+        C_SP_ACTUAL[i] = array_actual[i];
+    }
+
+    //WV
+    array_budget = @Html.Raw(Json.Encode(@ViewBag.QtyChart_WH_WV_Budget));
+    array_actual = @Html.Raw(Json.Encode(@ViewBag.QtyChart_WH_WV_Actual));
+
+    for(var i =0; i<array_budget.length;i++){
+        WH_WV_BUDGET[i] = array_budget[i];
+    }
+
+    for(var i =0; i<array_actual.length;i++){
+        WH_WV_ACTUAL[i] = array_actual[i];
+    }
+
+    array_budget = @Html.Raw(Json.Encode(@ViewBag.QtyChart_C_WV_Budget));
+    array_actual = @Html.Raw(Json.Encode(@ViewBag.QtyChart_C_WV_Actual));
+
+    for(var i =0; i<array_budget.length;i++){
+        C_WV_BUDGET[i] = array_budget[i];
+    }
+
+    for(var i =0; i<array_actual.length;i++){
+        C_WV_ACTUAL[i] = array_actual[i];
+    }
+
+    //DY
+    array_budget = @Html.Raw(Json.Encode(@ViewBag.QtyChart_WH_DY_Budget));
+    array_actual = @Html.Raw(Json.Encode(@ViewBag.QtyChart_WH_DY_Actual));
+
+    for(var i =0; i<array_budget.length;i++){
+        WH_DY_BUDGET[i] = array_budget[i];
+    }
+
+    for(var i =0; i<array_actual.length;i++){
+        WH_DY_ACTUAL[i] = array_actual[i];
+    }
+
+    array_budget = @Html.Raw(Json.Encode(@ViewBag.QtyChart_C_DY_Budget));
+    array_actual = @Html.Raw(Json.Encode(@ViewBag.QtyChart_C_DY_Actual));
+
+    for(var i =0; i<array_budget.length;i++){
+        C_DY_BUDGET[i] = array_budget[i];
+    }
+
+    for(var i =0; i<array_actual.length;i++){
+        C_DY_ACTUAL[i] = array_actual[i];
+    }
+
+    //console.log(WH_RM_ACTUAL);
+
+
+    window.onload = doALoadOfStuff;
+
+    function doALoadOfStuff() {
+        drawChart();
+    }
+
+    function drawChart()
+    {
+        var LebarLayar = window.innerWidth;
+        var TinggiLayar = window.innerHeight;
+        var UkuranFont = 0;
+        var UkuranFontLabel = 0;
+        var TinggiChart = '';
+        var LebarChart = '';
+        var Percent = 0.00;
+        var SisaPercent = 0.00;
+        var SeriesForChart = [];
+        var LabelsForChart = [];
+        var i = 0;
+
+        if (LebarLayar < 500) {
+            UkuranFont = 5;
+            UkuranFontLabel = 8;
+            TinggiChart = '160px';
+            LebarChart = '100%';
+        }
+        else {
+            UkuranFont = 10;
+            UkuranFontLabel = 12;
+            TinggiChart = '90%';
+            LebarChart = '90%';
+        }
+
+        var RMWHOptAct =
+        {        
+            series:
+            [
+                {
+                    name: 'WH Budget',
+                    data: WH_RM_BUDGET 
+                },
+                {
+                    name: 'WH Actual',
+                    data: WH_RM_ACTUAL 
+                }
+            ],
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'bar',
+                events:
+                {
+                    click: function(chart, w, e) {                    
+                    }
+                }
+            },
+
+
+            //colors: colors,
+            plotOptions:
+            {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                    endingShape: 'rounded',
+                    dataLabels: {
+                        position: 'top'
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                style: {
+                    colors: ['#333']
+                },
+                formatter: function (val) {
+                    return val.toFixed(0);
+                },
+                offsetY: -18,
+            },
+            legend: {
+                show: true
+            },
+            xaxis:
+            {
+                categories:
+                [
+                    ['3', 'Bulan'],
+                    ['6', 'Bulan'],
+                    ['9', 'Bulan'],
+                    ['12', 'Bulan'],
+                ],
+                labels:
+                {
+                    style:
+                    {
+                    
+                        fontSize: '12px'
+                    }
+                }
+            },
+            yaxis :
+            {
+                labels:
+                {
+                    formatter: function (value) {
+                        return value.toFixed(0);
+                    }
+                }
+            }
+
+
+
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart_RMWH"), RMWHOptAct);
+        chart.render();          
+
+        var RMCOptAct =
+       {       
+           series:
+           [
+               {
+                   name: 'Consume Budget',
+                   data: C_RM_BUDGET 
+               },
+               {
+                   name: 'Consume Actual',
+                   data: C_RM_ACTUAL 
+               }
+           ],
+           chart: {
+               height: TinggiChart,
+               width: LebarChart,
+               type: 'bar',
+               events:
+               {
+                   click: function(chart, w, e) {
+                       // console.log(chart, w, e)
+                   }
+               }
+           },
+
+
+           //colors: colors,
+           plotOptions:
+           {
+               bar: {
+                   horizontal: false,
+                   columnWidth: '55%',
+                   endingShape: 'rounded'
+               }
+           },
+           dataLabels: {
+               enabled: true,
+               formatter: function (val) {
+                   return val.toFixed(0);
+               },
+               offsetY: 5,
+           },
+           legend: {
+               show: true
+           },
+           xaxis:
+           {
+               categories:
+               [
+                   ['3', 'Bulan'],
+                   ['6', 'Bulan'],
+                   ['9', 'Bulan'],
+                   ['12', 'Bulan'],
+               ],
+               labels:
+               {
+                   style:
+                   {                   
+                       fontSize: '12px'
+                   }
+               }
+           },
+           yaxis :
+           {
+               labels:
+               {
+                   formatter: function (value) {
+                       return value.toFixed(0);
+                   }
+               }
+           }
+       };
+        
+        var chart = new ApexCharts(document.querySelector("#chart_Usage_RMC"), RMCOptAct);
+        chart.render();
+
+        //SPINNING
+        var SPWHOptAct =
+       {        
+           series:
+           [
+               {
+                   name: 'WH Budget',
+                   data: WH_SP_BUDGET 
+               },
+               {
+                   name: 'WH Actual',
+                   data: WH_SP_ACTUAL 
+               }
+           ],
+           chart: {
+               height: TinggiChart,
+               width: LebarChart,
+               type: 'bar',
+               events:
+               {
+                   click: function(chart, w, e) {                    
+                   }
+               }
+           },
+
+
+           //colors: colors,
+           plotOptions:
+           {
+               bar: {
+                   horizontal: false,
+                   columnWidth: '55%',
+                   endingShape: 'rounded'
+               }
+           },
+           dataLabels: {
+               enabled: true,
+               formatter: function (val) {
+                   return val.toFixed(0);
+               },
+               offsetY: 5,
+           },
+           legend: {
+               show: true
+           },
+           xaxis:
+           {
+               categories:
+               [
+                   ['3', 'Bulan'],
+                   ['6', 'Bulan'],
+                   ['9', 'Bulan'],
+                   ['12', 'Bulan'],
+               ],
+               labels:
+               {
+                   style:
+                   {
+                    
+                       fontSize: '12px'
+                   }
+               }
+           },
+           yaxis :
+           {
+               labels:
+               {
+                   formatter: function (value) {
+                       return value.toFixed(0);
+                   }
+               }
+           }
+
+
+
+       };
+
+        var chart = new ApexCharts(document.querySelector("#chart_SPWH"), SPWHOptAct);
+        chart.render(); 
+
+
+        var SPCOptAct =
+       {       
+           series:
+           [
+               {
+                   name: 'Consume Budget',
+                   data: C_SP_BUDGET 
+               },
+               {
+                   name: 'Consume Actual',
+                   data: C_SP_ACTUAL 
+               }
+           ],
+           chart: {
+               height: TinggiChart,
+               width: LebarChart,
+               type: 'bar',
+               events:
+               {
+                   click: function(chart, w, e) {
+                       // console.log(chart, w, e)
+                   }
+               }
+           },
+
+
+           //colors: colors,
+           plotOptions:
+           {
+               bar: {
+                   horizontal: false,
+                   columnWidth: '55%',
+                   endingShape: 'rounded'
+               }
+           },
+           dataLabels: {
+               enabled: true,
+               formatter: function (val) {
+                   return val.toFixed(0);
+               },
+               offsetY: 5,
+           },
+           legend: {
+               show: true
+           },
+           xaxis:
+           {
+               categories:
+               [
+                   ['3', 'Bulan'],
+                   ['6', 'Bulan'],
+                   ['9', 'Bulan'],
+                   ['12', 'Bulan'],
+               ],
+               labels:
+               {
+                   style:
+                   {                   
+                       fontSize: '12px'
+                   }
+               }
+           },
+           yaxis :
+           {
+               labels:
+               {
+                   formatter: function (value) {
+                       return value.toFixed(0);
+                   }
+               }
+           }
+       };
+        
+        var chart = new ApexCharts(document.querySelector("#chart_SPC"), SPCOptAct);
+        chart.render();
+
+
+        //WEAVING
+       
+        var WVWHOptAct =
+       {        
+           series:
+           [
+               {
+                   name: 'WH Budget',
+                   data: WH_WV_BUDGET 
+               },
+               {
+                   name: 'WH Actual',
+                   data: WH_WV_ACTUAL 
+               }
+           ],
+           chart: {
+               height: TinggiChart,
+               width: LebarChart,
+               type: 'bar',
+               events:
+               {
+                   click: function(chart, w, e) {                    
+                   }
+               }
+           },
+
+
+           //colors: colors,
+           plotOptions:
+           {
+               bar: {
+                   horizontal: false,
+                   columnWidth: '55%',
+                   endingShape: 'rounded'
+               }
+           },
+           dataLabels: {
+               enabled: true,
+               formatter: function (val) {
+                   return val.toFixed(0);
+               },
+               offsetY: 5,
+           },
+           legend: {
+               show: true
+           },
+           xaxis:
+           {
+               categories:
+               [
+                   ['3', 'Bulan'],
+                   ['6', 'Bulan'],
+                   ['9', 'Bulan'],
+                   ['12', 'Bulan'],
+               ],
+               labels:
+               {
+                   style:
+                   {
+                    
+                       fontSize: '12px'
+                   }
+               }
+           },
+           yaxis :
+           {
+               labels:
+               {
+                   formatter: function (value) {
+                       return value.toFixed(0);
+                   }
+               }
+           }
+
+
+
+       };
+
+        var chart = new ApexCharts(document.querySelector("#chart_WVWH"), WVWHOptAct);
+        chart.render(); 
+
+
+        var WVCOptAct =
+       {       
+           series:
+           [
+               {
+                   name: 'Consume Budget',
+                   data: C_WV_BUDGET 
+               },
+               {
+                   name: 'Consume Actual',
+                   data: C_WV_ACTUAL 
+               }
+           ],
+           chart: {
+               height: TinggiChart,
+               width: LebarChart,
+               type: 'bar',
+               events:
+               {
+                   click: function(chart, w, e) {
+                       // console.log(chart, w, e)
+                   }
+               }
+           },
+
+
+           //colors: colors,
+           plotOptions:
+           {
+               bar: {
+                   horizontal: false,
+                   columnWidth: '55%',
+                   endingShape: 'rounded'
+               }
+           },
+           dataLabels: {
+               enabled: true,
+               formatter: function (val) {
+                   return val.toFixed(0);
+               },
+               offsetY: 5,
+           },
+           legend: {
+               show: true
+           },
+           xaxis:
+           {
+               categories:
+               [
+                   ['3', 'Bulan'],
+                   ['6', 'Bulan'],
+                   ['9', 'Bulan'],
+                   ['12', 'Bulan'],
+               ],
+               labels:
+               {
+                   style:
+                   {                   
+                       fontSize: '12px'
+                   }
+               }
+           },
+           yaxis :
+           {
+               labels:
+               {
+                   formatter: function (value) {
+                       return value.toFixed(0);
+                   }
+               }
+           }
+       };
+        
+        var chart = new ApexCharts(document.querySelector("#chart_WVC"), WVCOptAct);
+        chart.render();
+
+        //DYEING             
+        var DYWHOptAct =
+       {        
+           series:
+           [
+               {
+                   name: 'WH Budget',
+                   data: WH_DY_BUDGET 
+               },
+               {
+                   name: 'WH Actual',
+                   data: WH_DY_ACTUAL 
+               }
+           ],
+           chart: {
+               height: TinggiChart,
+               width: LebarChart,
+               type: 'bar',
+               events:
+               {
+                   click: function(chart, w, e) {                    
+                   }
+               }
+           },
+
+
+           //colors: colors,
+           plotOptions:
+           {
+               bar: {
+                   horizontal: false,
+                   columnWidth: '55%',
+                   endingShape: 'rounded'
+               }
+           },
+           dataLabels: {
+               enabled: true,
+               formatter: function (val) {
+                   return val.toFixed(0);
+               },
+               offsetY: 5,
+           },
+           legend: {
+               show: true
+           },
+           xaxis:
+           {
+               categories:
+               [
+                   ['3', 'Bulan'],
+                   ['6', 'Bulan'],
+                   ['9', 'Bulan'],
+                   ['12', 'Bulan'],
+               ],
+               labels:
+               {
+                   style:
+                   {
+                    
+                       fontSize: '12px'
+                   }
+               }
+           },
+           yaxis :
+           {
+               labels:
+               {
+                   formatter: function (value) {
+                       return value.toFixed(0);
+                   }
+               }
+           }
+
+
+
+       };
+
+        var chart = new ApexCharts(document.querySelector("#chart_DYWH"), DYWHOptAct);
+        chart.render(); 
+
+
+        var DYCOptAct =
+       {       
+           series:
+           [
+               {
+                   name: 'Consume Budget',
+                   data: C_DY_BUDGET 
+               },
+               {
+                   name: 'Consume Actual',
+                   data: C_DY_ACTUAL 
+               }
+           ],
+           chart: {
+               height: TinggiChart,
+               width: LebarChart,
+               type: 'bar',
+               events:
+               {
+                   click: function(chart, w, e) {
+                       // console.log(chart, w, e)
+                   }
+               }
+           },
+
+
+           //colors: colors,
+           plotOptions:
+           {
+               bar: {
+                   horizontal: false,
+                   columnWidth: '55%',
+                   endingShape: 'rounded'
+               }
+           },
+           dataLabels: {
+               enabled: true,
+               formatter: function (val) {
+                   return val.toFixed(0);
+               },
+               offsetY: 5,
+           },
+           legend: {
+               show: true
+           },
+           xaxis:
+           {
+               categories:
+               [
+                   ['3', 'Bulan'],
+                   ['6', 'Bulan'],
+                   ['9', 'Bulan'],
+                   ['12', 'Bulan'],
+               ],
+               labels:
+               {
+                   style:
+                   {                   
+                       fontSize: '12px'
+                   }
+               }
+           },
+           yaxis :
+           {
+               labels:
+               {
+                   formatter: function (value) {
+                       return value.toFixed(0);
+                   }
+               }
+           }
+       };
+        
+        var chart = new ApexCharts(document.querySelector("#chart_DYC"), DYCOptAct);
+        chart.render();
+    }
+</script>

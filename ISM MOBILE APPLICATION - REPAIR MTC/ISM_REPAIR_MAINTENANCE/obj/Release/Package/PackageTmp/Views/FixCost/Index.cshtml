@@ -1,0 +1,1591 @@
+﻿@{
+    var header1 = "Factory Supplies";
+    var header2 = "Repair Maintenance";
+    var header3 = "Repair From Engineering";
+    var header4 = "Total";
+
+    ViewBag.Title = "Home Page";
+    var current_date = Convert.ToString(String.Format("{0: dd MMMM yyyy}", DateTime.Now));
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <span class="text-primary"><i class="align-middle" data-feather="disc" style="height:50px;width:50px"></i></span>
+                    <div class="ms-4">
+                        <h5 class="fs-4 fw-bold mb-0">@current_date</h5>
+                        <h7 class="fw-medium text-primary fs-4">Fix Cost Situation</h7>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
+    @*<h5 class="mb-0 fs-5 fw-semibold">Improving Work Processes</h5>*@
+    <div class="col">
+        <div class="card alert-primary">
+            <div class="card-body p-2">
+                <div class="card-body p-1">
+                    <div class="mb-1" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                        <div>
+                            <h6 class="mb-1 fw-bold fs-4 text-primary">Spinning</h6>
+                        </div>
+                    </div>
+
+                    <p class="fs-4 mb-1 text-primary">@header1</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            @*<a data-bs-toggle="modal" href="#ModalForRM-WH-Plan"><span class="badge bg-primary">B</span></a>*@
+                            <span class="badge bg-primary">B</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Bu_SP_FS.ToString("#,##0")</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_SP_FS.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-primary">@header2</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalForRM_CONSUME_PLAN"><span class="badge bg-primary">B</span></a>*@
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_SP_RM.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_SP_RM.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-primary">@header3</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalForRM_CONSUME_PLAN"><span class="badge bg-primary">B</span></a>*@
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_SP_RFE.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_SP_RFE.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-primary">@header4</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalForRM_CONSUME_PLAN"><span class="badge bg-primary">B</span></a>*@
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_SP_Total.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-primary">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_SP_Total.ToString("#,##0")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card alert-danger">
+            <div class="card-body p-2">
+                <div class="card-body p-1">
+                    <div class="mb-1" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                        <div>
+                            <h6 class="mb-1 fw-bold fs-4 text-danger">Weaving</h6>
+                        </div>
+                    </div>
+
+                    <p class="fs-4 mb-1 text-danger">@header1</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor-SP-WH-Plan"><span class="badge bg-danger">B</span></a>*@
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_WV_FS.ToString("#,##0")</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_WV_FS.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-danger">@header2</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_SP_CONSUME_PLAN"><span class="badge bg-danger">B</span></a>*@
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_WV_RM.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_WV_RM.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-danger">@header3</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_SP_CONSUME_PLAN"><span class="badge bg-danger">B</span></a>*@
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_WV_RFE.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_WV_RFE.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-danger">@header4</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_SP_CONSUME_PLAN"><span class="badge bg-danger">B</span></a>*@
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_WV_Total.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-danger">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_WV_Total.ToString("#,##0")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card alert-success">
+            <div class="card-body p-2">
+                <div class="card-body p-1">
+                    <div class="mb-1" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                        <div>
+                            <h6 class="mb-1 fw-bold fs-4 text-success">Dyeing</h6>
+                        </div>
+                    </div>
+                    <p class="fs-4 mb-1 text-success">@header1</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalForWV-GREY-PLAN"><span class="badge bg-success">B</span></a>*@
+
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Bu_DY_FS.ToString("#,##0")</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_DY_FS.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-success">@header2</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_WV_CONSUME_PLAN"><span class="badge bg-success">B</span></a>*@
+
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Bu_DY_RM.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_DY_RM.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+
+                    <p class="mt-3 fs-4 mb-1 text-success">@header3</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_WV_CONSUME_PLAN"><span class="badge bg-success">B</span></a>*@
+
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Bu_DY_RFE.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_DY_RFE.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+
+                    <p class="mt-3 fs-4 mb-1 text-success">@header4</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_WV_CONSUME_PLAN"><span class="badge bg-success">B</span></a>*@
+
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Bu_DY_Total.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-success">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_DY_Total.ToString("#,##0")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card alert-warning">
+            <div class="card-body p-2">
+                <div class="card-body p-1">
+                    <div class="mb-1" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                        <div>
+                            <h6 class="mb-1 fw-bold fs-4 text-warning">Engineering</h6>
+                        </div>
+                    </div>
+
+                    <p class="fs-4 mb-1 text-warning">@header1</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalForDY-FinishGoods-PLAN"><span class="badge bg-warning">B</span></a>*@
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_ENG_FS.ToString("#,##0")</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_ENG_FS.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-warning">@header2</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-warning">B</span></a>*@
+
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_ENG_RM.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_ENG_RM.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-warning">@header3</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-warning">B</span></a>*@
+
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_ENG_RFE.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_ENG_RFE.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-warning">@header4</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-warning">B</span></a>*@
+
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_ENG_Total.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-warning">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_ENG_Total.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card alert-info">
+            <div class="card-body p-2">
+                <div class="card-body p-1">
+                    <div class="mb-1" style=" text-align:center; border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                        <div>
+                            <h6 class="mb-1 fw-bold fs-4 text-info">General Affair</h6>
+                        </div>
+                    </div>
+
+                    <p class="fs-4 mb-1 text-info">@header1</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalForDY-FinishGoods-PLAN"><span class="badge bg-info">B</span></a>*@
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_GA_FS.ToString("#,##0")</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_GA_FS.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-info">@header2</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-info">B</span></a>*@
+
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_GA_RM.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_GA_RM.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-info">@header3</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-info">B</span></a>*@
+
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_GA_RFE.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_GA_RFE.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-3 fs-4 mb-1 text-info">@header4</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">B</span>
+                            @*<a data-bs-toggle="modal" href="#ModalFor_DY_CONSUME_PLAN"><span class="badge bg-info">B</span></a>*@
+
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.BU_GA_Total.ToString("#,##0")</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="badge bg-info">A</span>
+                            <span class="fs-4 d-flex align-content-center">@ViewBag.Act_GA_Total.ToString("#,##0")</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <span class="fs-4 fw-bold card-title text-dark">Spinning</span>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Factory Supplies
+                            </div>
+                        </div>
+                        <div id="chart_SP_FS" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Repair Maintenance
+                            </div>
+                        </div>
+                        <div id="chart_SP_RM" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Repair From Engineering
+                            </div>
+                        </div>
+                        <div id="chart_SP_RFE" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <span class="fs-4 fw-bold card-title text-dark">Weaving</span>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Factory Supplies
+                            </div>
+                        </div>
+                        <div id="chart_WV_FS" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Repair Maintenance
+                            </div>
+                        </div>
+                        <div id="chart_WV_RM" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Repair From Engineering
+                            </div>
+                        </div>
+                        <div id="chart_WV_RFE" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <span class="fs-4 fw-bold card-title text-dark">Dyeing</span>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Factory Supplies
+                            </div>
+                        </div>
+                        <div id="chart_DY_FS" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Repair Maintenance
+                            </div>
+                        </div>
+                        <div id="chart_DY_RM" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Repair From Engineering
+                            </div>
+                        </div>
+                        <div id="chart_DY_RFE" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <span class="fs-4 fw-bold card-title text-dark">Engineeering</span>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Factory Supplies
+                            </div>
+                        </div>
+                        <div id="chart_ENG_FS" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Repair Maintenance
+                            </div>
+                        </div>
+                        <div id="chart_ENG_RM" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Repair From Engineering
+                            </div>
+                        </div>
+                        <div id="chart_ENG_RFE" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header" style="border-bottom:2px solid;border-bottom-color: rgba(165, 173, 179, 0.3);">
+                <span class="fs-4 fw-bold card-title text-dark">General Affair</span>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Factory Supplies
+                            </div>
+                        </div>
+                        <div id="chart_GA_FS" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Repair Maintenance
+                            </div>
+                        </div>
+                        <div id="chart_GA_RM" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+
+                    <div class="col">
+                        <div style="display:flex;justify-content:center;">
+                            <div class="fw-bold py-1 w-85" style="text-align:left;padding-left:15px">
+                                Repair From Engineering
+                            </div>
+                        </div>
+                        <div id="chart_GA_RFE" style="min-height:200PX;display:flex;justify-content:center;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/ApexChart")
+
+
+<script type="text/javascript">
+
+    $('#sidebarFixCost').addClass(' active');
+    //$('#sidebarHome').removeClass('active');
+    $('#sidebarAgingSparepart').removeClass('active');
+
+    var Persentase_SP_FS = '@ViewBag.Persen_SP_FS';
+    var Persentase_SP_RM = '@ViewBag.Persen_SP_RM';
+    var Persentase_SP_RFE = '@ViewBag.Persen_SP_RFE';
+
+    var Persentase_WV_FS = '@ViewBag.Persen_WV_FS';
+    var Persentase_WV_RM = '@ViewBag.Persen_WV_RM';
+    var Persentase_WV_RFE = '@ViewBag.Persen_WV_RFE';
+
+    var Persentase_DY_FS = '@ViewBag.Persen_DY_FS';
+    var Persentase_DY_RM = '@ViewBag.Persen_DY_RM';
+    var Persentase_DY_RFE = '@ViewBag.Persen_DY_RFE';
+
+    var Persentase_ENG_FS = '@ViewBag.Persen_ENG_FS';
+    var Persentase_ENG_RM = '@ViewBag.Persen_ENG_RM';
+    var Persentase_ENG_RFE = '@ViewBag.Persen_ENG_RFE';
+
+    var Persentase_GA_FS = '@ViewBag.Persen_GA_FS';
+    var Persentase_GA_RM = '@ViewBag.Persen_GA_RM';
+    var Persentase_GA_RFE = '@ViewBag.Persen_GA_RFE';
+
+    window.onload = doALoadOfStuff();
+
+
+    function doALoadOfStuff() {
+        drawChart();
+    }
+
+    function drawChart() {
+
+        var LebarLayar = window.innerWidth;
+        var TinggiLayar = window.innerHeight;
+        var UkuranFont = 0;
+        var UkuranFontLabel = 0;
+        var TinggiChart = '';
+        var LebarChart = '';
+        var Percent = 0.00;
+        var SisaPercent = 0.00;
+        var SeriesForChart = [];
+        var LabelsForChart = [];
+        var i = 0;
+
+        if (LebarLayar < 500) {
+            UkuranFont = 5;
+            UkuranFontLabel = 8;
+            TinggiChart = '160px';
+            LebarChart = '100%';
+        }
+        else {
+            UkuranFont = 10;
+            UkuranFontLabel = 12;
+            TinggiChart = '100%';
+            LebarChart = '100%';
+        }
+
+
+        //setup persentase
+        //Percent = 115;
+        Percent = Persentase_SP_FS;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+
+
+        var SpinningFS_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            //colors: ["#20E647"],
+            labels: LabelsForChart, //['100 %', '3 %'],
+            plotOptions:
+            {
+                radialBar:
+                {
+                    dataLabels:
+                    {
+                        value: {
+                            show: false,
+
+                        },
+
+                        total: {
+                            show: true,
+                            label: Percent + ' %', //'103 %',
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_SP_FS"), SpinningFS_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = Persentase_SP_RM;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var SpinningRM_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_SP_RM"), SpinningRM_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = Persentase_SP_RFE;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var SpinningRFE_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_SP_RFE"), SpinningRFE_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+
+        Percent = Persentase_WV_FS;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+
+
+        var WV_FS_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            //colors: ["#20E647"],
+            labels: LabelsForChart, //['100 %', '3 %'],
+            plotOptions:
+            {
+                radialBar:
+                {
+                    dataLabels:
+                    {
+                        value: {
+                            show: false,
+
+                        },
+
+                        total: {
+                            show: true,
+                            label: Percent + ' %', //'103 %',
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_WV_FS"), WV_FS_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = Persentase_WV_RM;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var WV_RM_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_WV_RM"), WV_RM_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = Persentase_WV_RFE;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var WV_RFE_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_WV_RFE"), WV_RFE_Opt);
+        chart.render();
+
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+
+        Percent = Persentase_DY_FS;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+
+
+        var DY_FS_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            //colors: ["#20E647"],
+            labels: LabelsForChart, //['100 %', '3 %'],
+            plotOptions:
+            {
+                radialBar:
+                {
+                    dataLabels:
+                    {
+                        value: {
+                            show: false,
+
+                        },
+
+                        total: {
+                            show: true,
+                            label: Percent + ' %', //'103 %',
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_DY_FS"), DY_FS_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = Persentase_DY_RM;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var DY_RM_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_DY_RM"), DY_RM_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = Persentase_DY_RFE;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var DY_RFE_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_DY_RFE"), DY_RFE_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+
+        Percent = Persentase_ENG_FS;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+
+
+        var ENG_FS_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            //colors: ["#20E647"],
+            labels: LabelsForChart, //['100 %', '3 %'],
+            plotOptions:
+            {
+                radialBar:
+                {
+                    dataLabels:
+                    {
+                        value: {
+                            show: false,
+
+                        },
+
+                        total: {
+                            show: true,
+                            label: Percent + ' %', //'103 %',
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_ENG_FS"), ENG_FS_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = Persentase_ENG_RM;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var ENG_RM_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_ENG_RM"), ENG_RM_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = Persentase_ENG_RFE;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var ENG_RFE_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_ENG_RFE"), ENG_RFE_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+
+        Percent = Persentase_GA_FS;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+
+
+        var GA_FS_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            //colors: ["#20E647"],
+            labels: LabelsForChart, //['100 %', '3 %'],
+            plotOptions:
+            {
+                radialBar:
+                {
+                    dataLabels:
+                    {
+                        value: {
+                            show: false,
+
+                        },
+
+                        total: {
+                            show: true,
+                            label: Percent + ' %', //'103 %',
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_GA_FS"), GA_FS_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = Persentase_GA_RM;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var GA_RM_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_GA_RM"), GA_RM_Opt);
+        chart.render();
+
+        SeriesForChart = [];
+        LabelsForChart = [];
+        //Percent = 80;
+        Percent = Persentase_GA_RFE;
+        SisaPercent = Percent;
+        if (Percent > 100) {
+            i = 0;
+            for (i; i <= Percent; i++) {
+                if (SisaPercent > 100) {
+                    SeriesForChart.push(100);
+                    LabelsForChart.push('100 %');
+                    i = i + 100;
+                    SisaPercent = SisaPercent - 100;
+                }
+
+                if (SisaPercent <= 100) {
+                    SeriesForChart.push(SisaPercent);
+                    LabelsForChart.push(SisaPercent.toLocaleString('en-US') + ' %');
+                    i = i + 100;
+                }
+            }
+        }
+
+        else {
+            SeriesForChart.push(Percent);
+            LabelsForChart.push(Percent + ' %')
+        }
+
+        var GA_RFE_Opt = {
+            chart: {
+                height: TinggiChart,
+                width: LebarChart,
+                type: 'radialBar',
+            },
+            series: SeriesForChart,
+            labels: LabelsForChart,
+            plotOptions:
+    {
+        radialBar:
+        {
+            dataLabels:
+            {
+                value: {
+                    show: false,
+
+                },
+
+                total: {
+                    show: true,
+                    label: Percent + ' %' //'80 %',
+
+                }
+            }
+
+        }
+    }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart_GA_RFE"), GA_RFE_Opt);
+        chart.render();
+
+
+    }
+
+
+</script>

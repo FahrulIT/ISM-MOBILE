@@ -55,11 +55,11 @@ namespace ISM_MOBILE_APPLICATION.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
             }
+
             else
             {
                 ViewBag.ReturnUrl = returnUrl;

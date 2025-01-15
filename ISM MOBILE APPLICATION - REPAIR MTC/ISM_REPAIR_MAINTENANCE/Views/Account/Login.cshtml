@@ -1,0 +1,91 @@
+﻿@using ISM_REPAIR_MAINTENANCE.Models
+
+
+
+@model LoginViewModel
+@{
+    Layout = null;
+    ViewBag.Title = "Log in";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <title>Sign In | ISM FIX COST</title>
+
+    @Styles.Render("~/bundles/AdminKit/css")
+
+</head>
+
+<body>
+    <main class="d-flex w-100">
+        <div class="container d-flex flex-column">
+            <div class="row vh-100">
+                <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
+                    <div class="d-table-cell align-middle">
+
+                        <div class="text-center mt-4">
+                            @*<h1 class="h2">Welcome back!</h1>*@
+                            <img src="~/Content/images/logos/toray_only_logo.svg" class="mb-2"/>
+                            @*<p class="lead">
+                                Sign in to your account to continue
+                            </p>*@
+                            <p class="text-center text-primary">Innovation by Chemistry</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="m-sm-3">
+                                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                        <div class="mb-3">
+                                            @Html.LabelFor(m => m.UserName, new { @class = "form-label" })
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control form-control-lg", @placeholder = "Enter your username for login..." })
+                                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="mb-4">
+                                            @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg" })
+                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="d-flex align-items-center justify-content-between mb-4">
+                                            <div class="form-check">
+                                                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input primary" })
+                                                @Html.LabelFor(m => m.RememberMe, new { @class = "form-check-label text-small text-dark" })
+                                            </div>                                            
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-0 rounded-2"> Sign In</button>                                      
+                                      
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="text-center mb-3">
+                            Don't have an account? <a href="pages-sign-up.html">Sign up</a>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/AdminKit/js")
+
+
+</body>
+
+</html>

@@ -200,10 +200,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Chart\dist\apexcharts V3.50.js" />
     <Content Include="Chart\dist\apexcharts.amd.js" />
     <Content Include="Chart\dist\apexcharts.amd.js.LICENSE.txt" />
     <Content Include="Chart\dist\apexcharts.common.js" />
     <Content Include="Chart\dist\apexcharts.css" />
+    <Content Include="Chart\dist\apexchartsold.css" />
     <Content Include="Chart\dist\apexcharts.esm.js" />
     <Content Include="Chart\dist\apexcharts.js" />
     <Content Include="Chart\dist\apexcharts.min.js" />
@@ -975,6 +977,16 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\ErrorPermission.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_HomeDyeing.cshtml" />
+    <Content Include="Views\Shared\_HomeRawMaterial.cshtml" />
+    <Content Include="Views\Shared\_HomeSpinning.cshtml" />
+    <Content Include="Views\Shared\_HomeWeaving.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutBak.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -986,8 +998,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -1007,20 +1017,12 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_LayoutBak.cshtml" />
     <Content Include="Views\Home\IndexBak.cshtml" />
     <Content Include="Views\Dyeing\Index.cshtml" />
     <Content Include="Views\Spinning\Index.cshtml" />
     <Content Include="Views\Weaving\Index.cshtml" />
     <Content Include="Views\Account\Register - Original.cshtml" />
     <Content Include="Views\Account\Loginxxx.cshtml" />
-    <Content Include="Views\Shared\ErrorPermission.cshtml" />
-    <Content Include="Views\Shared\_HomeSpinning.cshtml" />
-    <Content Include="Views\Shared\_HomeWeaving.cshtml" />
-    <Content Include="Views\Shared\_HomeDyeing.cshtml" />
-    <Content Include="Views\Shared\_HomeRawMaterial.cshtml" />
     <Content Include="Views\AjlMapDemo\Index.cshtml" />
     <Content Include="Views\TestingTable\Index.cshtml" />
   </ItemGroup>

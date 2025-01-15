@@ -1,0 +1,67 @@
+﻿@*@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}*@
+
+
+@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        if (ViewBag.UserRoles == "Admin")
+        {
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="@Url.Action("Register", "Account")" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-user-plus"></i>
+                    </span>
+                    <span class="hide-menu">Register</span>
+                </a>
+            </li>
+        }
+
+
+
+        <div class="fixed-profile p-3 mb-2 bg-primary-subtle rounded mt-0">
+            <div class="hstack gap-3">
+                <div class="john-title">
+                    <h6 class="mb-0 fs-3 fw-semibold">@User.Identity.GetUserName().ToUpper()</h6>
+                    <span class="fs-2">
+                        @ViewBag.UserRoles
+                    </span>
+                </div>
+
+                <button type="submit" class="btn btn-primary border-0 bg-transparent text-primary ms-auto" title="SIGN OUT">
+                    <i class="ti ti-power" style="font-size:1.5rem!important"></i>
+                </button>
+            </div>
+        </div>
+
+    }
+
+}
+else
+{
+
+}

@@ -103,7 +103,8 @@ namespace ISM_MAINTENANCE.Controllers
             }
             else
             {
-                ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.departement == "W" && x.section == "pa" & x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper());
+                //ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.departement == "W" && x.section == "pa" & x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper());
+                ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper());
             }
 
             ViewBag.machine_no = new SelectList(db.v_Machine_Master_AJL, "MachineNo", "MachineNo");
@@ -369,7 +370,7 @@ namespace ISM_MAINTENANCE.Controllers
             //check date > today
             var today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
            
-           if (note_date >= today)
+           if (note_date > today)
            {
                 ModelState.AddModelError("DateInput", "Kolom Date tidak boleh kurang dari today date");
                 InitCreatePage();
@@ -562,7 +563,8 @@ namespace ISM_MAINTENANCE.Controllers
                 }
                 else
                 {
-                    ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.departement == "W" && x.section == "pa" & x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper());
+                    //ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.departement == "W" && x.section == "pa" & x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper()); ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.departement == "W" && x.section == "pa" & x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper());
+                    ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper()); ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper());
                 }
 
                 ModelState.AddModelError("", "Data tidak bisa dirubah, Catatan pimpinan shift sudah ada di maintenance history");
@@ -640,7 +642,8 @@ namespace ISM_MAINTENANCE.Controllers
             }
             else
             {
-                ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.departement == "W" && x.section == "pa" & x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper());
+                //ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.departement == "W" && x.section == "pa" & x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper());
+                ViewBag.pic = new SelectList(db.sysuser_app.Where(x => x.ID == User.Identity.Name.ToUpper()).OrderBy(x => x.Fullname), "ID", "Fullname", User.Identity.Name.ToUpper());                
             }
             return View(obj);
         }

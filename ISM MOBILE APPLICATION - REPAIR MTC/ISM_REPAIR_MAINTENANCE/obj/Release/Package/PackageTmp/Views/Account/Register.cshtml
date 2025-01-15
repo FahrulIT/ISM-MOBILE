@@ -1,0 +1,72 @@
+﻿@model ISM_REPAIR_MAINTENANCE.Models.RegisterViewModel
+@{
+    Layout = null;
+    ViewBag.Title = "Register";
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daftar User Baru</title>
+    <link rel="shortcut icon" type="image/png" href="~/Content/images/logos/Toray_T_only.svg" />
+    <link rel="stylesheet" href="~/Content/css/styles.min.css" />
+</head>
+
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center w-100">
+                <div class="row justify-content-center w-100">
+                    <div class="col-md-8 col-lg-6 col-xxl-3">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <a href="@Url.Action("Index", "Home")" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                    <img src="~/Content/images/logos/toray_only_logo.svg" width="180" alt="">
+                                </a>
+                                <p class="text-center">Innovation by Chemistry</p>
+                                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                                    <div class="mb-3">
+                                        @Html.LabelFor(m => m.UserName, new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="mb-3">
+                                        @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="mb-3">
+                                        @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="mb-3">
+                                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-label" })
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="mb-3">
+                                        @Html.LabelFor(m => m.UserRoles, new { @class = "form-label" })
+                                        @Html.DropDownListFor(m => m.UserRoles, (SelectList)ViewBag.RolesName, new { @class = "form-control" })
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

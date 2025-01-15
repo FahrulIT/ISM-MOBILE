@@ -1350,7 +1350,8 @@
 
 <!--Javascript-->
 
-<script src="~/Chart/dist/apexcharts.js"></script>
+<script src="~/Content/libs/apexcharts/dist/apexcharts.js"></script>
+
 <script>
 
     var PersentaseWH_SP = '@ViewBag.PersentaseWH_SP';
@@ -1432,6 +1433,7 @@
                 type: 'radialBar',
             },
             series: SeriesForChart,
+            //colors: ["#20E647"],
             labels: LabelsForChart, //['100 %', '3 %'],
             plotOptions:
             {
